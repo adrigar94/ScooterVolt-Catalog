@@ -1,2 +1,10 @@
 # ScooterVolt-Catalog
-This repository contains the Catalog microservice for the ScooterVolt platform, a second-hand electric scooter marketplace built using a microservices architecture. This service is responsible for storing, listing, and filtering the ads posted by users.
+The Catalog service is a microservice in the ScooterVolt platform, for storing, listing, and filtering the ads posted by users. This service is built using Symfony.
+
+## API Reference
+
+Is avaible in ```https://localhost:8000/api/doc```
+
+## Testing
+
+TODO
