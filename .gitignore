@@ -6,8 +6,5 @@
 /var/
 /vendor/
 /config/secrets/
-
-###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
-###< phpunit/phpunit ###
