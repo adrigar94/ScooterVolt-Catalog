@@ -32,7 +32,7 @@ jobs:
             ${{ runner.os }}-php-
       - name: Install Dependencies
         run: composer install --prefer-dist --no-progress
-      - name: Docker Compose Action
-        uses: isbang/compose-action@v1.5.1
+      # - name: Docker Compose Action
+      #   uses: isbang/compose-action@v1.5.1
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
