@@ -10,6 +10,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "adrigar94/value-object-craft": "0.*",
+        "mongodb/mongodb": "^1.16",
         "nelmio/api-doc-bundle": "^4.12",
         "symfony/asset": "6.3.*",
         "symfony/console": "6.3.*",

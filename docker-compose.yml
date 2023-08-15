@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: scooterVolt
+      MONGO_INITDB_ROOT_PASSWORD: 5c0073r-VOLT
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: scooterVolt
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 5c0073r-VOLT
+      ME_CONFIG_MONGODB_URL: mongodb://scooterVolt:5c0073r-VOLT@mongo:27017/
