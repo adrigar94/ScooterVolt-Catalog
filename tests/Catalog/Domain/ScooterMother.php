@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ScooterVolt\CatalogService\Tests\Catalog\Domain;
 
 use ScooterVolt\CatalogService\Catalog\Domain\Scooter;
+use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserContactInfo;
@@ -36,6 +37,7 @@ class ScooterMother
         }
 
         return new Scooter(
+            AdId::random(),
             AdUrl::generateRandomUrlForBlankAd(),
             new \DateTimeImmutable,
             new \DateTimeImmutable,
@@ -52,6 +54,7 @@ class ScooterMother
         }
 
         $scooter = new Scooter(
+            AdId::random(),
             AdUrl::generateRandomUrlForBlankAd(),
             new \DateTimeImmutable,
             new \DateTimeImmutable,

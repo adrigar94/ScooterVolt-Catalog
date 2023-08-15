@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Catalog\Domain;
 
+use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserContactInfo;
@@ -13,6 +14,7 @@ abstract class Ad
 {
 
     public function __construct(
+        private AdId $id,
         private AdUrl $url,
         private \DateTimeImmutable $createdAt,
         private \DateTimeImmutable $updatedAt,
@@ -20,6 +22,11 @@ abstract class Ad
         private UserId $user_id,
         private UserContactInfo $contactInfo
     ) {
+    }
+
+    public function getId(): AdId
+    {
+        return $this->id;
     }
 
     public function getUrl(): AdUrl

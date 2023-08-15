@@ -6,6 +6,7 @@ namespace ScooterVolt\CatalogService\Catalog\Domain;
 
 use ScooterVolt\CatalogService\Catalog\Domain\Exceptions\ScooterChangeStatusException;
 use ScooterVolt\CatalogService\Catalog\Domain\Exceptions\ScooterSoldChangeStatusException;
+use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterBrand;
@@ -25,6 +26,7 @@ final class Scooter extends Ad
 {
 
     public function __construct(
+        AdId $id,
         AdUrl $url,
         \DateTimeImmutable $createdAt,
         \DateTimeImmutable $updatedAt,
@@ -42,7 +44,7 @@ final class Scooter extends Ad
         private ?ScooterMaxSpeedKmh $maxSpeed = null,
         private ?ScooterPowerWatts $power = null
     ) {
-        parent::__construct($url, $createdAt, $updatedAt, $status, $user_id, $contactInfo);
+        parent::__construct($id, $url, $createdAt, $updatedAt, $status, $user_id, $contactInfo);
     }
 
     public function getTitle(): string
@@ -52,11 +54,12 @@ final class Scooter extends Ad
 
     public static function newBlankScooter(UserId $user_id, UserContactInfo $contactInfo): self
     {
+        $id = AdId::random();
         $url = AdUrl::generateRandomUrlForBlankAd();
         $createdAt = new \DateTimeImmutable();
         $updatedAt = new \DateTimeImmutable();
         $status = new AdStatus(AdStatus::DRAFT);
-        return new static($url, $createdAt, $updatedAt, $status, $user_id, $contactInfo);
+        return new static($id, $url, $createdAt, $updatedAt, $status, $user_id, $contactInfo);
     }
 
     public function getBrand(): ?ScooterBrand
