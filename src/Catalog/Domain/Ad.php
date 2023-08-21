@@ -10,7 +10,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserContactInfo;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId;
 
-abstract class Ad
+abstract class Ad implements \JsonSerializable
 {
 
     public function __construct(
@@ -62,6 +62,16 @@ abstract class Ad
     public function getStatus(): AdStatus
     {
         return $this->status;
+    }
+
+    public function getUserContactInfo(): UserContactInfo
+    {
+        return $this->contactInfo;
+    }
+
+    public function setUserContactInfol(UserContactInfo $contactInfo): void
+    {
+        $this->contactInfo = $contactInfo;
     }
 
     abstract protected function toDraftValidations(): void;

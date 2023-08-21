@@ -25,7 +25,7 @@ interface ScooterRepository
 
     public function findByUrl(AdUrl $url): ?Scooter;
 
-    public function save(Scooter $user): void;
+    public function save(Scooter $scooter): void;
 
     public function delete(AdId $id): void;
 }

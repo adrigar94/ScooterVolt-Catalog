@@ -213,4 +213,104 @@ final class Scooter extends Ad
             $this->getUrl()->generateUrlFromTitle($this->getTitle())
         );
     }
+
+
+    public function toNative(): array
+    {
+
+        $native = [
+            'id' => $this->getId()->toNative(),
+            'url' => $this->getUrl()->toNative(),
+            'created_at' => $this->getCreatedAt()->format('Y-m-d H:i:s'),
+            'updated_at' => $this->getUpdatedAt()->format('Y-m-d H:i:s'),
+            'status' => $this->getStatus()->toNative(),
+            'user_id' => $this->getUserId()->toNative(),
+            'user_contact_info' => $this->getUserContactInfo()->toNative(),
+        ];
+
+        if ($this->getBrand()) {
+            $native['brand'] = $this->getBrand()->toNative();
+        }
+        if ($this->getModel()) {
+            $native['model'] = $this->getModel()->toNative();
+        }
+        if ($this->getPrice()) {
+            $native['price'] = $this->getPrice()->toNative();
+        }
+        if ($this->getLocation()) {
+            $native['location'] = $this->getLocation()->toNative();
+        }
+        if ($this->getGallery()) {
+            $native['gallery'] = $this->getGallery()->toNative();
+        }
+        if ($this->getYear()) {
+            $native['year'] = $this->getYear()->toNative();
+        }
+        if ($this->getCondition()) {
+            $native['condition'] = $this->getCondition()->toNative();
+        }
+        if ($this->getTravelRange()) {
+            $native['travel_range'] = $this->getTravelRange()->toNative();
+        }
+        if ($this->getMaxSpeed()) {
+            $native['max_speed'] = $this->getMaxSpeed()->toNative();
+        }
+        if ($this->getPower()) {
+            $native['power'] = $this->getPower()->toNative();
+        }
+
+        return $native;
+    }
+
+    public static function fromNative(array $native): self
+    {
+
+        $scooter = new static(
+            AdId::fromNative($native['id']),
+            AdUrl::fromNative($native['url']),
+            new \DateTimeImmutable($native['created_at']),
+            new \DateTimeImmutable($native['updated_at']),
+            AdStatus::fromNative($native['status']),
+            UserId::fromNative($native['user_id']),
+            UserContactInfo::fromNative($native['user_contact_info'])
+        );
+
+        if (array_key_exists('brand', $native) and !is_null($native['brand'])) {
+            $scooter->setBrand(ScooterBrand::fromNative($native['brand']));
+        }
+        if (array_key_exists('model', $native) and !is_null($native['model'])) {
+            $scooter->setModel(ScooterModel::fromNative($native['model']));
+        }
+        if (array_key_exists('price', $native) and !is_null($native['price'])) {
+            $scooter->setPrice(ScooterPrice::fromNative($native['price']));
+        }
+        if (array_key_exists('location', $native) and !is_null($native['location'])) {
+            $scooter->setLocation(ScooterLocation::fromNative($native['location']));
+        }
+        if (array_key_exists('gallery', $native) and !is_null($native['gallery'])) {
+            $scooter->setGallery(ScooterGallery::fromNative($native['gallery']));
+        }
+        if (array_key_exists('year', $native) and !is_null($native['year'])) {
+            $scooter->setYear(ScooterYear::fromNative($native['year']));
+        }
+        if (array_key_exists('condition', $native) and !is_null($native['condition'])) {
+            $scooter->setCondition(ScooterCondition::fromNative($native['condition']));
+        }
+        if (array_key_exists('travel_range', $native) and !is_null($native['travel_range'])) {
+            $scooter->setTravelRange(ScooterTravelRangeKm::fromNative($native['travel_range']));
+        }
+        if (array_key_exists('max_speed', $native) and !is_null($native['max_speed'])) {
+            $scooter->setMaxSpeed(ScooterMaxSpeedKmh::fromNative($native['max_speed']));
+        }
+        if (array_key_exists('power', $native) and !is_null($native['power'])) {
+            $scooter->setPower(ScooterPowerWatts::fromNative($native['power']));
+        }
+
+        return $scooter;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->toNative();
+    }
 }

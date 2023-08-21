@@ -11,12 +11,11 @@ class ScooterBrand extends StringValueObject
 
     protected static function getMinLength(): int
     {
-        return 3;
+        return 2;
     }
 
     protected static function getMaxLength(): int
     {
         return 70;
     }
-
 }

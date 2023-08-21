@@ -8,25 +8,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Attributes as OA;
+use Nelmio\ApiDocBundle\Annotation as NOA;
 use ScooterVolt\CatalogService\Catalog\Application\Find\ScooterFindAllService;
+use ScooterVolt\CatalogService\Catalog\Domain\ScooterDTO;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-#[Route('/api/catalog', name: 'catalog_find_all', methods: ['GET'])]
+#[Route('/api/catalog/scooters', name: 'scooters_find_all', methods: ['GET'])]
 #[OA\Tag("Catalog")]
 #[OA\Response(
     response: JsonResponse::HTTP_OK,
-    description: "Ads Found",
+    description: "Scooters Found",
     content: new OA\JsonContent(
         type: "array",
         items: new OA\Items(
-            type: "object",
-            properties: [
-                // new OA\Property(property: "id", type: "string", example: "062714f2-3916-4924-81fc-5ef985d19f5d"),
-                // new OA\Property(property: "fullname", type: "json", example: "{\"name\":\"John\",\"surname\":\"Doe\"}"),
-                // new OA\Property(property: "email", type: "string", example: "john@email.com"),
-                // new OA\Property(property: "created_at", type: "string", format: "date-time"),
-                // new OA\Property(property: "updated_at", type: "string", format: "date-time"),
-            ]
+            ref: new NOA\Model(
+                type: ScooterDTO::class
+            ),
         )
     )
 )]
@@ -40,13 +37,6 @@ class ScooterFindAllController
     {
         $ads = ($this->finder)();
 
-        $responseData = [];
-        foreach ($ads as $ad) {
-            $responseData[] = [
-                // TODO
-            ];
-        }
-
-        return new JsonResponse($responseData, JsonResponse::HTTP_OK);
+        return new JsonResponse($ads, JsonResponse::HTTP_OK);
     }
 }
