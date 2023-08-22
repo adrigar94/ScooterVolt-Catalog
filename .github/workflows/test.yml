@@ -37,23 +37,10 @@ jobs:
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
       - name: Testing Docker
-        id: test1
         run: |
-            echo "::group::My title"
-            echo "testing docker ps"
-            OUTPUT=$(ls -1)
-            echo "${OUTPUT}"
-            echo "end testing docker ps"
-            echo "::endgroup::"
-      - name: Testing Docker2
-        id: test2
+          echo "DOCKEROUT=$(docker ps)" >> $GITHUB_ENV
+        id: test_docker
+      - name: Show Testing Docker
+        id: test_docker_show
         run: |
-            echo "::group::My title"
-            echo "testing2 docker ps
-            echo "::endgroup::"
-      - name: Testing Docker3
-        id: test3
-        run: echo "testing2 docker ps
-      - name: Testing Docker4
-        id: test4
-        run: echo | docker ps
+            echo "${{ env.DOCKEROUT }}"
