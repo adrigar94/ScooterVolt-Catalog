@@ -40,19 +40,5 @@ jobs:
           echo | "----------------------------------"
           echo | curl https://baconipsum.com/api/?type=all-meat&sentences=3
           echo | "----------------------------------"
-          echo | "0"
-          sleep 5
-          echo | "5"
-          sleep 5
-          echo | "10"
-          sleep 5
-          echo | "15"
-          sleep 5
-          echo | "20"
-          sleep 5
-          echo | "25"
-          sleep 5
-          echo | "30"
-          echo | curl http://0.0.0.0:27017/ScooterVolt-Catalog/scooters/
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
