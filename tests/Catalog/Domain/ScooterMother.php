@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ScooterVolt\CatalogService\Tests\Catalog\Domain;
 
 use ScooterVolt\CatalogService\Catalog\Domain\Scooter;
+use ScooterVolt\CatalogService\Catalog\Domain\ScooterDTO;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
@@ -101,5 +102,30 @@ class ScooterMother
     public static function randomSold(): Scooter
     {
         return self::random(AdStatusMother::createSold());
+    }
+
+    public static function randomScooterDTO(): ScooterDTO
+    {
+        $scooter = self::random();
+
+        return new ScooterDTO(
+            $scooter->getId()->toNative(),
+            $scooter->getUrl()->toNative(),
+            $scooter->getCreatedAt()->format('Y-m-d H:i:s'),
+            $scooter->getUpdatedAt()->format('Y-m-d H:i:s'),
+            $scooter->getStatus()->toNative(),
+            $scooter->getUserId()->toNative(),
+            $scooter->getContactInfo()->toNative(),
+            $scooter->getBrand()       ? $scooter->getBrand()->toNative()       : null,
+            $scooter->getModel()       ? $scooter->getModel()->toNative()       : null,
+            $scooter->getPrice()       ? $scooter->getPrice()->toNative()       : null,
+            $scooter->getLocation()    ? $scooter->getLocation()->toNative()    : null,
+            $scooter->getGallery()     ? $scooter->getGallery()->toNative()     : null,
+            $scooter->getYear()        ? $scooter->getYear()->toNative()        : null,
+            $scooter->getCondition()   ? $scooter->getCondition()->toNative()   : null,
+            $scooter->getTravelRange() ? $scooter->getTravelRange()->toNative() : null,
+            $scooter->getMaxSpeed()    ? $scooter->getMaxSpeed()->toNative()    : null,
+            $scooter->getPower()       ? $scooter->getPower()->toNative()       : null
+        );
     }
 }

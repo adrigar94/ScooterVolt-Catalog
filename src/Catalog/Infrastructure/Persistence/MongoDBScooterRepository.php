@@ -80,6 +80,12 @@ final class MongoDBScooterRepository implements ScooterRepository
 
     private function createScooterFromDocument(BSONDocument $document): Scooter
     {
-        return Scooter::fromNative($document->getArrayCopy());
+        $json = json_encode($document->jsonSerialize());
+        return Scooter::fromNative(json_decode($json, true));
+    }
+
+    public function deleteDatabase(): void
+    {
+        $this->db->drop();
     }
 }
