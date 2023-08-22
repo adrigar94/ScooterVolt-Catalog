@@ -14,6 +14,8 @@ jobs:
   symfony-tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Hello World
+        run: echo "hola mundo"
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
@@ -36,10 +38,3 @@ jobs:
         uses: isbang/compose-action@v1.5.1
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
-      - name: Generate list using Markdown
-        run: |
-          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
-          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
-          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
-          echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
