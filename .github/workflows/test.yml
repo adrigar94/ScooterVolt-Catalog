@@ -34,7 +34,11 @@ jobs:
         run: composer install --prefer-dist --no-progress
       - name: Docker Compose Action
         uses: isbang/compose-action@v1.5.1
-      - name: Docker ps
-        run: echo | docker ps
+      - name: Docker test
+        run: |
+          echo | docker ps
+          echo | curl http://localhost:27017/ScooterVolt-Catalog/scooters/
+          echo | curl http://127.0.0.1:27017/ScooterVolt-Catalog/scooters/
+          echo | curl http://0.0.0.0:27017/ScooterVolt-Catalog/scooters/
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
