@@ -34,24 +34,13 @@ jobs:
         run: composer install --prefer-dist --no-progress
       - name: Docker Compose Action
         uses: isbang/compose-action@v1.5.1
-      - name: Docker test
+      - name: Set up MongoDB
         run: |
-          echo | docker ps
-          echo "----------------------------------"
-          echo | curl https://baconipsum.com/api/?type=all-meat&sentences=3
-          echo "----------------------------------"
-          echo "0"
-          sleep 5
-          echo "10"
-          sleep 5
-          echo "15"
-          sleep 5
-          echo "20"
-          sleep 5
-          echo "25"
-          sleep 5
-          echo "30"
-          echo "----------------------------------"
-          echo | curl http://0.0.0.0:27017/ScooterVolt-Catalog/scooters/
+          COUNTER=0
+          while !(nc -z localhost 27017) && [[ $COUNTER -lt 60 ]] ; do
+              sleep 2
+              let COUNTER+=2
+              echo "Waiting for mongo to initialize... ($COUNTER seconds so far)"
+          done
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
