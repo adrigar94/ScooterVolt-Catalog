@@ -24,6 +24,8 @@ jobs:
         run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
+      - name: Hello World2
+        run: echo "hola mundo2"
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v3
@@ -36,5 +38,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
       - name: Docker Compose Action
         uses: isbang/compose-action@v1.5.1
+      - name: Hello World3
+        run: echo "hola mundo3"
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
