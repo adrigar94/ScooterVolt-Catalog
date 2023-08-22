@@ -38,8 +38,8 @@ jobs:
         run: |
           COUNTER=0
           while [[ $COUNTER -lt 60 ]] ; do
-              STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://www.google.com)
-              if [ "$STATUS" -eq 200 ]; then
+              RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:27017/ScooterVolt-Catalog 2>&1)
+              if [ "$RESPONSE" -eq 200 ]; then
                   echo "MongoDB is ready."
                   break
               fi
