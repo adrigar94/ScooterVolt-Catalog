@@ -40,5 +40,8 @@ jobs:
         shell: bash
         run: |
             echo "::group::My title"
-            echo | docker ps
+            echo "testing docker ps"
+            OUTPUT=$(ls -1)
+            echo "${OUTPUT}"
+            echo "end testing docker ps"
             echo "::endgroup::"
