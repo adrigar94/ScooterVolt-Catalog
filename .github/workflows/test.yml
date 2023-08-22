@@ -37,8 +37,7 @@ jobs:
       - name: Docker test
         run: |
           echo | docker ps
-          echo | curl http://localhost:27017/ScooterVolt-Catalog/scooters/
-          echo | curl http://127.0.0.1:27017/ScooterVolt-Catalog/scooters/
+          echo | curl https://www.google.com
           echo | curl http://0.0.0.0:27017/ScooterVolt-Catalog/scooters/
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
