@@ -37,4 +37,4 @@ jobs:
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
       - name: Testing Docker
-        run: docker ps
+        run: echo | docker ps
