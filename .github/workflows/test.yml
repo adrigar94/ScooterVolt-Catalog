@@ -36,11 +36,10 @@ jobs:
         uses: isbang/compose-action@v1.5.1
       - name: Set up MongoDB
         run: |
-          COUNTER=0
-          while !(nc -z localhost 27017) && [[ $COUNTER -lt 60 ]] ; do
+          until nc -z localhost 27017
+          do
               sleep 2
-              let COUNTER+=2
-              echo "Waiting for mongo to initialize... ($COUNTER seconds so far)"
+              echo "Waiting MongoDB"
           done
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
