@@ -36,3 +36,5 @@ jobs:
         uses: isbang/compose-action@v1.5.1
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
+      - name: Testing Docker
+        run: docker ps
