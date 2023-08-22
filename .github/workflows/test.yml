@@ -37,4 +37,8 @@ jobs:
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
       - name: Testing Docker
-        run: echo | docker ps
+        shell: bash
+        run: |
+            echo "::group::My title"
+            echo | docker ps
+            echo "::endgroup::"
