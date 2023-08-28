@@ -6,12 +6,17 @@ namespace ScooterVolt\CatalogService\Shared\Domain\Criteria;
 
 final class Criteria
 {
-    // TODO review good example https://github.com/CodelyTV/php-ddd-example/tree/main/src/Shared/Domain/Criteria
+    /**
+     * @param array<Filter> $filters
+     * @param array<Order> $order
+     * @param int|null $offset
+     * @param int|null $limit
+     */
     public function __construct(
-        private readonly array $filters, //TODO create tpyed var
-        private readonly array $order, //TODO create tpyed var
-        private readonly ?int $offset,
-        private readonly ?int $limit
+        private readonly array $filters,
+        private readonly array $order = [],
+        private readonly ?int $offset = null,
+        private readonly ?int $limit = null
     ) {
     }
 
@@ -25,11 +30,17 @@ final class Criteria
         return count($this->order) > 0;
     }
 
+    /**
+     * @return array<Filter>
+     */
     public function filters(): array
     {
         return $this->filters;
     }
 
+    /**
+     * @return array<Order>
+     */
     public function order(): array
     {
         return $this->order;
@@ -43,5 +54,15 @@ final class Criteria
     public function limit(): ?int
     {
         return $this->limit;
+    }
+
+    public function hasLimit(): bool
+    {
+        return !is_null($this->limit());
+    }
+
+    public function hasOffset(): bool
+    {
+        return !is_null($this->offset());
     }
 }
