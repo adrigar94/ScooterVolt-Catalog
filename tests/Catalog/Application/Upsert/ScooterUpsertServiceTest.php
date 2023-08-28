@@ -23,7 +23,6 @@ class ScooterUpsertServiceTest extends TestCase
 
     public function testScooterUpsertService(): void
     {
-        // Arrange
         $scooterDTO = ScooterMother::randomScooterDTO();
 
         $this->repositoryMock->expects($this->once())
@@ -32,7 +31,6 @@ class ScooterUpsertServiceTest extends TestCase
 
         $service = new ScooterUpsertService($this->repositoryMock);
 
-        // Act
         $service->__invoke($scooterDTO);
     }
 }
