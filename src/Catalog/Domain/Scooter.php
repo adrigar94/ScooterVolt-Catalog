@@ -11,6 +11,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterBrand;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterCondition;
+use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterDescription;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterGallery;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterLocation;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterMaxSpeedKmh;
@@ -43,7 +44,8 @@ final class Scooter extends Ad
         private ?ScooterCondition $condition = null,
         private ?ScooterTravelRangeKm $travelRange = null,
         private ?ScooterMaxSpeedKmh $maxSpeed = null,
-        private ?ScooterPowerWatts $power = null
+        private ?ScooterPowerWatts $power = null,
+        private ?ScooterDescription $description = null,
     ) {
         parent::__construct($id, $url, $createdAt, $updatedAt, $status, $user_id, $contactInfo);
     }
@@ -141,6 +143,16 @@ final class Scooter extends Ad
     public function setTravelRange(ScooterTravelRangeKm $travelRange): void
     {
         $this->travelRange = $travelRange;
+    }
+
+    public function getDescription(): ?ScooterDescription
+    {
+        return $this->description;
+    }
+
+    public function setDescription(ScooterDescription $description): void
+    {
+        $this->description = $description;
     }
 
     public function getMaxSpeed(): ?ScooterMaxSpeedKmh
@@ -259,6 +271,9 @@ final class Scooter extends Ad
         if ($this->getPower()) {
             $native['power'] = $this->getPower()->toNative();
         }
+        if ($this->getDescription()) {
+            $native['description'] = $this->getDescription()->toNative();
+        }
 
         return $native;
     }
@@ -305,6 +320,9 @@ final class Scooter extends Ad
         }
         if (array_key_exists('power', $native) and !is_null($native['power'])) {
             $scooter->setPower(ScooterPowerWatts::fromNative($native['power']));
+        }
+        if (array_key_exists('description', $native) and !is_null($native['description'])) {
+            $scooter->setDescription(ScooterDescription::fromNative($native['description']));
         }
 
         return $scooter;

@@ -14,6 +14,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\AdStatusMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterBrandMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterConditionMother;
+use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterDescriptionMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterGalleryMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterLocationMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterMaxSpeedKmhMother;
@@ -74,6 +75,7 @@ class ScooterMother
         $travelRange = ScooterTravelRangeKmMother::random();
         $maxSpeed    = ScooterMaxSpeedKmhMother::random();
         $power       = ScooterPowerWattsMother::random();
+        $description = ScooterDescriptionMother::random();
 
         $scooter->setBrand($brand);
         $scooter->setModel($model);
@@ -85,6 +87,7 @@ class ScooterMother
         $scooter->setTravelRange($travelRange);
         $scooter->setMaxSpeed($maxSpeed);
         $scooter->setPower($power);
+        $scooter->setDescription($description);
 
         return $scooter;
     }
@@ -125,7 +128,8 @@ class ScooterMother
             $scooter->getCondition()   ? $scooter->getCondition()->toNative()   : null,
             $scooter->getTravelRange() ? $scooter->getTravelRange()->toNative() : null,
             $scooter->getMaxSpeed()    ? $scooter->getMaxSpeed()->toNative()    : null,
-            $scooter->getPower()       ? $scooter->getPower()->toNative()       : null
+            $scooter->getPower()       ? $scooter->getPower()->toNative()       : null,
+            $scooter->getDescription() ? $scooter->getDescription()->toNative() : null
         );
     }
 }

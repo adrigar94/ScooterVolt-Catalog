@@ -19,12 +19,12 @@ final class ScooterDTO
      */
     public function __construct(
         public readonly ?string $id,
-        public readonly string $url,
-        public readonly string $created_at,
-        public readonly string $updated_at,
-        public readonly string $status,
-        public readonly string $user_id,
-        public readonly array  $user_contact_info,
+        public readonly string  $url,
+        public readonly string  $created_at,
+        public readonly string  $updated_at,
+        public readonly string  $status,
+        public readonly string  $user_id,
+        public readonly array   $user_contact_info,
         public readonly ?string $brand = null,
         public readonly ?string $model = null,
         public readonly ?array  $price = null,
@@ -34,7 +34,8 @@ final class ScooterDTO
         public readonly ?string $condition = null,
         public readonly ?int    $travel_range = null,
         public readonly ?int    $max_speed = null,
-        public readonly ?int    $power = null
+        public readonly ?int    $power = null,
+        public readonly ?string $description = null
     ) {
     }
 }

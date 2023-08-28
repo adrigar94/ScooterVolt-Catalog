@@ -10,8 +10,10 @@ use ScooterVolt\CatalogService\Catalog\Domain\Exceptions\ScooterChangeStatusExce
 use ScooterVolt\CatalogService\Catalog\Domain\Exceptions\ScooterSoldChangeStatusException;
 use ScooterVolt\CatalogService\Catalog\Domain\Scooter;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus;
+use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterDescription;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterBrandMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterConditionMother;
+use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterDescriptionMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterGalleryMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterLocationMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterMaxSpeedKmhMother;
@@ -51,6 +53,7 @@ class ScooterTest extends TestCase
         $travelRange = ScooterTravelRangeKmMother::random();
         $maxSpeed    = ScooterMaxSpeedKmhMother::random();
         $power       = ScooterPowerWattsMother::random();
+        $description = ScooterDescriptionMother::random();
 
         $scooter->setBrand($brand);
         $scooter->setModel($model);
@@ -62,6 +65,7 @@ class ScooterTest extends TestCase
         $scooter->setTravelRange($travelRange);
         $scooter->setMaxSpeed($maxSpeed);
         $scooter->setPower($power);
+        $scooter->setDescription($description);
 
 
         $this->assertInstanceOf(Scooter::class, $scooter);
@@ -76,6 +80,7 @@ class ScooterTest extends TestCase
         $this->assertSame($travelRange, $scooter->getTravelRange());
         $this->assertSame($maxSpeed, $scooter->getMaxSpeed());
         $this->assertSame($power, $scooter->getPower());
+        $this->assertSame($description, $scooter->getDescription());
     }
 
 
