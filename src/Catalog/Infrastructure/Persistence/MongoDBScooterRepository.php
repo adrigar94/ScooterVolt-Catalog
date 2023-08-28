@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Catalog\Infrastructure\Persistence;
 
-use DateTimeImmutable;
 use MongoDB\Collection;
 use MongoDB\Database;
 use MongoDB\Model\BSONDocument;
@@ -13,6 +12,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ScooterRepository;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 use ScooterVolt\CatalogService\Shared\Domain\Criteria\Criteria;
+use ScooterVolt\CatalogService\Shared\Domain\Criteria\FilterOperator;
 use ScooterVolt\CatalogService\Shared\Infrastructure\Persistence\MongoDB\MongoDBConnection;
 
 final class MongoDBScooterRepository implements ScooterRepository
@@ -34,7 +34,7 @@ final class MongoDBScooterRepository implements ScooterRepository
      */
     public function findAll(): array
     {
-        $cursor = $this->collection->find();
+        $cursor = $this->collection->find(['status' => 'published']);
         $scooters = [];
 
         foreach ($cursor as $document) {
@@ -46,8 +46,61 @@ final class MongoDBScooterRepository implements ScooterRepository
 
     public function search(Criteria $criteria): array
     {
-        //TODO
-        return [];
+        $query = [];
+
+        foreach ($criteria->filters() as $filter) {
+            $field = $filter->field();
+            $operator = $filter->operator()->value();
+            $value = $filter->value();
+
+            switch ($operator) {
+                case FilterOperator::EQUAL:
+                    $query[$field]['$eq'] = $value;
+                    break;
+                case FilterOperator::NOT_EQUAL:
+                    $query[$field]['$ne'] = $value;
+                    break;
+                case FilterOperator::GT:
+                    $query[$field]['$gt'] = $value;
+                    break;
+                case FilterOperator::LT:
+                    $query[$field]['$lt'] = $value;
+                    break;
+                case FilterOperator::CONTAINS:
+                    $query[$field] = ['$regex' => $value, '$options' => 'i'];
+                    break;
+                case FilterOperator::NOT_CONTAINS:
+                    $query[$field] = ['$regex' => "^((?!$value).)*$", '$options' => 'i'];
+                    break;
+                default:
+                    break;
+            }
+        }
+        $options = [];
+
+        if ($criteria->hasOrder()) {
+            foreach ($criteria->order() as $order) {
+                $options['sort'][$order->orderBy()] = $order->orderType()->value() === 'desc' ? -1 : 1;
+            }
+        }
+
+        if ($criteria->hasLimit()) {
+            $options['limit'] = $criteria->limit();
+        }
+
+        if ($criteria->hasOffset()) {
+            $options['skip'] = $criteria->offset();
+        }
+
+        $cursor = $this->collection->find($query, $options);
+
+        $scooters = [];
+
+        foreach ($cursor as $document) {
+            $scooters[] = $this->createScooterFromDocument($document);
+        }
+
+        return $scooters;
     }
 
     public function findById(AdId $id): ?Scooter
@@ -84,7 +137,13 @@ final class MongoDBScooterRepository implements ScooterRepository
         return Scooter::fromNative(json_decode($json, true));
     }
 
-    public function deleteDatabase(): void
+    public function deleteAndImportDatabase(string $path_json): void
+    {
+        $this->deleteDatabase();
+        $this->collection->insertMany(json_decode(file_get_contents($path_json), true));
+    }
+
+    private function deleteDatabase(): void
     {
         $this->db->drop();
     }
