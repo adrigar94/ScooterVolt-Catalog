@@ -24,6 +24,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId;
 
 final class Scooter extends Ad
 {
+    //TODO add price fields converted to each available currency type
 
     public function __construct(
         AdId $id,
