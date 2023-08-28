@@ -1,0 +1,497 @@
+[
+    {
+        "id": "60c08215-d243-46d7-b9ff-14d4a4d00d46",
+        "brand": "Xiaomi",
+        "condition": "broken",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "8db3a9ae-a3e0-4574-a302-4d0626940460",
+                "url": "http://www.konopelski.com/et-ipsam-reiciendis-distinctio-quo-aliquid-et-eos",
+                "alt": "nemo expedita perferendis"
+            },
+            {
+                "id": "3be35cec-cd4c-46e3-9469-1c786c21cdc6",
+                "url": "http://heaney.com/aut-consequatur-ratione-delectus-eaque-amet-ducimus-provident",
+                "alt": "blanditiis ut eius"
+            },
+            {
+                "id": "f811b38e-1983-4026-a8e4-b9135873c579",
+                "url": "http://www.dibbert.com/ipsam-non-cumque-fuga-fugiat-ratione",
+                "alt": "nam quibusdam iure"
+            },
+            {
+                "id": "2bb1da45-9e60-4411-82f4-134652d5ba93",
+                "url": "http://www.klein.com/quos-autem-laborum-dolores-reprehenderit",
+                "alt": "ullam aliquam voluptatem"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": -12.516065,
+                "longitude": 165.317797
+            },
+            "location": {
+                "locality": "6898 Runolfsdottir Valleys Suite 504",
+                "country": "Kuwait",
+                "region": "Illinois",
+                "city": "Jeanetteland",
+                "postalCode": "93925-3854"
+            }
+        },
+        "max_speed": 63,
+        "model": "Scooter 2",
+        "power": 177247,
+        "price": {
+            "price": 41800,
+            "currency": "Vatu"
+        },
+        "status": "draft",
+        "travel_range": 61,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "64e5bdf663af7",
+        "user_contact_info": {
+            "name": "Ms. Julianne Gulgowski III",
+            "phone": "+1-401-881-9560",
+            "email": "dale.lubowitz@gmail.com"
+        },
+        "user_id": "323ce288-6d7d-4c26-af28-304b8ad7a789",
+        "year": 2019
+    },
+    {
+        "id": "d19bd5c6-9e30-45d2-b7db-68ea15a81324",
+        "brand": "Xiaomi",
+        "condition": "used",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "dcb452e2-6feb-4bc4-8378-ceaa4b01e0ce",
+                "url": "http://parisian.org/vero-non-reiciendis-cupiditate-neque-iste-dolor-assumenda",
+                "alt": "laudantium sunt ducimus"
+            },
+            {
+                "id": "c95af8bf-9dc2-4170-904d-efa02c2d18af",
+                "url": "http://www.doyle.net/ratione-qui-vero-tempora-tenetur-nulla-officia-et-sunt.html",
+                "alt": "soluta vitae dolores"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": -6.10273,
+                "longitude": 175.151331
+            },
+            "location": {
+                "locality": "67636 Nils Rapids",
+                "country": "Christmas Island",
+                "region": "Michigan",
+                "city": "Grahamport",
+                "postalCode": "92198-0892"
+            }
+        },
+        "max_speed": 28,
+        "model": "Scooter",
+        "power": 818961,
+        "price": {
+            "price": 66300,
+            "currency": "Lek"
+        },
+        "status": "draft",
+        "travel_range": 25,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "64e5bdf683fef",
+        "user_contact_info": {
+            "name": "Mr. Matteo Davis DVM",
+            "phone": "+18204977010",
+            "email": "jrutherford@hotmail.com"
+        },
+        "user_id": "4905fe39-1f03-4991-9304-7e4be9bffe80",
+        "year": 2023
+    },
+    {
+        "id": "f668bf09-9546-42fe-ae5b-0d8baa9ebd8c",
+        "brand": "Leuschke-Blanda",
+        "condition": "used",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "b442fdb4-264f-4a66-9074-4e1b79d56615",
+                "url": "http://harvey.com/eos-tempore-possimus-voluptatibus-et-et-atque-quas",
+                "alt": "voluptas quae sint"
+            },
+            {
+                "id": "50c0f7b9-4c44-4d5e-9649-b3bc9b8cbcb2",
+                "url": "http://huel.com/et-laudantium-id-libero-illo-nostrum",
+                "alt": "voluptatem ad porro"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": -77.756199,
+                "longitude": -28.778866
+            },
+            "location": {
+                "locality": "13364 Mante Lakes Suite 945",
+                "country": "Qatar",
+                "region": "New Mexico",
+                "city": "Altenwerthfurt",
+                "postalCode": "79273"
+            }
+        },
+        "max_speed": 29,
+        "model": "dolor consectetur",
+        "power": 631734,
+        "price": {
+            "price": 96400,
+            "currency": "Rial Omani"
+        },
+        "status": "draft",
+        "travel_range": 44,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "64e5bdf685620",
+        "user_contact_info": {
+            "name": "Mr. Arno Casper",
+            "phone": "551-200-5023",
+            "email": "dayna42@mueller.com"
+        },
+        "user_id": "6c7a9938-7bbe-4fcd-842a-e26fa3ba53c9",
+        "year": 2007
+    },
+    {
+        "id": "4e009fd0-f03d-4754-a222-495ff88e622f",
+        "brand": "Hamill, Bernier and Witting",
+        "condition": "new",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "f75cc303-ed09-4f68-b1d7-9122afb0ee5e",
+                "url": "http://ferry.com/",
+                "alt": "qui possimus omnis"
+            },
+            {
+                "id": "529b372d-b9e5-4e0d-871d-6749063b7029",
+                "url": "http://www.gottlieb.com/",
+                "alt": "dolores officia voluptatem"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": -38.668076,
+                "longitude": -95.935231
+            },
+            "location": {
+                "locality": "63941 Harber Station Suite 178",
+                "country": "Ecuador",
+                "region": "Minnesota",
+                "city": "North Cathrine",
+                "postalCode": "08183"
+            }
+        },
+        "max_speed": 94,
+        "model": "similique non",
+        "power": 950299,
+        "price": {
+            "price": 30100,
+            "currency": "Euro"
+        },
+        "status": "published",
+        "travel_range": 63,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "hamill-similique-64e5bdf686ac3",
+        "user_contact_info": {
+            "name": "Benton Jones",
+            "phone": "956-521-9729",
+            "email": "danika.simonis@ebert.biz"
+        },
+        "user_id": "f584e925-75bc-476b-a07a-74f203a8c548",
+        "year": 2004
+    },
+    {
+        "id": "ade43799-d1ab-4821-b766-e41c0bea09e1",
+        "brand": "Mayert, Ryan and McKenzie",
+        "condition": "new",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "dd48a54f-9af6-4586-884e-a0cf9cd4422f",
+                "url": "http://www.rice.biz/",
+                "alt": "perferendis quaerat iste"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": -27.648037,
+                "longitude": 141.246
+            },
+            "location": {
+                "locality": "16629 Gage Brook Suite 931",
+                "country": "Saint Kitts and Nevis",
+                "region": "Indiana",
+                "city": "Barrowsview",
+                "postalCode": "73376-9454"
+            }
+        },
+        "max_speed": 27,
+        "model": "facere accusamus",
+        "power": 241249,
+        "price": {
+            "price": 6100,
+            "currency": "Moroccan Dirham"
+        },
+        "status": "published",
+        "travel_range": 45,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "64e5bdf687bd1",
+        "user_contact_info": {
+            "name": "Rosemarie Stoltenberg IV",
+            "phone": "1-347-622-7149",
+            "email": "daryl15@gmail.com"
+        },
+        "user_id": "c7c0c047-a26d-4a4d-a10e-822ffc17827c",
+        "year": 2010
+    },
+    {
+        "id": "6364f791-5ef8-4a52-92a9-1e143e4dbe91",
+        "brand": "Bosco PLC",
+        "condition": "new",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "7a03c741-4ecb-4301-b747-aaa2bbd2829f",
+                "url": "http://jacobs.com/voluptate-ut-animi-optio-ipsa.html",
+                "alt": "laborum inventore atque"
+            },
+            {
+                "id": "04d0c377-e251-4a2b-bce6-d9641e029827",
+                "url": "https://schamberger.info/vel-officia-architecto-enim-ex.html",
+                "alt": "praesentium possimus ratione"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": -82.185909,
+                "longitude": -9.07757
+            },
+            "location": {
+                "locality": "915 Romaguera Expressway",
+                "country": "Andorra",
+                "region": "Indiana",
+                "city": "Schneidershire",
+                "postalCode": "90962-4016"
+            }
+        },
+        "max_speed": 64,
+        "model": "aliquid itaque",
+        "power": 982577,
+        "price": {
+            "price": 200,
+            "currency": "CFA Franc BCEAO"
+        },
+        "status": "sold",
+        "travel_range": 58,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "64e5bdf688e24",
+        "user_contact_info": {
+            "name": "Shanelle Collins",
+            "phone": "(320) 766-9339",
+            "email": "lucious74@mckenzie.com"
+        },
+        "user_id": "a697d60d-bed2-46cc-a9e9-da3c8c3343d1",
+        "year": 2016
+    },
+    {
+        "id": "d4926d63-67fc-4fec-88c6-9cc3c5b32a50",
+        "brand": "Mayer-Rolfson",
+        "condition": "new",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "27cf1b5b-89f1-4b26-8f82-29f12520f91c",
+                "url": "http://www.shields.biz/nesciunt-voluptas-nihil-qui-dolores",
+                "alt": "laborum sapiente dolores"
+            },
+            {
+                "id": "29dce795-c952-4fb2-83aa-9b2fdecdee2b",
+                "url": "https://ondricka.net/nemo-eum-omnis-itaque-cumque-ut-saepe-ex-omnis.html",
+                "alt": "quod laborum rem"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": 64.035581,
+                "longitude": 135.926724
+            },
+            "location": {
+                "locality": "69475 Jakubowski Ford",
+                "country": "Northern Mariana Islands",
+                "region": "Missouri",
+                "city": "West Trinity",
+                "postalCode": "78748"
+            }
+        },
+        "max_speed": 39,
+        "model": "voluptatum dicta",
+        "power": 333268,
+        "price": {
+            "price": 16200,
+            "currency": "Zimbabwe Dollar"
+        },
+        "status": "draft",
+        "travel_range": 58,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "64e5bdf68a3a8",
+        "user_contact_info": {
+            "name": "Kaya Lakin",
+            "phone": "(661) 867-7286",
+            "email": "hpadberg@yahoo.com"
+        },
+        "user_id": "c62c3d39-3818-4c3a-9df0-94ab54fd07cc",
+        "year": 2003
+    },
+    {
+        "id": "82eb9eee-a2f2-456f-ba7d-57970470e913",
+        "brand": "Herman, Jacobson and Fisher",
+        "condition": "used",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "29447bd3-c4a5-428e-84f2-4e7054668947",
+                "url": "http://crona.com/neque-quis-voluptate-blanditiis-aut.html",
+                "alt": "in voluptas reprehenderit"
+            },
+            {
+                "id": "eb00f4ab-895e-488e-8197-00bd30ae9f8c",
+                "url": "http://rowe.biz/nisi-hic-quidem-quaerat-sit-accusantium-accusantium",
+                "alt": "et atque possimus"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": 57.489061,
+                "longitude": 133.191312
+            },
+            "location": {
+                "locality": "787 Kylee Isle Apt. 891",
+                "country": "Latvia",
+                "region": "Maine",
+                "city": "Duanefort",
+                "postalCode": "88352"
+            }
+        },
+        "max_speed": 75,
+        "model": "delectus quis",
+        "power": 60757,
+        "price": {
+            "price": 2600,
+            "currency": "Kwacha"
+        },
+        "status": "published",
+        "travel_range": 19,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "64e5bdf68b718",
+        "user_contact_info": {
+            "name": "Maurine Daugherty Sr.",
+            "phone": "913.772.2338",
+            "email": "braden.hickle@crooks.info"
+        },
+        "user_id": "2f00a595-e170-4b68-b2e2-1e8c93e96864",
+        "year": 2002
+    },
+    {
+        "id": "dea6905b-7f7f-4df1-ad3d-c02c13a9560a",
+        "brand": "Howell and Sons",
+        "condition": "used",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "70c486d5-9fea-483d-afd7-fcbbaef4f0e3",
+                "url": "http://www.collier.com/",
+                "alt": "ab velit libero"
+            },
+            {
+                "id": "1714ebd4-32c7-4723-b7e8-2de4e1ea24d5",
+                "url": "http://www.russel.org/et-molestiae-iste-at-veniam-eligendi-harum-vel.html",
+                "alt": "velit et modi"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": 36.626038,
+                "longitude": 173.51741
+            },
+            "location": {
+                "locality": "424 Moen Spur Suite 368",
+                "country": "British Indian Ocean Territory (Chagos Archipelago)",
+                "region": "Alabama",
+                "city": "North Zackery",
+                "postalCode": "47607-4904"
+            }
+        },
+        "max_speed": 63,
+        "model": "praesentium sint",
+        "power": 760592,
+        "price": {
+            "price": 6400,
+            "currency": "Armenian Dram"
+        },
+        "status": "published",
+        "travel_range": 54,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "64e5bdf68ca59",
+        "user_contact_info": {
+            "name": "Hosea Roberts I",
+            "phone": "(240) 485-9426",
+            "email": "augustus19@gmail.com"
+        },
+        "user_id": "9a1c2fe6-9e93-4de4-8028-931b89fbfee8",
+        "year": 2015
+    },
+    {
+        "id": "fadbc7ae-07ed-4de9-8509-a89b309e3d11",
+        "brand": "Cormier-McClure",
+        "condition": "used",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "b9461b86-e607-4cfa-ac83-1d57a63eb340",
+                "url": "http://beatty.com/",
+                "alt": "beatae voluptatem fugit"
+            },
+            {
+                "id": "a67e2b42-eaf8-4351-b9ae-da111d45377c",
+                "url": "http://www.ebert.com/perferendis-suscipit-vero-officiis.html",
+                "alt": "cupiditate atque odio"
+            }
+        ],
+        "location": {
+            "coords": {
+                "latitude": 58.399915,
+                "longitude": 138.967237
+            },
+            "location": {
+                "locality": "5938 Wilfredo Lake Apt. 726",
+                "country": "Saint Barthelemy",
+                "region": "Michigan",
+                "city": "Padbergberg",
+                "postalCode": "83741"
+            }
+        },
+        "max_speed": 20,
+        "model": "sint ex",
+        "power": 850067,
+        "price": {
+            "price": 27200,
+            "currency": "Lilangeni"
+        },
+        "status": "published",
+        "travel_range": 76,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "cormier-sint-64e5bdf68de90",
+        "user_contact_info": {
+            "name": "Cicero Hill",
+            "phone": "+1 (352) 757-0393",
+            "email": "langworth.alford@von.com"
+        },
+        "user_id": "07719310-6a38-4f01-9305-6c8688937c68",
+        "year": 2011
+    }
+]
