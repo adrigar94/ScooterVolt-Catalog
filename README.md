@@ -8,3 +8,6 @@ Is avaible in ```https://localhost:8000/api/doc```
 ## Testing
 
 TODO
+- TODO Implement all application and API classes
+- TODO Implement auth and roles permissions
+- TODO Implement RabbitMq event, write and read
