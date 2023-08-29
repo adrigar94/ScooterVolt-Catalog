@@ -15,6 +15,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterBrand;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterCondition;
+use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterDescription;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterGallery;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterLocation;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterMaxSpeedKmh;
@@ -82,6 +83,9 @@ class ScooterUpsertService
         }
         if ($scooterDTO->power) {
             $scooter->setPower(new ScooterPowerWatts($scooterDTO->power));
+        }
+        if ($scooterDTO->description) {
+            $scooter->setDescription(new ScooterDescription($scooterDTO->description));
         }
 
         $this->repository->save($scooter);
