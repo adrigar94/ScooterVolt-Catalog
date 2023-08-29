@@ -26,6 +26,7 @@ final class MongoDBScooterRepository implements ScooterRepository
     {
         $this->db = $connection->getDatabase();
         $this->collection = $this->db->selectCollection(self::COLLECTION_NAME);
+        $this->collection->createIndex(["brand" => "text", "model" => "text", "description" => "text", "condition" => "text"]);
     }
 
 
@@ -53,9 +54,18 @@ final class MongoDBScooterRepository implements ScooterRepository
             $operator = $filter->operator()->value();
             $value = $filter->value();
 
+            if ($field === 'search') {
+                //TODO fuzzy search
+                $query['$text']['$search'] = $value;
+                continue;
+            }
+
             switch ($operator) {
                 case FilterOperator::EQUAL:
-                    $query[$field]['$eq'] = $value;
+                    $query[$field] = ['$regex' => $value, '$options' => 'i'];
+
+                    if (is_numeric($value))
+                        $query[$field] = ['$eq' => (int)$value];
                     break;
                 case FilterOperator::NOT_EQUAL:
                     $query[$field]['$ne'] = $value;
