@@ -8,7 +8,7 @@ final class ScooterDTO
 {
 
     /**
-     * @param array<string, string> $contactInfo
+     * @param array<string, string> $user_contact_info
      *  [coords: [name: string, phone: string, email: string]
      * @param array<string, string>|null $price
      * [price: float, currency: string]
