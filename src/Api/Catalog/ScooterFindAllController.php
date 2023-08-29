@@ -35,8 +35,8 @@ class ScooterFindAllController
 
     public function __invoke(Request $request): Response
     {
-        $ads = ($this->finder)();
+        $scooters = ($this->finder)();
 
-        return new JsonResponse($ads, JsonResponse::HTTP_OK);
+        return new JsonResponse($scooters, JsonResponse::HTTP_OK);
     }
 }
