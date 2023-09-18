@@ -72,6 +72,19 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
         }
     }
 
+
+    public function testSearchByText(): void
+    {
+        $criteria = new Criteria(
+            [new Filter("search", FilterOperator::EQUAL(), "xiaomi")],
+            []
+        );
+
+        $scooters = $this->repository->search($criteria);
+
+        $this->assertCount(3, $scooters);
+    }
+
     public function testSearchWithNotEqual(): void
     {
         $criteria = new Criteria(
