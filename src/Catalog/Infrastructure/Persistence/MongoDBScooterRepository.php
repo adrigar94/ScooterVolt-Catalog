@@ -26,7 +26,7 @@ final class MongoDBScooterRepository implements ScooterRepository
     {
         $this->db = $connection->getDatabase();
         $this->collection = $this->db->selectCollection(self::COLLECTION_NAME);
-        $this->collection->createIndex(["brand" => "text", "model" => "text", "description" => "text", "condition" => "text"]);
+        $this->createIndex();
     }
 
 
@@ -151,10 +151,16 @@ final class MongoDBScooterRepository implements ScooterRepository
     {
         $this->deleteDatabase();
         $this->collection->insertMany(json_decode(file_get_contents($path_json), true));
+        $this->createIndex();
     }
 
     private function deleteDatabase(): void
     {
         $this->db->drop();
+    }
+
+    private function createIndex(): void
+    {
+        $this->collection->createIndex(["brand" => "text", "model" => "text", "description" => "text", "condition" => "text"]);
     }
 }
