@@ -28,8 +28,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -12.516065,
-                "longitude": 165.317797
+                "type": "Point",
+                "coordinates": [
+                    165.317797,
+                    -12.516065
+                ]
             },
             "location": {
                 "locality": "6898 Runolfsdottir Valleys Suite 504",
@@ -78,8 +81,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -6.10273,
-                "longitude": 175.151331
+                "type": "Point",
+                "coordinates": [
+                    175.151331,
+                    -6.10273
+                ]
             },
             "location": {
                 "locality": "67636 Nils Rapids",
@@ -128,8 +134,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -77.756199,
-                "longitude": -28.778866
+                "type": "Point",
+                "coordinates": [
+                    -28.778866,
+                    -77.756199
+                ]
             },
             "location": {
                 "locality": "13364 Mante Lakes Suite 945",
@@ -178,8 +187,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -38.668076,
-                "longitude": -95.935231
+                "type": "Point",
+                "coordinates": [
+                    -95.935231,
+                    -38.668076
+                ]
             },
             "location": {
                 "locality": "63941 Harber Station Suite 178",
@@ -223,8 +235,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -27.648037,
-                "longitude": 141.246
+                "type": "Point",
+                "coordinates": [
+                    141.246,
+                    -27.648037
+                ]
             },
             "location": {
                 "locality": "16629 Gage Brook Suite 931",
@@ -273,8 +288,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -82.185909,
-                "longitude": -9.07757
+                "type": "Point",
+                "coordinates": [
+                    -9.07757,
+                    -82.185909
+                ]
             },
             "location": {
                 "locality": "915 Romaguera Expressway",
@@ -323,8 +341,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": 64.035581,
-                "longitude": 135.926724
+                "type": "Point",
+                "coordinates": [
+                    135.926724,
+                    64.035581
+                ]
             },
             "location": {
                 "locality": "69475 Jakubowski Ford",
@@ -372,8 +393,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": 57.489061,
-                "longitude": 133.191312
+                "type": "Point",
+                "coordinates": [
+                    133.191312,
+                    57.489061
+                ]
             },
             "location": {
                 "locality": "787 Kylee Isle Apt. 891",
@@ -422,8 +446,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": 36.626038,
-                "longitude": 173.51741
+                "type": "Point",
+                "coordinates": [
+                    173.51741,
+                    36.626038
+                ]
             },
             "location": {
                 "locality": "424 Moen Spur Suite 368",
@@ -472,8 +499,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": 58.399915,
-                "longitude": 138.967237
+                "type": "Point",
+                "coordinates": [
+                    138.967237,
+                    58.399915
+                ]
             },
             "location": {
                 "locality": "5938 Wilfredo Lake Apt. 726",

@@ -28,8 +28,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -12.516065,
-                "longitude": 165.317797
+                "type": "Point",
+                "coordinates": [
+                    165.317797,
+                    -12.516065
+                ]
             },
             "location": {
                 "locality": "6898 Runolfsdottir Valleys Suite 504",
@@ -46,7 +49,7 @@
             "price": 41800,
             "currency": "Vatu"
         },
-        "status": "draft",
+        "status": "published",
         "travel_range": 61,
         "updated_at": "2023-08-23 08:06:14",
         "url": "64e5bdf663af7",
@@ -78,8 +81,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -6.10273,
-                "longitude": 175.151331
+                "type": "Point",
+                "coordinates": [
+                    175.151331,
+                    -6.10273
+                ]
             },
             "location": {
                 "locality": "67636 Nils Rapids",
@@ -96,7 +102,7 @@
             "price": 66300,
             "currency": "Lek"
         },
-        "status": "draft",
+        "status": "published",
         "travel_range": 25,
         "updated_at": "2023-08-23 08:06:14",
         "url": "64e5bdf683fef",
@@ -128,8 +134,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -77.756199,
-                "longitude": -28.778866
+                "type": "Point",
+                "coordinates": [
+                    -28.778866,
+                    -77.756199
+                ]
             },
             "location": {
                 "locality": "13364 Mante Lakes Suite 945",
@@ -146,7 +155,7 @@
             "price": 96400,
             "currency": "Rial Omani"
         },
-        "status": "draft",
+        "status": "published",
         "travel_range": 44,
         "updated_at": "2023-08-23 08:06:14",
         "url": "64e5bdf685620",
@@ -178,8 +187,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -38.668076,
-                "longitude": -95.935231
+                "type": "Point",
+                "coordinates": [
+                    -95.935231,
+                    -38.668076
+                ]
             },
             "location": {
                 "locality": "63941 Harber Station Suite 178",
@@ -223,8 +235,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -27.648037,
-                "longitude": 141.246
+                "type": "Point",
+                "coordinates": [
+                    141.246,
+                    -27.648037
+                ]
             },
             "location": {
                 "locality": "16629 Gage Brook Suite 931",
@@ -273,8 +288,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": -82.185909,
-                "longitude": -9.07757
+                "type": "Point",
+                "coordinates": [
+                    -9.07757,
+                    -82.185909
+                ]
             },
             "location": {
                 "locality": "915 Romaguera Expressway",
@@ -291,7 +309,7 @@
             "price": 200,
             "currency": "CFA Franc BCEAO"
         },
-        "status": "sold",
+        "status": "published",
         "travel_range": 58,
         "updated_at": "2023-08-23 08:06:14",
         "url": "64e5bdf688e24",
@@ -323,8 +341,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": 64.035581,
-                "longitude": 135.926724
+                "type": "Point",
+                "coordinates": [
+                    135.926724,
+                    64.035581
+                ]
             },
             "location": {
                 "locality": "69475 Jakubowski Ford",
@@ -341,7 +362,7 @@
             "price": 16200,
             "currency": "Zimbabwe Dollar"
         },
-        "status": "draft",
+        "status": "published",
         "travel_range": 58,
         "updated_at": "2023-08-23 08:06:14",
         "url": "64e5bdf68a3a8",
@@ -372,8 +393,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": 57.489061,
-                "longitude": 133.191312
+                "type": "Point",
+                "coordinates": [
+                    133.191312,
+                    57.489061
+                ]
             },
             "location": {
                 "locality": "787 Kylee Isle Apt. 891",
@@ -422,8 +446,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": 36.626038,
-                "longitude": 173.51741
+                "type": "Point",
+                "coordinates": [
+                    173.51741,
+                    36.626038
+                ]
             },
             "location": {
                 "locality": "424 Moen Spur Suite 368",
@@ -454,7 +481,7 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis in eu mi bibendum neque. In nisl nisi scelerisque eu ultrices vitae auctor. Curabitur vitae nunc sed velit dignissim sodales ut eu sem. Vivamus arcu felis bibendum ut tristique. Sed felis eget velit aliquet sagittis id. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna. Purus faucibus ornare suspendisse sed nisi. Iaculis nunc sed augue lacus viverra vitae congue eu. Ornare massa eget egestas purus viverra accumsan. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Feugiat scelerisque varius morbi enim nunc faucibus. Tincidunt id aliquet risus feugiat. Erat velit scelerisque in dictum non. Pellentesque eu tincidunt tortor aliquam nulla."
     },
     {
-        "id": "fadbc7ae-07ed-4de9-8509-a89b309e3d11",
+        "id": "a77832cc-6248-4601-adfb-91da91a6c273",
         "brand": "Cormier-McClure",
         "condition": "used",
         "created_at": "2023-08-23 08:06:14",
@@ -472,8 +499,11 @@
         ],
         "location": {
             "coords": {
-                "latitude": 58.399915,
-                "longitude": 138.967237
+                "type": "Point",
+                "coordinates": [
+                    138.967237,
+                    58.399915
+                ]
             },
             "location": {
                 "locality": "5938 Wilfredo Lake Apt. 726",
@@ -491,6 +521,165 @@
             "currency": "Lilangeni"
         },
         "status": "published",
+        "travel_range": 76,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "cormier-sint-64e5bdf68de90",
+        "user_contact_info": {
+            "name": "Cicero Hill",
+            "phone": "+1 (352) 757-0393",
+            "email": "langworth.alford@von.com"
+        },
+        "user_id": "2b844daf-6d91-4139-9125-09b6d9d6a252",
+        "year": 2011,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis in eu mi bibendum neque. In nisl nisi scelerisque eu ultrices vitae auctor. Curabitur vitae nunc sed velit dignissim sodales ut eu sem. Vivamus arcu felis bibendum ut tristique. Sed felis eget velit aliquet sagittis id. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna. Purus faucibus ornare suspendisse sed nisi. Iaculis nunc sed augue lacus viverra vitae congue eu. Ornare massa eget egestas purus viverra accumsan. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Feugiat scelerisque varius morbi enim nunc faucibus. Tincidunt id aliquet risus feugiat. Erat velit scelerisque in dictum non. Pellentesque eu tincidunt tortor aliquam nulla."
+    },
+    {
+        "id": "22931722-6454-4f90-a14b-2de25795e58d",
+        "brand": "Cormier-McClure",
+        "condition": "used",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "b9461b86-e607-4cfa-ac83-1d57a63eb340",
+                "url": "http://beatty.com/",
+                "alt": "beatae voluptatem fugit"
+            },
+            {
+                "id": "a67e2b42-eaf8-4351-b9ae-da111d45377c",
+                "url": "http://www.ebert.com/perferendis-suscipit-vero-officiis.html",
+                "alt": "cupiditate atque odio"
+            }
+        ],
+        "location": {
+            "coords": {
+                "type": "Point",
+                "coordinates": [
+                    138.967237,
+                    58.399915
+                ]
+            },
+            "location": {
+                "locality": "5938 Wilfredo Lake Apt. 726",
+                "country": "Saint Barthelemy",
+                "region": "Michigan",
+                "city": "Padbergberg",
+                "postalCode": "83741"
+            }
+        },
+        "max_speed": 20,
+        "model": "sint ex",
+        "power": 850067,
+        "price": {
+            "price": 27200,
+            "currency": "Lilangeni"
+        },
+        "status": "draft",
+        "travel_range": 76,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "cormier-sint-64e5bdf68de90",
+        "user_contact_info": {
+            "name": "Cicero Hill",
+            "phone": "+1 (352) 757-0393",
+            "email": "langworth.alford@von.com"
+        },
+        "user_id": "2b844daf-6d91-4139-9125-09b6d9d6a252",
+        "year": 2011,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis in eu mi bibendum neque. In nisl nisi scelerisque eu ultrices vitae auctor. Curabitur vitae nunc sed velit dignissim sodales ut eu sem. Vivamus arcu felis bibendum ut tristique. Sed felis eget velit aliquet sagittis id. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna. Purus faucibus ornare suspendisse sed nisi. Iaculis nunc sed augue lacus viverra vitae congue eu. Ornare massa eget egestas purus viverra accumsan. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Feugiat scelerisque varius morbi enim nunc faucibus. Tincidunt id aliquet risus feugiat. Erat velit scelerisque in dictum non. Pellentesque eu tincidunt tortor aliquam nulla."
+    },
+    {
+        "id": "61cf74f3-9581-487e-bb3b-d7a060d40fab",
+        "brand": "Cormier-McClure",
+        "condition": "new",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "0146cc60-9137-4dcf-bbe3-36089bee2a07",
+                "url": "http://beatty.com/",
+                "alt": "beatae voluptatem fugit"
+            },
+            {
+                "id": "9ad8078f-1d1f-4b2a-9966-d2887ee581b9",
+                "url": "http://www.ebert.com/perferendis-suscipit-vero-officiis.html",
+                "alt": "cupiditate atque odio"
+            }
+        ],
+        "location": {
+            "coords": {
+                "type": "Point",
+                "coordinates": [
+                    138.967237,
+                    58.399915
+                ]
+            },
+            "location": {
+                "locality": "5938 Wilfredo Lake Apt. 726",
+                "country": "Saint Barthelemy",
+                "region": "Michigan",
+                "city": "Padbergberg",
+                "postalCode": "83741"
+            }
+        },
+        "max_speed": 20,
+        "model": "sint ex",
+        "power": 850067,
+        "price": {
+            "price": 27200,
+            "currency": "Lilangeni"
+        },
+        "status": "draft",
+        "travel_range": 76,
+        "updated_at": "2023-08-23 08:06:14",
+        "url": "cormier-sint-64e5bdf68de90",
+        "user_contact_info": {
+            "name": "Cicero Hill",
+            "phone": "+1 (352) 757-0393",
+            "email": "langworth.alford@von.com"
+        },
+        "user_id": "07719310-6a38-4f01-9305-6c8688937c68",
+        "year": 2011,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis in eu mi bibendum neque. In nisl nisi scelerisque eu ultrices vitae auctor. Curabitur vitae nunc sed velit dignissim sodales ut eu sem. Vivamus arcu felis bibendum ut tristique. Sed felis eget velit aliquet sagittis id. Pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna. Purus faucibus ornare suspendisse sed nisi. Iaculis nunc sed augue lacus viverra vitae congue eu. Ornare massa eget egestas purus viverra accumsan. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Feugiat scelerisque varius morbi enim nunc faucibus. Tincidunt id aliquet risus feugiat. Erat velit scelerisque in dictum non. Pellentesque eu tincidunt tortor aliquam nulla."
+    },
+    {
+        "id": "4c0e09d8-7eef-498c-af41-ac0be333c981",
+        "brand": "Cormier-McClure",
+        "condition": "used",
+        "created_at": "2023-08-23 08:06:14",
+        "gallery": [
+            {
+                "id": "0146cc60-9137-4dcf-bbe3-36089bee2a07",
+                "url": "http://beatty.com/",
+                "alt": "beatae voluptatem fugit"
+            },
+            {
+                "id": "9ad8078f-1d1f-4b2a-9966-d2887ee581b9",
+                "url": "http://www.ebert.com/perferendis-suscipit-vero-officiis.html",
+                "alt": "cupiditate atque odio"
+            }
+        ],
+        "location": {
+            "coords": {
+                "type": "Point",
+                "coordinates": [
+                    138.967237,
+                    58.399915
+                ]
+            },
+            "location": {
+                "locality": "5938 Wilfredo Lake Apt. 726",
+                "country": "Saint Barthelemy",
+                "region": "Michigan",
+                "city": "Padbergberg",
+                "postalCode": "83741"
+            }
+        },
+        "max_speed": 20,
+        "model": "sint ex",
+        "power": 850067,
+        "price": {
+            "price": 27200,
+            "currency": "Lilangeni"
+        },
+        "status": "sold",
         "travel_range": 76,
         "updated_at": "2023-08-23 08:06:14",
         "url": "cormier-sint-64e5bdf68de90",

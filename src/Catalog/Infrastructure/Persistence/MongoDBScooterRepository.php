@@ -7,6 +7,7 @@ namespace ScooterVolt\CatalogService\Catalog\Infrastructure\Persistence;
 use MongoDB\Collection;
 use MongoDB\Database;
 use MongoDB\Model\BSONDocument;
+use Psr\Log\LoggerInterface;
 use ScooterVolt\CatalogService\Catalog\Domain\Scooter;
 use ScooterVolt\CatalogService\Catalog\Domain\ScooterRepository;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
@@ -48,6 +49,10 @@ final class MongoDBScooterRepository implements ScooterRepository
     public function search(Criteria $criteria): array
     {
         $query = [];
+        $andConditions = [];
+
+        $coords = null;
+        $max_km = null;
 
         foreach ($criteria->filters() as $filter) {
             $field = $filter->field();
@@ -60,34 +65,93 @@ final class MongoDBScooterRepository implements ScooterRepository
                 continue;
             }
 
+            if ($field === 'coords') {
+                $coords = explode(',', $value);
+                continue;
+            }
+            if ($field === 'max_km') {
+                $max_km = $value;
+                continue;
+            }
+
             switch ($operator) {
                 case FilterOperator::EQUAL:
-                    $query[$field] = ['$regex' => $value, '$options' => 'i'];
-
                     if (is_numeric($value))
-                        $query[$field] = ['$eq' => (int)$value];
+                        $query[$field][] = ['$eq' => (int) $value];
+                    else
+                        $query[$field][] = ['$regex' => $value, '$options' => 'i'];
+
+                    if (!in_array($field, $andConditions))
+                        $andConditions[] = $field;
                     break;
                 case FilterOperator::NOT_EQUAL:
-                    $query[$field]['$ne'] = $value;
+                    $query[$field][]['$ne'] = $value;
+                    if (!in_array($field, $andConditions))
+                        $andConditions[] = $field;
                     break;
                 case FilterOperator::GT:
-                    $query[$field]['$gt'] = $value;
+                    $query[$field][]['$gte'] = (int) $value;
+                    if (!in_array($field, $andConditions))
+                        $andConditions[] = $field;
                     break;
                 case FilterOperator::LT:
-                    $query[$field]['$lt'] = $value;
+                    $query[$field][]['$lte'] = (int) $value;
+                    if (!in_array($field, $andConditions))
+                        $andConditions[] = $field;
                     break;
                 case FilterOperator::CONTAINS:
-                    $query[$field] = ['$regex' => $value, '$options' => 'i'];
+                    $query[$field][] = ['$regex' => $value, '$options' => 'i'];
+                    if (!in_array($field, $andConditions))
+                        $andConditions[] = $field;
                     break;
                 case FilterOperator::NOT_CONTAINS:
-                    $query[$field] = ['$regex' => "^((?!$value).)*$", '$options' => 'i'];
+                    $query[$field][] = ['$regex' => "^((?!$value).)*$", '$options' => 'i'];
+                    if (!in_array($field, $andConditions))
+                        $andConditions[] = $field;
                     break;
                 default:
                     break;
             }
         }
-        $options = [];
 
+        foreach ($andConditions as $field) {
+            $and = [];
+            foreach ($query[$field] as $filter) {
+                $and[][$field] = $filter;
+            }
+            $separatedFilters = $this->separateFiltersGTnLTofOthers($and);
+            $query['$and'] = array_merge(array_key_exists('$and', $query) ? $query['$and'] : [], $separatedFilters['gtLtArray']);
+            if ($separatedFilters['restoArray']) {
+                $query['$and'][]['$or'] = $separatedFilters['restoArray'];
+            }
+            unset($query[$field]);
+        }
+
+        if (!isset($query['$and'])) {
+            unset($query['$and']);
+        }
+
+        if ($coords) {
+            $query['$and'][] = [
+                'location.coords' => [
+                    '$near' => [
+                        '$geometry' => [
+                            'type' => 'Point',
+                            'coordinates' => [
+                                (float) $coords[1],
+                                (float) $coords[0]
+                            ]
+                        ],
+                        '$minDistance' => 0,
+                        '$maxDistance' => $max_km ? $max_km * 1000 : 20000,
+                    ]
+                ]
+            ];
+        }
+
+        //dd(json_encode($query));
+
+        $options = [];
         if ($criteria->hasOrder()) {
             foreach ($criteria->order() as $order) {
                 $options['sort'][$order->orderBy()] = $order->orderType()->value() === 'desc' ? -1 : 1;
@@ -103,7 +167,6 @@ final class MongoDBScooterRepository implements ScooterRepository
         }
 
         $cursor = $this->collection->find($query, $options);
-
         $scooters = [];
 
         foreach ($cursor as $document) {
@@ -111,6 +174,23 @@ final class MongoDBScooterRepository implements ScooterRepository
         }
 
         return $scooters;
+    }
+
+    private function separateFiltersGTnLTofOthers(array $filters): array
+    {
+        $gtLtArray = [];
+        $restoArray = [];
+
+        foreach ($filters as $filtro) {
+            $operador = key($filtro[key($filtro)]);
+            $campo = key($filtro);
+            if (in_array($operador, ['$gte', '$lte', '$gt', '$lt'])) {
+                $gtLtArray[] = $filtro;
+            } else {
+                $restoArray[] = $filtro;
+            }
+        }
+        return ['gtLtArray' => $gtLtArray, 'restoArray' => $restoArray];
     }
 
     public function findById(AdId $id): ?Scooter
@@ -162,5 +242,8 @@ final class MongoDBScooterRepository implements ScooterRepository
     private function createIndex(): void
     {
         $this->collection->createIndex(["brand" => "text", "model" => "text", "description" => "text", "condition" => "text"]);
+        $this->collection->createIndex(["location.coords" => "2dsphere"]);
+        $this->collection->createIndex(["id" => 1]);
+        $this->collection->createIndex(["url" => 1]);
     }
 }

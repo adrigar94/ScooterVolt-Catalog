@@ -53,10 +53,10 @@ class ScooterUpsertService
             $scooter->setModel(new ScooterModel($scooterDTO->model));
         }
         if ($scooterDTO->price) {
-            $scooter->setPrice(ScooterPrice::createPrice((float)$scooterDTO->price['price'], new CurrencyValueObject($scooterDTO->price['currency'])));
+            $scooter->setPrice(ScooterPrice::createPrice((float) $scooterDTO->price['price'], new CurrencyValueObject($scooterDTO->price['currency'])));
         }
         if ($scooterDTO->location) {
-            $coords = new CoordsValueObject((float) $scooterDTO->location['coords']['latitude'], (float) $scooterDTO->location['coords']['longitude']);
+            $coords = new CoordsValueObject((float) $scooterDTO->location['coords']['coordinates'][0], (float) $scooterDTO->location['coords']['coordinates'][1]);
             $place = new PlaceLocationValueObject(
                 $scooterDTO->location['location']['locality'],
                 $scooterDTO->location['location']['country'],

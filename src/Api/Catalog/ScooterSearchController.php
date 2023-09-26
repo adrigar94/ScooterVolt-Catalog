@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
     schema: new OA\Schema(type: "string")
 )]
 #[OA\Parameter(
-    name: "brand",
+    name: "brand[]",
     in: "query",
     description: "Brand of Scooter",
     schema: new OA\Schema(
@@ -37,7 +37,7 @@ use Symfony\Component\Routing\Annotation\Route;
     )
 )]
 #[OA\Parameter(
-    name: "model",
+    name: "model[]",
     in: "query",
     description: "Model of Scooter",
     schema: new OA\Schema(
@@ -48,26 +48,42 @@ use Symfony\Component\Routing\Annotation\Route;
     )
 )]
 #[OA\Parameter(
-    name: "condition",
+    name: "condition[]",
     in: "query",
-    description: "Contition of Scooter [new, used, broken]",
+    description: "Contition of Scooter",
     schema: new OA\Schema(
         type: "array",
         items: new OA\Items(
             type: "string"
         )
-    )
+    ),
+    example: ['new', 'used', 'broken']
 )]
 #[OA\Parameter(
     name: "status[]",
     in: "query",
-    description: "Status of Scooter [draft, published, sold] default=published",
+    description: "Status of Scooter default=published",
     schema: new OA\Schema(
         type: "array",
         items: new OA\Items(
-            type: "string"
-        )
-    )
+            type: "string",
+        ),
+    ),
+    example: ['draft', 'published', 'sold']
+)]
+#[OA\Parameter(
+    name: "year_gt",
+    in: "query",
+    description: "Year greater than",
+    schema: new OA\Schema(type: "integer"),
+    example: 2000
+)]
+#[OA\Parameter(
+    name: "year_lt",
+    in: "query",
+    description: "Year less than",
+    schema: new OA\Schema(type: "integer"),
+    example: 2023
 )]
 #[OA\Response(
     response: JsonResponse::HTTP_OK,
@@ -83,9 +99,45 @@ use Symfony\Component\Routing\Annotation\Route;
 )]
 class ScooterSearchController
 {
-
+    //TODO filters: price
     private const FILTERS_ALLOWED = [
-        'search', 'brand', 'model', 'condition', 'status'
+        'search',
+        'brand',
+        'model',
+        'condition',
+        'status',
+        'year_gt',
+        'year_lt',
+        'max_speed_gt',
+        'max_speed_lt',
+        'power_gt',
+        'power_lt',
+        'travel_range_gt',
+        'travel_range_lt',
+        'coords',
+        'max_km'
+    ];
+
+    private const FILTERS_OPERATOR_MAPPING = [
+        'year_gt' => FilterOperator::GT,
+        'year_lt' => FilterOperator::LT,
+        'max_speed_gt' => FilterOperator::GT,
+        'max_speed_lt' => FilterOperator::LT,
+        'power_gt' => FilterOperator::GT,
+        'power_lt' => FilterOperator::LT,
+        'travel_range_gt' => FilterOperator::GT,
+        'travel_range_lt' => FilterOperator::LT,
+    ];
+
+    private const FILTERS_NAME_MAPPING = [
+        'year_gt' => 'year',
+        'year_lt' => 'year',
+        'max_speed_gt' => 'max_speed',
+        'max_speed_lt' => 'max_speed',
+        'power_gt' => 'power',
+        'power_lt' => 'power',
+        'travel_range_gt' => 'travel_range',
+        'travel_range_lt' => 'travel_range',
     ];
 
     public function __construct(
@@ -97,18 +149,16 @@ class ScooterSearchController
     {
         $data = $request->query->all();
 
-        $filters = [
-            //new Filter('status', FilterOperator::EQUAL(), 'published')
-        ];
+        $filters = [];
         foreach ($data as $param => $value_filter) {
             if (in_array($param, self::FILTERS_ALLOWED)) {
                 if (is_array($value_filter)) {
                     foreach ($value_filter as $value) {
-                        $filters[] = new Filter($param, FilterOperator::EQUAL(), $value);
+                        $filters[] = new Filter($this->getNameFilterMapping($param), $this->getOperatorMapping($param), $value);
                     }
                     continue;
                 }
-                $filters[] = new Filter($param, FilterOperator::EQUAL(), $value_filter);
+                $filters[] = new Filter($this->getNameFilterMapping($param), $this->getOperatorMapping($param), $value_filter);
             }
         }
 
@@ -117,5 +167,21 @@ class ScooterSearchController
         $scooters = ($this->searcher)($criteria);
 
         return new JsonResponse($scooters, JsonResponse::HTTP_OK);
+    }
+
+    private function getOperatorMapping(string $filter): FilterOperator
+    {
+        if (array_key_exists($filter, self::FILTERS_OPERATOR_MAPPING)) {
+            return new FilterOperator(self::FILTERS_OPERATOR_MAPPING[$filter]);
+        }
+        return FilterOperator::EQUAL();
+    }
+
+    private function getNameFilterMapping(string $filter): string
+    {
+        if (array_key_exists($filter, self::FILTERS_NAME_MAPPING)) {
+            return self::FILTERS_NAME_MAPPING[$filter];
+        }
+        return $filter;
     }
 }
