@@ -10,27 +10,34 @@ class CurrencyConversor
 {
     private const endpoint = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/';
 
-    public static function convert(float $value, string $from, string $to): float
+    private string $fromCurrency;
+
+    private array $rates;
+
+    public function __construct(string $fromCurrency)
+    {
+        $this->fromCurrency = strtolower($fromCurrency);
+        $this->rates = self::getCurrencyRates();
+    }
+
+    public function convert(float $value, string $toCurrency): float
     {
 
-        $from = strtolower($from);
-        $to = strtolower($to);
+        $toCurrency = strtolower($toCurrency);
 
-        $rates = self::getCurrencyRates($from);
-
-        if (!isset($rates[$from][$to])) {
+        if (!isset($this->rates[$this->fromCurrency][$toCurrency])) {
             throw new \RuntimeException('Invalid currency');
         }
 
-        $rate = $rates[$from][$to];
+        $rate = $this->rates[$this->fromCurrency][$toCurrency];
 
         return $value * $rate;
     }
 
 
-    private static function getCurrencyRates(string $currency): array
+    private function getCurrencyRates(): array
     {
-        $url = self::endpoint . $currency . '.json';
+        $url = self::endpoint . $this->fromCurrency . '.json';
         try {
             $jsonData = file_get_contents($url);
             $rates = json_decode($jsonData ?: "", true);

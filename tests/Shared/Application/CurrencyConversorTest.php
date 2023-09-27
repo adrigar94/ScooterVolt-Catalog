@@ -12,11 +12,11 @@ class CurrencyConversorTest extends TestCase
 
     public function testCurrencyConversorApiWorks(): void
     {
+        $conversor = new CurrencyConversor('EUR');
         $eur_value = 10;
-        $usd_value = CurrencyConversor::convert($eur_value, 'EUR', 'USD');
+        $usd_value = $conversor->convert($eur_value, 'USD');
 
         $this->assertIsFloat($usd_value);
-
     }
 
 }
