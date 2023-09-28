@@ -428,6 +428,12 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertCount(4, $scooters);
     }
 
+    public function testfailedForTestGithub(): void
+    {
+        $this->assertEquals(0, 1);
+    }
+
+
     private function setUpDatabase()
     {
         $path_json = __DIR__ . '/scooters.json';
