@@ -29,7 +29,13 @@ services:
             $uri: '%env(MONGO_URI)%'
             $databaseName: '%env(MONGO_DATABASE_NAME)%'
 
-    
+    ScooterVolt\CatalogService\Shared\Infrastructure\Bus\Event\RabbitMqEventBus:
+        arguments:
+            $host: '%env(RABBITMQ_HOST)%'
+            $port: 5672
+            $user: '%env(RABBITMQ_USERNAME)%'
+            $password: '%env(RABBITMQ_PASSWORD)%'
+            $exchange: '%env(RABBITMQ_EXCHANGE)%'
 
     ScooterVolt\CatalogService\Shared\Domain\Event\KernelException:
         tags:
