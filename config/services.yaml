@@ -28,3 +28,9 @@ services:
         arguments:
             $uri: '%env(MONGO_URI)%'
             $databaseName: '%env(MONGO_DATABASE_NAME)%'
+
+    
+
+    ScooterVolt\CatalogService\Shared\Domain\Event\KernelException:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
