@@ -29,7 +29,7 @@ class RabbitMqEventBus implements EventBus
     {
         $channel = $this->connection->channel();
 
-        $channel->exchange_declare($this->exchange, 'topic', false, false, false);
+        $channel->exchange_declare($this->exchange, 'topic', false, true, false);
 
         foreach ($events as $event) {
             $message = new AMQPMessage(

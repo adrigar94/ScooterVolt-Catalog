@@ -32,7 +32,7 @@ services:
     ScooterVolt\CatalogService\Shared\Infrastructure\Bus\Event\RabbitMqEventBus:
         arguments:
             $host: '%env(RABBITMQ_HOST)%'
-            $port: 5672
+            $port: '%env(RABBITMQ_PORT)%'
             $user: '%env(RABBITMQ_USERNAME)%'
             $password: '%env(RABBITMQ_PASSWORD)%'
             $exchange: '%env(RABBITMQ_EXCHANGE)%'
