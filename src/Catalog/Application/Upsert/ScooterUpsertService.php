@@ -7,6 +7,7 @@ namespace ScooterVolt\CatalogService\Catalog\Application\Upsert;
 use Adrigar94\ValueObjectCraft\Domain\Currency\CurrencyValueObject;
 use Adrigar94\ValueObjectCraft\Domain\Location\CoordsValueObject;
 use Adrigar94\ValueObjectCraft\Domain\Location\PlaceLocationValueObject;
+use ScooterVolt\CatalogService\Catalog\Domain\Events\ScooterUpsertDomainEvent;
 use ScooterVolt\CatalogService\Catalog\Domain\Scooter;
 use ScooterVolt\CatalogService\Catalog\Domain\ScooterDTO;
 use ScooterVolt\CatalogService\Catalog\Domain\ScooterRepository;
@@ -26,11 +27,13 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterTravelRangeKm;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterYear;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserContactInfo;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId;
+use ScooterVolt\CatalogService\Shared\Domain\Bus\Event\EventBus;
 
 class ScooterUpsertService
 {
     public function __construct(
-        private ScooterRepository $repository
+        private ScooterRepository $repository,
+        private EventBus $eventBus
     ) {
     }
 
@@ -89,5 +92,8 @@ class ScooterUpsertService
         }
 
         $this->repository->save($scooter);
+
+        $eventUpsert = new ScooterUpsertDomainEvent($scooter->toNative());
+        $this->eventBus->publish($eventUpsert);
     }
 }
