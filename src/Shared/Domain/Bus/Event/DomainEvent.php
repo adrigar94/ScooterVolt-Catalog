@@ -30,6 +30,11 @@ abstract class DomainEvent
     ): self;
 
 
+    abstract public static function fromString(
+        string $event
+    ): self;
+
+
 
     public function aggregateId(): string
     {
