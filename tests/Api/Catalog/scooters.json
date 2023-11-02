@@ -47,7 +47,7 @@
         "power": 177247,
         "price": {
             "price": 41800,
-            "currency": "Vatu"
+            "currency": "EUR"
         },
         "status": "published",
         "travel_range": 61,
@@ -100,7 +100,7 @@
         "power": 818961,
         "price": {
             "price": 66300,
-            "currency": "Lek"
+            "currency": "USD"
         },
         "status": "published",
         "travel_range": 25,
@@ -153,7 +153,7 @@
         "power": 631734,
         "price": {
             "price": 96400,
-            "currency": "Rial Omani"
+            "currency": "GBP"
         },
         "status": "published",
         "travel_range": 44,
@@ -206,7 +206,7 @@
         "power": 950299,
         "price": {
             "price": 30100,
-            "currency": "Euro"
+            "currency": "EUR"
         },
         "status": "published",
         "travel_range": 63,
@@ -254,7 +254,7 @@
         "power": 241249,
         "price": {
             "price": 6100,
-            "currency": "Moroccan Dirham"
+            "currency": "USD"
         },
         "status": "published",
         "travel_range": 45,
@@ -307,7 +307,7 @@
         "power": 982577,
         "price": {
             "price": 200,
-            "currency": "CFA Franc BCEAO"
+            "currency": "GBP"
         },
         "status": "published",
         "travel_range": 58,
@@ -360,7 +360,7 @@
         "power": 333268,
         "price": {
             "price": 16200,
-            "currency": "Zimbabwe Dollar"
+            "currency": "JPY"
         },
         "status": "published",
         "travel_range": 58,
@@ -412,7 +412,7 @@
         "power": 60757,
         "price": {
             "price": 2600,
-            "currency": "Kwacha"
+            "currency": "EUR"
         },
         "status": "published",
         "travel_range": 19,
@@ -465,7 +465,7 @@
         "power": 760592,
         "price": {
             "price": 6400,
-            "currency": "Armenian Dram"
+            "currency": "USD"
         },
         "status": "published",
         "travel_range": 54,
@@ -518,7 +518,7 @@
         "power": 850067,
         "price": {
             "price": 27200,
-            "currency": "Lilangeni"
+            "currency": "GBP"
         },
         "status": "published",
         "travel_range": 76,
@@ -571,7 +571,7 @@
         "power": 850067,
         "price": {
             "price": 27200,
-            "currency": "Lilangeni"
+            "currency": "JPY"
         },
         "status": "draft",
         "travel_range": 76,
@@ -624,7 +624,7 @@
         "power": 850067,
         "price": {
             "price": 27200,
-            "currency": "Lilangeni"
+            "currency": "MAD"
         },
         "status": "draft",
         "travel_range": 76,
@@ -677,7 +677,7 @@
         "power": 850067,
         "price": {
             "price": 27200,
-            "currency": "Lilangeni"
+            "currency": "BYN"
         },
         "status": "sold",
         "travel_range": 76,
