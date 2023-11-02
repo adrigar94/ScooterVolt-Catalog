@@ -12,9 +12,9 @@ Is avaible in ```https://localhost:8000/api/doc```
 
 | Command | Command Description | recommended frequency |
 | ------- | ------------------- | --------------------- |
-| ./bin/console event-domain:scooter:upsert | Listen to scooter updates and creations. Execute asynchronous actions.| Permanent |
+| ./bin/console event-domain:scooter:upsert | Listen to scooter updates and creations. Execute asynchronous actions.| Continually. Listen to events |
 | ./bin/console event-domain:scooter:generate-events-update-price-exchanges | generate domain events for updating price exchanges on scooters | Daily |
-| ./bin/console event-domain:scooter:update-price-exchange | Listen to requests for price exchange updates for scooter events | 10 min |
+| ./bin/console event-domain:scooter:update-price-exchange | Listen to requests for price exchange updates for scooter events | Continually. Listen to events |
 
 ## Testing
 
