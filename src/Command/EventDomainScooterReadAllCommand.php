@@ -10,10 +10,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'event-domain:scooter:read',
+    name: 'event-domain:scooter:read-all',
     description: 'Read scooter.* events',
 )]
-class EventDomainScooterReadCommand extends Command
+class EventDomainScooterReadAllCommand extends Command
 {
     protected function configure(): void
     {
