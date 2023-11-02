@@ -18,13 +18,9 @@ Is avaible in ```https://localhost:8000/api/doc```
 
 ## Testing
 
-## TODO
-- TODO scooter, change url to no required. Created date idem?
-- TODO Implement all application and API classes
-- TODO Implement auth and roles permissions
-- TODO Implement RabbitMq event, write and read
+## Working
+- [INPROGRESS] ScooterSearchController debe aceptar busquedas por precio, en diferentes monedas
+- [TODO] scooter, change url to no required. Created date idem?
+- [TODO] Implement auth and roles permissions
 
-### Current Progress
-
-ESTO ESTA STASH: ScooterSearchController he añadido que acepte price pero faltaria añadir que acepte currency, y despues adaptar el servicio y el repo y todos sus tests...
 
