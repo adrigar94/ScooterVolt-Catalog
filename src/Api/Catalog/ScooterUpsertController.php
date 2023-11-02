@@ -20,7 +20,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
     ref: new NOA\Model(
         type: ScooterDTO::class
     )
-))]
+)
+)]
 #[OA\Response(
     response: JsonResponse::HTTP_CREATED,
     description: "Scooter Upsert"
@@ -42,17 +43,17 @@ class ScooterUpsertController
             $data['status'],
             $data['user_id'],
             $data['user_contact_info'],
-            array_key_exists('brand', $data)        ? $data['brand']        : null,
-            array_key_exists('model', $data)        ? $data['model']        : null,
-            array_key_exists('price', $data)        ? $data['price']        : null,
-            array_key_exists('location', $data)     ? $data['location']     : null,
-            array_key_exists('gallery', $data)      ? $data['gallery']      : null,
-            array_key_exists('year', $data)         ? $data['year']         : null,
-            array_key_exists('condition', $data)    ? $data['condition']    : null,
+            array_key_exists('brand', $data) ? $data['brand'] : null,
+            array_key_exists('model', $data) ? $data['model'] : null,
+            array_key_exists('price', $data) ? $data['price'] : null,
+            array_key_exists('location', $data) ? $data['location'] : null,
+            array_key_exists('gallery', $data) ? $data['gallery'] : null,
+            array_key_exists('year', $data) ? $data['year'] : null,
+            array_key_exists('condition', $data) ? $data['condition'] : null,
             array_key_exists('travel_range', $data) ? $data['travel_range'] : null,
-            array_key_exists('max_speed', $data)    ? $data['max_speed']    : null,
-            array_key_exists('power', $data)        ? $data['power']        : null,
-            array_key_exists('description', $data)  ? $data['description']  : null
+            array_key_exists('max_speed', $data) ? $data['max_speed'] : null,
+            array_key_exists('power', $data) ? $data['power'] : null,
+            array_key_exists('description', $data) ? $data['description'] : null
         );
 
 
