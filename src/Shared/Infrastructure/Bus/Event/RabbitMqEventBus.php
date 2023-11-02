@@ -19,7 +19,8 @@ class RabbitMqEventBus implements EventBus
         int $port,
         string $user,
         string $password,
-        string $exchange
+        string $exchange,
+        private ?string $exchangeType = 'topic'
     ) {
         $this->connection = new AMQPStreamConnection($host, $port, $user, $password);
         $this->exchange = $exchange;
@@ -29,7 +30,7 @@ class RabbitMqEventBus implements EventBus
     {
         $channel = $this->connection->channel();
 
-        $channel->exchange_declare($this->exchange, 'topic', false, true, false);
+        $channel->exchange_declare($this->exchange, $this->exchangeType, false, true, false);
 
         foreach ($events as $event) {
             $message = new AMQPMessage(
@@ -46,6 +47,26 @@ class RabbitMqEventBus implements EventBus
             $channel->basic_publish($message, $this->exchange, $event->eventName());
         }
 
+        $channel->close();
+        $this->connection->close();
+    }
+
+
+    public function consume(string $queue, string $eventName, \Closure $callbackEvent, int $maxEventReads = 10): void
+    {
+        $channel = $this->connection->channel();
+        $channel->exchange_declare($this->exchange, $this->exchangeType, false, true, false);
+
+        $channel->queue_declare($queue, false, true, false, false);
+        $channel->queue_bind($queue, $this->exchange, $eventName);
+
+        $channel->basic_consume($queue, '', false, true, false, false, $callbackEvent);
+
+        $i = 0;
+        while ($i < $maxEventReads and $channel->is_open()) {
+            $channel->wait();
+            $i++;
+        }
         $channel->close();
         $this->connection->close();
     }
