@@ -22,6 +22,13 @@ class ScooterSearchService
      */
     public function __invoke(Criteria $criteria): array
     {
+        $criteria = $this->validateStatus($criteria);
+
+        return $this->repository->search($criteria);
+    }
+
+    private function validateStatus(Criteria $criteria): Criteria
+    {
         $filters = $criteria->filters();
         $status_is_defined = false;
 
@@ -31,6 +38,7 @@ class ScooterSearchService
             if ($field === 'status') {
                 $status_is_defined = true;
                 //TODO only is posible search self drafts or sold, except admin
+                //check operator
             }
         }
 
@@ -39,6 +47,7 @@ class ScooterSearchService
             $filters[] = $filter_publised;
             $criteria = new Criteria($filters, $criteria->order(), $criteria->offset(), $criteria->limit());
         }
-        return $this->repository->search($criteria);
+
+        return $criteria;
     }
 }
