@@ -19,8 +19,7 @@ Is avaible in ```https://localhost:8000/api/doc```
 ## Testing
 
 ## Working
-- [INPROGRESS] Scooter Find By URL Controller / Service / tests
-- [TODO] Scooter Delete Controller / Service / tests
+- [TODO] Scooter Upsert Controller tests
 - [TODO] Implement auth and roles permissions
 - [TODO] scooter, change url to no required. Created date idem? (quiza el creator service que no sea obligatorio pero en la clase scooter si)
 
