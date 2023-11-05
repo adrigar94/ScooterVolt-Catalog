@@ -24,7 +24,7 @@ class ScooterFindAllControllerTest extends WebTestCase
     }
 
 
-    public function testFindById(): void
+    public function testFindAll(): void
     {
         $this->client->request('GET', "/api/catalog/scooters");
         $data = $this->client->getResponse()->getContent();
