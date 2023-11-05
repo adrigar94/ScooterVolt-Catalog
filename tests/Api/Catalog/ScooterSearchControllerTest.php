@@ -26,7 +26,7 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchWithoutParams(): void
     {
-        $this->client->request('GET', '/api/catalog/scooters/search');
+        $this->client->request('GET', '/api/catalog/search/scooters');
         $data = $this->client->getResponse()->getContent();
 
 
@@ -40,7 +40,7 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchByText(): void
     {
-        $this->client->request('GET', '/api/catalog/scooters/search?search=xiaomi');
+        $this->client->request('GET', '/api/catalog/search/scooters?search=xiaomi');
         $data = $this->client->getResponse()->getContent();
 
 
@@ -54,7 +54,7 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchByBrand(): void
     {
-        $this->client->request('GET', '/api/catalog/scooters/search?brand[]=xiaomi');
+        $this->client->request('GET', '/api/catalog/search/scooters?brand[]=xiaomi');
         $data = $this->client->getResponse()->getContent();
 
 
@@ -73,7 +73,7 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchByModel(): void
     {
-        $this->client->request('GET', '/api/catalog/scooters/search?model[]=scooter');
+        $this->client->request('GET', '/api/catalog/search/scooters?model[]=scooter');
         $data = $this->client->getResponse()->getContent();
 
 
@@ -92,7 +92,7 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchByCondition(): void
     {
-        $this->client->request('GET', '/api/catalog/scooters/search?condition[]=new');
+        $this->client->request('GET', '/api/catalog/search/scooters?condition[]=new');
         $data = $this->client->getResponse()->getContent();
 
 
@@ -111,7 +111,7 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchByStatus(): void
     {
-        $this->client->request('GET', '/api/catalog/scooters/search?status[]=draft');
+        $this->client->request('GET', '/api/catalog/search/scooters?status[]=draft');
         $data = $this->client->getResponse()->getContent();
 
 
@@ -130,7 +130,7 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchByStatuses(): void
     {
-        $this->client->request('GET', '/api/catalog/scooters/search?status[]=draft&status[]=sold');
+        $this->client->request('GET', '/api/catalog/search/scooters?status[]=draft&status[]=sold');
         $data = $this->client->getResponse()->getContent();
 
 
@@ -149,7 +149,7 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchByStatusesAndCondition(): void
     {
-        $this->client->request('GET', '/api/catalog/scooters/search?status[]=draft&status[]=sold&condition[]=used');
+        $this->client->request('GET', '/api/catalog/search/scooters?status[]=draft&status[]=sold&condition[]=used');
         $data = $this->client->getResponse()->getContent();
 
 
@@ -171,7 +171,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByYearGt(): void
     {
         $year_gt = 2010;
-        $this->client->request('GET', "/api/catalog/scooters/search?year_gt=$year_gt");
+        $this->client->request('GET', "/api/catalog/search/scooters?year_gt=$year_gt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -191,7 +191,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByYearLt(): void
     {
         $year_lt = 2010;
-        $this->client->request('GET', "/api/catalog/scooters/search?year_lt=$year_lt");
+        $this->client->request('GET', "/api/catalog/search/scooters?year_lt=$year_lt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -212,7 +212,7 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $year_gt = 2016;
         $year_lt = 2023;
-        $this->client->request('GET', "/api/catalog/scooters/search?year_gt=$year_gt&year_lt=$year_lt");
+        $this->client->request('GET', "/api/catalog/search/scooters?year_gt=$year_gt&year_lt=$year_lt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -232,7 +232,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByMaxSpeedGt(): void
     {
         $max_speed_gt = 50;
-        $this->client->request('GET', "/api/catalog/scooters/search?max_speed_gt=$max_speed_gt");
+        $this->client->request('GET', "/api/catalog/search/scooters?max_speed_gt=$max_speed_gt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -252,7 +252,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByMaxSpeedLt(): void
     {
         $max_speed_lt = 50;
-        $this->client->request('GET', "/api/catalog/scooters/search?max_speed_lt=$max_speed_lt");
+        $this->client->request('GET', "/api/catalog/search/scooters?max_speed_lt=$max_speed_lt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -273,7 +273,7 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $max_speed_gt = 30;
         $max_speed_lt = 70;
-        $this->client->request('GET', "/api/catalog/scooters/search?max_speed_gt=$max_speed_gt&max_speed_lt=$max_speed_lt");
+        $this->client->request('GET', "/api/catalog/search/scooters?max_speed_gt=$max_speed_gt&max_speed_lt=$max_speed_lt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -293,7 +293,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByPowerGt(): void
     {
         $power_gt = 250000;
-        $this->client->request('GET', "/api/catalog/scooters/search?power_gt=$power_gt");
+        $this->client->request('GET', "/api/catalog/search/scooters?power_gt=$power_gt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -313,7 +313,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByPowerLt(): void
     {
         $power_lt = 250000;
-        $this->client->request('GET', "/api/catalog/scooters/search?power_lt=$power_lt");
+        $this->client->request('GET', "/api/catalog/search/scooters?power_lt=$power_lt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -334,7 +334,7 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $power_gt = 50000;
         $power_lt = 200000;
-        $this->client->request('GET', "/api/catalog/scooters/search?power_gt=$power_gt&power_lt=$power_lt");
+        $this->client->request('GET', "/api/catalog/search/scooters?power_gt=$power_gt&power_lt=$power_lt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -354,7 +354,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByTravelRangeGt(): void
     {
         $travel_range_gt = 50;
-        $this->client->request('GET', "/api/catalog/scooters/search?travel_range_gt=$travel_range_gt");
+        $this->client->request('GET', "/api/catalog/search/scooters?travel_range_gt=$travel_range_gt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -374,7 +374,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByTravelRangeLt(): void
     {
         $travel_range_lt = 50;
-        $this->client->request('GET', "/api/catalog/scooters/search?travel_range_lt=$travel_range_lt");
+        $this->client->request('GET', "/api/catalog/search/scooters?travel_range_lt=$travel_range_lt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -395,7 +395,7 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $travel_range_gt = 30;
         $travel_range_lt = 60;
-        $this->client->request('GET', "/api/catalog/scooters/search?travel_range_gt=$travel_range_gt&travel_range_lt=$travel_range_lt");
+        $this->client->request('GET', "/api/catalog/search/scooters?travel_range_gt=$travel_range_gt&travel_range_lt=$travel_range_lt");
         $data = $this->client->getResponse()->getContent();
 
 
@@ -417,7 +417,7 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $coords = "-6.10,175.15";
         $max_km = "5000";
-        $this->client->request('GET', "/api/catalog/scooters/search?coords=$coords&max_km=$max_km");
+        $this->client->request('GET', "/api/catalog/search/scooters?coords=$coords&max_km=$max_km");
         $data = $this->client->getResponse()->getContent();
 
         $this->assertResponseIsSuccessful();
@@ -432,7 +432,7 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $price = 400;
         $currency = "USD";
-        $this->client->request('GET', "/api/catalog/scooters/search?price_gt=$price&currency=$currency");
+        $this->client->request('GET', "/api/catalog/search/scooters?price_gt=$price&currency=$currency");
         $data = $this->client->getResponse()->getContent();
 
         $this->assertResponseIsSuccessful();
@@ -449,7 +449,7 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $price = 500;
         $currency = "USD";
-        $this->client->request('GET', "/api/catalog/scooters/search?price_gt=$price&currency=$currency");
+        $this->client->request('GET', "/api/catalog/search/scooters?price_gt=$price&currency=$currency");
         $data = $this->client->getResponse()->getContent();
 
         $this->assertResponseIsSuccessful();
