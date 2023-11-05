@@ -13,7 +13,7 @@ use ScooterVolt\CatalogService\Catalog\Application\Upsert\ScooterUpsertService;
 use ScooterVolt\CatalogService\Catalog\Domain\ScooterDTO;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-#[Route('/api/catalog/scooters/{id}', name: 'catalog_upsert', methods: ['PUT'])]
+#[Route('/api/catalog/scooter/{id}', name: 'catalog_upsert', methods: ['PUT'])]
 #[OA\Tag("Catalog")]
 #[OA\RequestBody(content: new OA\JsonContent(
     type: "object",
