@@ -20,3 +20,13 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: scooterVolt
       ME_CONFIG_MONGODB_ADMINPASSWORD: 5c0073r-VOLT
       ME_CONFIG_MONGODB_URL: mongodb://scooterVolt:5c0073r-VOLT@mongo:27017/
+
+  rabbitmq:
+    image: rabbitmq:${RABBITMQ_VERSION:-3.12}-management
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+    ports:
+      - 5672:5672 # RabbitMQ listening port
+      - 15672:15672 # RabbitMQ management interface
