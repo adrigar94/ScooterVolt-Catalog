@@ -25,8 +25,6 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId;
 
 final class Scooter extends Ad
 {
-    //TODO add price fields converted to each available currency type
-
     public function __construct(
         AdId $id,
         AdUrl $url,
@@ -120,7 +118,7 @@ final class Scooter extends Ad
         return $this->year;
     }
 
-    public function setYear(ScooterYear  $year): void
+    public function setYear(ScooterYear $year): void
     {
         $this->year = $year;
     }

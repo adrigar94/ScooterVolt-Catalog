@@ -19,8 +19,10 @@ Is avaible in ```https://localhost:8000/api/doc```
 ## Testing
 
 ## Working
-- [INPROGRESS] ScooterSearchController debe aceptar busquedas por precio, en diferentes monedas
-- [TODO] scooter, change url to no required. Created date idem?
+- [INPROGRESS] Scooter Find By Id Controller / Service / tests
+- [TODO] Scooter Find By URL Controller / Service / tests
+- [TODO] Scooter Delete Controller / Service / tests
 - [TODO] Implement auth and roles permissions
+- [TODO] scooter, change url to no required. Created date idem?
 
 

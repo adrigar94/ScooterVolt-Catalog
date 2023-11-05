@@ -120,7 +120,6 @@ use Symfony\Component\Routing\Annotation\Route;
 )]
 class ScooterSearchController
 {
-    //TODO filters: price
     private const FILTERS_ALLOWED = [
         'search',
         'brand',
