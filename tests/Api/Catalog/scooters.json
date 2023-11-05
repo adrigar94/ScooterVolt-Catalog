@@ -47,7 +47,11 @@
         "power": 177247,
         "price": {
             "price": 41800,
-            "currency": "EUR"
+            "currency": "EUR",
+            "price_conversions": {
+                "EUR": 41800,
+                "USD": 44879
+            }
         },
         "status": "published",
         "travel_range": 61,

@@ -85,6 +85,27 @@ use Symfony\Component\Routing\Annotation\Route;
     schema: new OA\Schema(type: "integer"),
     example: 2023
 )]
+#[OA\Parameter(
+    name: "price_gt",
+    in: "query",
+    description: "Price greater than",
+    schema: new OA\Schema(type: "float"),
+    example: 100
+)]
+#[OA\Parameter(
+    name: "price_lt",
+    in: "query",
+    description: "Price less than",
+    schema: new OA\Schema(type: "float"),
+    example: 200
+)]
+#[OA\Parameter(
+    name: "currency",
+    in: "query",
+    description: "Currency code of price",
+    schema: new OA\Schema(type: "string"),
+    example: 'EUR'
+)]
 #[OA\Response(
     response: JsonResponse::HTTP_OK,
     description: "Scooters Found",
@@ -115,7 +136,10 @@ class ScooterSearchController
         'travel_range_gt',
         'travel_range_lt',
         'coords',
-        'max_km'
+        'max_km',
+        'price_gt',
+        'price_lt',
+        'currency'
     ];
 
     private const FILTERS_OPERATOR_MAPPING = [
@@ -127,6 +151,8 @@ class ScooterSearchController
         'power_lt' => FilterOperator::LT,
         'travel_range_gt' => FilterOperator::GT,
         'travel_range_lt' => FilterOperator::LT,
+        'price_gt' => FilterOperator::GT,
+        'price_lt' => FilterOperator::LT,
     ];
 
     private const FILTERS_NAME_MAPPING = [
@@ -138,6 +164,8 @@ class ScooterSearchController
         'power_lt' => 'power',
         'travel_range_gt' => 'travel_range',
         'travel_range_lt' => 'travel_range',
+        'price_gt' => 'price',
+        'price_lt' => 'price',
     ];
 
     public function __construct(
@@ -146,6 +174,17 @@ class ScooterSearchController
     }
 
     public function __invoke(Request $request): Response
+    {
+        $filters = $this->getFilters($request);
+
+        $criteria = new Criteria($filters);
+
+        $scooters = ($this->searcher)($criteria);
+
+        return new JsonResponse($scooters, JsonResponse::HTTP_OK);
+    }
+
+    private function getFilters(Request $request): array
     {
         $data = $request->query->all();
 
@@ -162,11 +201,7 @@ class ScooterSearchController
             }
         }
 
-        $criteria = new Criteria($filters);
-
-        $scooters = ($this->searcher)($criteria);
-
-        return new JsonResponse($scooters, JsonResponse::HTTP_OK);
+        return $filters;
     }
 
     private function getOperatorMapping(string $filter): FilterOperator

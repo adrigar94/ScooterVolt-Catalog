@@ -428,6 +428,38 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertCount(4, $scooters);
     }
 
+    public function testSearchByPriceGtConversion(): void
+    {
+        $price = 400;
+        $currency = "USD";
+        $this->client->request('GET', "/api/catalog/scooters/search?price_gt=$price&currency=$currency");
+        $data = $this->client->getResponse()->getContent();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJson($data);
+
+        $scooters = json_decode($data, true);
+        $this->assertIsArray($scooters);
+        $this->assertCount(1, $scooters);
+
+        $this->assertGreaterThanOrEqual($price, $scooters[0]['price']['price_conversions'][$currency] / 100);
+    }
+
+    public function testSearchByPriceGtConversionWithoutResults(): void
+    {
+        $price = 500;
+        $currency = "USD";
+        $this->client->request('GET', "/api/catalog/scooters/search?price_gt=$price&currency=$currency");
+        $data = $this->client->getResponse()->getContent();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJson($data);
+
+        $scooters = json_decode($data, true);
+        $this->assertIsArray($scooters);
+        $this->assertCount(0, $scooters);
+    }
+
     private function setUpDatabase()
     {
         $path_json = __DIR__ . '/scooters.json';

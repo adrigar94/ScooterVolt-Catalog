@@ -7,7 +7,6 @@ namespace ScooterVolt\CatalogService\Catalog\Infrastructure\Persistence;
 use MongoDB\Collection;
 use MongoDB\Database;
 use MongoDB\Model\BSONDocument;
-use Psr\Log\LoggerInterface;
 use ScooterVolt\CatalogService\Catalog\Domain\Scooter;
 use ScooterVolt\CatalogService\Catalog\Domain\ScooterRepository;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
@@ -54,6 +53,8 @@ final class MongoDBScooterRepository implements ScooterRepository
         $coords = null;
         $max_km = null;
 
+        $currency = null;
+
         foreach ($criteria->filters() as $filter) {
             $field = $filter->field();
             $operator = $filter->operator()->value();
@@ -72,6 +73,15 @@ final class MongoDBScooterRepository implements ScooterRepository
             if ($field === 'max_km') {
                 $max_km = $value;
                 continue;
+            }
+
+            if ($field === 'currency') {
+                $currency = $value;
+                continue;
+            }
+
+            if ($field === 'price') {
+                $value = (int) ($value * 100);
             }
 
             switch ($operator) {
@@ -116,13 +126,19 @@ final class MongoDBScooterRepository implements ScooterRepository
 
         foreach ($andConditions as $field) {
             $and = [];
+            if ($field === 'price') {
+                $newName = 'price.price_conversions.' . strtoupper($currency);
+                $query[$newName] = $query[$field];
+                unset($query[$field]);
+                $field = $newName;
+            }
             foreach ($query[$field] as $filter) {
                 $and[][$field] = $filter;
             }
             $separatedFilters = $this->separateFiltersGTnLTofOthers($and);
             $query['$and'] = array_merge(array_key_exists('$and', $query) ? $query['$and'] : [], $separatedFilters['gtLtArray']);
-            if ($separatedFilters['restoArray']) {
-                $query['$and'][]['$or'] = $separatedFilters['restoArray'];
+            if ($separatedFilters['restArray']) {
+                $query['$and'][]['$or'] = $separatedFilters['restArray'];
             }
             unset($query[$field]);
         }
@@ -179,18 +195,17 @@ final class MongoDBScooterRepository implements ScooterRepository
     private function separateFiltersGTnLTofOthers(array $filters): array
     {
         $gtLtArray = [];
-        $restoArray = [];
+        $restArray = [];
 
         foreach ($filters as $filtro) {
             $operador = key($filtro[key($filtro)]);
-            $campo = key($filtro);
             if (in_array($operador, ['$gte', '$lte', '$gt', '$lt'])) {
                 $gtLtArray[] = $filtro;
             } else {
-                $restoArray[] = $filtro;
+                $restArray[] = $filtro;
             }
         }
-        return ['gtLtArray' => $gtLtArray, 'restoArray' => $restoArray];
+        return ['gtLtArray' => $gtLtArray, 'restArray' => $restArray];
     }
 
     public function findById(AdId $id): ?Scooter
