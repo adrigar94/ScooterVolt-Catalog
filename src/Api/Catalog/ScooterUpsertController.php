@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 )]
 class ScooterUpsertController
 {
-    public function __construct(private ScooterUpsertService $upsert)
+    public function __construct(private ScooterUpsertService $upsertService)
     {
     }
 
@@ -57,7 +57,7 @@ class ScooterUpsertController
         );
 
 
-        ($this->upsert)($scooterDTO);
+        ($this->upsertService)($scooterDTO);
 
         return new JsonResponse("Scooter Upsert", JsonResponse::HTTP_CREATED);
     }
