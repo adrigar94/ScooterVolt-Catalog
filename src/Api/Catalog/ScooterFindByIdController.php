@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Attributes as OA;
 use Nelmio\ApiDocBundle\Annotation as NOA;
 
-#[Route('/api/catalog/scooter/{id}', name: 'scooters_find_by_id', methods: ['GET'])]
+#[Route('/api/catalog/scooter/{id}', name: 'scooter_find_by_id', methods: ['GET'])]
 #[OA\Tag("Catalog")]
 #[OA\Response(
     response: JsonResponse::HTTP_OK,

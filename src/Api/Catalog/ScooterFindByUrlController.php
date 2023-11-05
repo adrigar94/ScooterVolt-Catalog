@@ -7,12 +7,13 @@ namespace ScooterVolt\CatalogService\Api\Catalog;
 use OpenApi\Attributes as OA;
 use Nelmio\ApiDocBundle\Annotation as NOA;
 use ScooterVolt\CatalogService\Catalog\Application\Find\ScooterFindByUrlService;
+use ScooterVolt\CatalogService\Catalog\Domain\ScooterDTO;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/api/catalog/scooters/url/{url}', name: 'scooters_find_by_url', methods: ['GET'])]
+#[Route('/api/catalog/scooters/url/{url}', name: 'scooter_find_by_url', methods: ['GET'])]
 #[OA\Tag("Catalog")]
 #[OA\Response(
     response: JsonResponse::HTTP_OK,
