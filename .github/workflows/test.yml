@@ -47,5 +47,8 @@ jobs:
               let COUNTER+=2
               echo "Waiting for MongoDB to initialize... ($COUNTER seconds so far)"
           done
+      - name: Wait 20sec for rabbitmq
+        run: |
+          sleep 20
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test
