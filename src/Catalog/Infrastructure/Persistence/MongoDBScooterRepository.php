@@ -223,7 +223,11 @@ final class MongoDBScooterRepository implements ScooterRepository
     public function save(Scooter $scooter): void
     {
         $document = $scooter->toNative();
-
+        if (isset($document['location']['coords']['coordinates'])) {
+            $lat = $document['location']['coords']['coordinates'][0];
+            $long = $document['location']['coords']['coordinates'][1];
+            $document['location']['coords']['coordinates'] = [$long, $lat];
+        }
         $this->collection->updateOne(
             ['id' => $scooter->getId()->toNative()],
             ['$set' => $document],
@@ -239,7 +243,13 @@ final class MongoDBScooterRepository implements ScooterRepository
     private function createScooterFromDocument(BSONDocument $document): Scooter
     {
         $json = json_encode($document->jsonSerialize());
-        return Scooter::fromNative(json_decode($json, true));
+        $json = json_decode($json, true);
+        if (isset($json['location']['coords']['coordinates'])) {
+            $lat = $json['location']['coords']['coordinates'][1];
+            $long = $json['location']['coords']['coordinates'][0];
+            $json['location']['coords']['coordinates'] = [$lat, $long];
+        }
+        return Scooter::fromNative($json);
     }
 
     public function deleteAndImportDatabase(string $path_json): void

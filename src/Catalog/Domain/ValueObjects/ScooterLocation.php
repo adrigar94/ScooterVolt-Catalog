@@ -33,8 +33,8 @@ class ScooterLocation extends GeoLocationValueObject
             'coords' => [
                 'type' => 'Point',
                 'coordinates' => [
-                    $this->getCoords()->getLongitude(),
-                    $this->getCoords()->getLatitude()
+                    $this->getCoords()->getLatitude(),
+                    $this->getCoords()->getLongitude()
                 ],
             ],
             'location' => $this->getLocation()->toNative(),
@@ -51,6 +51,6 @@ class ScooterLocation extends GeoLocationValueObject
             throw new InvalidArgumentException('Latitude and longitude values are required.');
         }
 
-        return new CoordsValueObject((float) $native['coordinates'][1], (float) $native['coordinates'][0]);
+        return new CoordsValueObject((float) $native['coordinates'][0], (float) $native['coordinates'][1]);
     }
 }
