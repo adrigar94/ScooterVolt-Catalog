@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Api\Catalog;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Attributes as OA;
 use Nelmio\ApiDocBundle\Annotation as NOA;
+use OpenApi\Attributes as OA;
 use ScooterVolt\CatalogService\Catalog\Application\Find\ScooterFindAllService;
 use ScooterVolt\CatalogService\Catalog\Domain\ScooterDTO;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/catalog/scooters', name: 'scooters_find_all', methods: ['GET'])]
-#[OA\Tag("Catalog")]
+#[OA\Tag('Catalog')]
 #[OA\Response(
     response: JsonResponse::HTTP_OK,
-    description: "Scooters Found",
+    description: 'Scooters Found',
     content: new OA\JsonContent(
-        type: "array",
+        type: 'array',
         items: new OA\Items(
             ref: new NOA\Model(
                 type: ScooterDTO::class
@@ -29,8 +29,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 )]
 class ScooterFindAllController
 {
-    public function __construct(private readonly ScooterFindAllService $finder)
-    {
+    public function __construct(
+        private readonly ScooterFindAllService $finder
+    ) {
     }
 
     public function __invoke(Request $request): Response

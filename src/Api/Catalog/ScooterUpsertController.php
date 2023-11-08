@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Api\Catalog;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Attributes as OA;
 use Nelmio\ApiDocBundle\Annotation as NOA;
+use OpenApi\Attributes as OA;
 use ScooterVolt\CatalogService\Catalog\Application\Upsert\ScooterUpsertService;
 use ScooterVolt\CatalogService\Catalog\Domain\ScooterDTO;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/catalog/scooter/{id}', name: 'scooter_upsert', methods: ['PUT'])]
-#[OA\Tag("Catalog")]
+#[OA\Tag('Catalog')]
 #[OA\RequestBody(content: new OA\JsonContent(
-    type: "object",
+    type: 'object',
     ref: new NOA\Model(
         type: ScooterDTO::class
     )
@@ -24,12 +24,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 )]
 #[OA\Response(
     response: JsonResponse::HTTP_CREATED,
-    description: "Scooter Upsert"
+    description: 'Scooter Upsert'
 )]
 class ScooterUpsertController
 {
-    public function __construct(private readonly ScooterUpsertService $upsertService)
-    {
+    public function __construct(
+        private readonly ScooterUpsertService $upsertService
+    ) {
     }
 
     public function __invoke(Request $request, string $id): Response
@@ -56,9 +57,8 @@ class ScooterUpsertController
             $data['description'] ?? null
         );
 
-
         ($this->upsertService)($scooterDTO);
 
-        return new JsonResponse("Scooter Upsert", JsonResponse::HTTP_CREATED);
+        return new JsonResponse('Scooter Upsert', JsonResponse::HTTP_CREATED);
     }
 }

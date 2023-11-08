@@ -10,9 +10,10 @@ class MongoDBConnection
 {
     private readonly Client $client;
 
-
-    public function __construct(string $uri, private readonly string $databaseName)
-    {
+    public function __construct(
+        string $uri,
+        private readonly string $databaseName
+    ) {
         $this->client = new Client($uri);
     }
 
@@ -20,7 +21,6 @@ class MongoDBConnection
     {
         return $this->client;
     }
-
 
     public function getDatabase(): \MongoDB\Database
     {

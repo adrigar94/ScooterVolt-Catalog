@@ -8,7 +8,6 @@ use Adrigar94\ValueObjectCraft\Primitive\String\StringValueObject;
 
 class ScooterBrand extends StringValueObject
 {
-
     protected static function getMinLength(): int
     {
         return 2;

@@ -15,6 +15,6 @@ class ScooterYear extends IntValueObject
 
     protected static function getMaxValue(): int
     {
-        return (int)date('Y');
+        return (int) date('Y');
     }
 }

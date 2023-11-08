@@ -35,7 +35,7 @@ class RabbitMqEventBus implements EventBus
                 json_encode($event->toPrimitives(), JSON_THROW_ON_ERROR),
                 [
                     'message_id' => $event->eventId(),
-                    'timestamp' => $event->occurredOn()->setTimezone(new \DateTimeZone("UTC"))->getTimestamp(),
+                    'timestamp' => $event->occurredOn()->setTimezone(new \DateTimeZone('UTC'))->getTimestamp(),
                     'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT,
                     'content_type' => 'application/json',
                     'content_encoding' => 'utf-8',
@@ -48,7 +48,6 @@ class RabbitMqEventBus implements EventBus
         $channel->close();
         $this->connection->close();
     }
-
 
     public function consume(string $queue, string $eventName, \Closure $callbackEvent, int $maxEventReads = 10): void
     {
@@ -63,7 +62,7 @@ class RabbitMqEventBus implements EventBus
         $i = 0;
         while ($i < $maxEventReads && $channel->is_open()) {
             $channel->wait();
-            $i++;
+            ++$i;
         }
         $channel->close();
         $this->connection->close();

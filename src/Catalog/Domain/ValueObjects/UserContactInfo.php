@@ -47,13 +47,14 @@ class UserContactInfo implements ValueObject
 
     public function isSame(ValueObject $object): bool
     {
-        if (!$object instanceof UserContactInfo) {
+        if (! $object instanceof UserContactInfo) {
             return false;
         }
+
         return $this->name === $object->getName() && $this->phone === $object->getPhone() && $this->email === $object->getEmail();
     }
 
-    static public function fromNative($native)
+    public static function fromNative($native)
     {
         return new static(
             $native['name'],
@@ -67,7 +68,7 @@ class UserContactInfo implements ValueObject
         return [
             'name' => $this->name,
             'phone' => $this->phone,
-            'email' => $this->email
+            'email' => $this->email,
         ];
     }
 
@@ -76,7 +77,7 @@ class UserContactInfo implements ValueObject
         return $this->name . ' - ' . $this->phone . ' - ' . $this->email;
     }
 
-    function jsonSerialize(): array
+    public function jsonSerialize(): array
     {
         return $this->toNative();
     }

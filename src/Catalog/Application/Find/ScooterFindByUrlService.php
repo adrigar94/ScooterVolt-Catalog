@@ -15,7 +15,6 @@ class ScooterFindByUrlService
     ) {
     }
 
-
     public function __invoke(AdUrl $url): ?Scooter
     {
         return $this->repository->findByUrl($url);

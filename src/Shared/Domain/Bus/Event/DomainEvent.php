@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ScooterVolt\CatalogService\Shared\Domain\Bus\Event;
 
 use Adrigar94\ValueObjectCraft\Domain\Uuid\UuidValueObject;
-use DateTimeImmutable;
 
 abstract class DomainEvent
 {
@@ -13,28 +12,26 @@ abstract class DomainEvent
         private readonly string $aggregateId,
         private readonly array $body,
         private ?string $eventId = null,
-        private ?DateTimeImmutable $occurredOn = null
+        private ?\DateTimeImmutable $occurredOn = null
     ) {
         $this->eventId = $eventId ?: UuidValueObject::random()->value();
-        $this->occurredOn = $occurredOn ?: new DateTimeImmutable();
+        $this->occurredOn = $occurredOn ?: new \DateTimeImmutable();
     }
 
     abstract public static function eventName(): string;
+
     abstract public function toPrimitives(): array;
 
     abstract public static function fromPrimitives(
         string $aggregateId,
         array $body,
         ?string $eventId,
-        ?DateTimeImmutable $occurredOn
+        ?\DateTimeImmutable $occurredOn
     ): self;
-
 
     abstract public static function fromString(
         string $event
     ): self;
-
-
 
     public function aggregateId(): string
     {
@@ -51,7 +48,7 @@ abstract class DomainEvent
         return $this->eventId;
     }
 
-    public function occurredOn(): DateTimeImmutable
+    public function occurredOn(): \DateTimeImmutable
     {
         return $this->occurredOn;
     }

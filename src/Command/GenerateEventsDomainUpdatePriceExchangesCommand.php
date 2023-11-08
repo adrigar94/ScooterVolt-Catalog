@@ -9,8 +9,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
-
 
 #[AsCommand(
     name: 'event-domain:scooter:generate-events-update-price-exchanges',
@@ -33,7 +31,7 @@ class GenerateEventsDomainUpdatePriceExchangesCommand extends Command
             $event = ScooterUpdatePriceExchangeEvent::create($scooter->getId());
             $this->eventBus->publish($event);
         }
+
         return Command::SUCCESS;
     }
-
 }

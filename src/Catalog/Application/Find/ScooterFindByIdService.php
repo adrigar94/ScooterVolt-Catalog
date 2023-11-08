@@ -15,7 +15,6 @@ class ScooterFindByIdService
     ) {
     }
 
-
     public function __invoke(AdId $id): ?Scooter
     {
         return $this->repository->findById($id);

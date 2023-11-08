@@ -18,6 +18,7 @@ class EventDomainScooterUpsertCommand extends EventDomainReadCommand
     {
         return ScooterUpsertDomainEvent::class;
     }
+
     protected function queue(): string
     {
         return 'Scooter_Upsert';
@@ -25,7 +26,7 @@ class EventDomainScooterUpsertCommand extends EventDomainReadCommand
 
     protected function handleEvent(DomainEvent $event): void
     {
-        if (!$event instanceof ScooterUpsertDomainEvent) {
+        if (! $event instanceof ScooterUpsertDomainEvent) {
             throw new \InvalidArgumentException('Event is not a ScooterUpsertDomainEvent');
         }
 

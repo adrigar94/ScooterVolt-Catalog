@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Shared\Domain\Criteria;
 
-use InvalidArgumentException;
-use ReflectionClass;
-
 class OrderType
 {
-    final public const ASC  = 'asc';
+    final public const ASC = 'asc';
     final public const DESC = 'desc';
     final public const NONE = 'none';
 
-
-    public function __construct(protected string $value)
-    {
+    public function __construct(
+        protected string $value
+    ) {
         $this->ensureIsBetweenAcceptedValues($value);
     }
 
@@ -27,7 +24,8 @@ class OrderType
     public static function values(): array
     {
         $class = static::class;
-        $reflected = new ReflectionClass($class);
+        $reflected = new \ReflectionClass($class);
+
         return $reflected->getConstants();
     }
 
@@ -38,13 +36,13 @@ class OrderType
 
     private function ensureIsBetweenAcceptedValues($value): void
     {
-        if (!in_array($value, static::values(), true)) {
+        if (! in_array($value, static::values(), true)) {
             $this->throwExceptionForInvalidValue($value);
         }
     }
 
     protected function throwExceptionForInvalidValue($value): never
     {
-        throw new InvalidArgumentException(sprintf('The order type <%s> is invalid', $value));
+        throw new \InvalidArgumentException(sprintf('The order type <%s> is invalid', $value));
     }
 }

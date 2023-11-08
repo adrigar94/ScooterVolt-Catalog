@@ -12,7 +12,6 @@ class AdStatus extends EnumValueObject
     final public const PUBLISHED = 'published';
     final public const SOLD = 'sold';
 
-
     protected function valueMapping(): array
     {
         return [

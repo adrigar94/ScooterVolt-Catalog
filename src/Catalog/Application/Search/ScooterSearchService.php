@@ -35,14 +35,14 @@ class ScooterSearchService
         foreach ($filters as $filter) {
             $field = $filter->field();
 
-            if ($field === 'status') {
+            if ('status' === $field) {
                 $status_is_defined = true;
-                //TODO only is posible search self drafts or sold, except admin
-                //check operator
+                // TODO only is posible search self drafts or sold, except admin
+                // check operator
             }
         }
 
-        if (!$status_is_defined) {
+        if (! $status_is_defined) {
             $filter_publised = new Filter('status', FilterOperator::EQUAL(), 'published');
             $filters[] = $filter_publised;
             $criteria = new Criteria($filters, $criteria->order(), $criteria->offset(), $criteria->limit());

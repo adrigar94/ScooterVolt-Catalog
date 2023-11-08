@@ -8,9 +8,7 @@ final readonly class Criteria
 {
     /**
      * @param array<Filter> $filters
-     * @param array<Order> $order
-     * @param int|null $offset
-     * @param int|null $limit
+     * @param array<Order>  $order
      */
     public function __construct(
         private array $filters,
@@ -22,12 +20,12 @@ final readonly class Criteria
 
     public function hasFilters(): bool
     {
-        return $this->filters !== [];
+        return [] !== $this->filters;
     }
 
     public function hasOrder(): bool
     {
-        return $this->order !== [];
+        return [] !== $this->order;
     }
 
     /**
@@ -58,11 +56,11 @@ final readonly class Criteria
 
     public function hasLimit(): bool
     {
-        return !is_null($this->limit());
+        return ! is_null($this->limit());
     }
 
     public function hasOffset(): bool
     {
-        return !is_null($this->offset());
+        return ! is_null($this->offset());
     }
 }

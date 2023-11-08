@@ -12,7 +12,6 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId;
 
 abstract class Ad implements \JsonSerializable
 {
-
     public function __construct(
         private readonly AdId $id,
         private AdUrl $url,

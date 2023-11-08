@@ -15,6 +15,7 @@ class ScooterPrice extends PriceValueObject
     {
         $price = parent::createPrice($price, $currency);
         $price->priceConversions = $priceConversions;
+
         return $price;
     }
 
@@ -31,6 +32,7 @@ class ScooterPrice extends PriceValueObject
     {
         $native = parent::toNative();
         $native['price_conversions'] = $this->priceConversions;
+
         return $native;
     }
 

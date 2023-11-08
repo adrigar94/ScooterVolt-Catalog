@@ -60,6 +60,7 @@ final class Scooter extends Ad
         $createdAt = new \DateTimeImmutable();
         $updatedAt = new \DateTimeImmutable();
         $status = new AdStatus(AdStatus::DRAFT);
+
         return new self($id, $url, $createdAt, $updatedAt, $status, $user_id, $contactInfo);
     }
 
@@ -175,14 +176,14 @@ final class Scooter extends Ad
 
     protected function toDraftValidations(): void
     {
-        if ($this->getStatus()->value() === AdStatus::SOLD) {
+        if (AdStatus::SOLD === $this->getStatus()->value()) {
             throw new ScooterSoldChangeStatusException($this->getStatus()->value());
         }
     }
 
     protected function toPublishValidations(): void
     {
-        if ($this->getStatus()->value() === AdStatus::SOLD) {
+        if (AdStatus::SOLD === $this->getStatus()->value()) {
             throw new ScooterSoldChangeStatusException($this->getStatus()->value());
         }
 
@@ -213,7 +214,7 @@ final class Scooter extends Ad
 
     protected function toSoldValidations(): void
     {
-        if ($this->getStatus()->value() !== AdStatus::PUBLISHED) {
+        if (AdStatus::PUBLISHED !== $this->getStatus()->value()) {
             throw new ScooterChangeStatusException($this->getStatus()->value(), AdStatus::SOLD, 'Only the published ad can be changed to sold');
         }
     }
@@ -225,10 +226,8 @@ final class Scooter extends Ad
         );
     }
 
-
     public function toNative(): array
     {
-
         $native = [
             'id' => $this->getId()->toNative(),
             'url' => $this->getUrl()->toNative(),
@@ -278,7 +277,6 @@ final class Scooter extends Ad
 
     public static function fromNative(array $native): self
     {
-
         $scooter = new self(
             AdId::fromNative($native['id']),
             AdUrl::fromNative($native['url']),
@@ -289,37 +287,37 @@ final class Scooter extends Ad
             UserContactInfo::fromNative($native['user_contact_info'])
         );
 
-        if (array_key_exists('brand', $native) && !is_null($native['brand'])) {
+        if (array_key_exists('brand', $native) && ! is_null($native['brand'])) {
             $scooter->setBrand(ScooterBrand::fromNative($native['brand']));
         }
-        if (array_key_exists('model', $native) && !is_null($native['model'])) {
+        if (array_key_exists('model', $native) && ! is_null($native['model'])) {
             $scooter->setModel(ScooterModel::fromNative($native['model']));
         }
-        if (array_key_exists('price', $native) && !is_null($native['price'])) {
+        if (array_key_exists('price', $native) && ! is_null($native['price'])) {
             $scooter->setPrice(ScooterPrice::fromNative($native['price']));
         }
-        if (array_key_exists('location', $native) && !is_null($native['location'])) {
+        if (array_key_exists('location', $native) && ! is_null($native['location'])) {
             $scooter->setLocation(ScooterLocation::fromNative($native['location']));
         }
-        if (array_key_exists('gallery', $native) && !is_null($native['gallery'])) {
+        if (array_key_exists('gallery', $native) && ! is_null($native['gallery'])) {
             $scooter->setGallery(ScooterGallery::fromNative($native['gallery']));
         }
-        if (array_key_exists('year', $native) && !is_null($native['year'])) {
+        if (array_key_exists('year', $native) && ! is_null($native['year'])) {
             $scooter->setYear(ScooterYear::fromNative($native['year']));
         }
-        if (array_key_exists('condition', $native) && !is_null($native['condition'])) {
+        if (array_key_exists('condition', $native) && ! is_null($native['condition'])) {
             $scooter->setCondition(ScooterCondition::fromNative($native['condition']));
         }
-        if (array_key_exists('travel_range', $native) && !is_null($native['travel_range'])) {
+        if (array_key_exists('travel_range', $native) && ! is_null($native['travel_range'])) {
             $scooter->setTravelRange(ScooterTravelRangeKm::fromNative($native['travel_range']));
         }
-        if (array_key_exists('max_speed', $native) && !is_null($native['max_speed'])) {
+        if (array_key_exists('max_speed', $native) && ! is_null($native['max_speed'])) {
             $scooter->setMaxSpeed(ScooterMaxSpeedKmh::fromNative($native['max_speed']));
         }
-        if (array_key_exists('power', $native) && !is_null($native['power'])) {
+        if (array_key_exists('power', $native) && ! is_null($native['power'])) {
             $scooter->setPower(ScooterPowerWatts::fromNative($native['power']));
         }
-        if (array_key_exists('description', $native) && !is_null($native['description'])) {
+        if (array_key_exists('description', $native) && ! is_null($native['description'])) {
             $scooter->setDescription(ScooterDescription::fromNative($native['description']));
         }
 

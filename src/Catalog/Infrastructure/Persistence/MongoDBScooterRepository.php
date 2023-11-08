@@ -29,13 +29,14 @@ final class MongoDBScooterRepository implements ScooterRepository
         $this->createIndex();
     }
 
-
     /**
      * @return Scooter[]
      */
     public function findAll(): array
     {
-        $cursor = $this->collection->find(['status' => 'published']);
+        $cursor = $this->collection->find([
+            'status' => 'published',
+        ]);
         $scooters = [];
 
         foreach ($cursor as $document) {
@@ -60,65 +61,76 @@ final class MongoDBScooterRepository implements ScooterRepository
             $operator = $filter->operator()->value();
             $value = $filter->value();
 
-            if ($field === 'search') {
-                //TODO fuzzy search
+            if ('search' === $field) {
+                // TODO fuzzy search
                 $query['$text']['$search'] = $value;
                 continue;
             }
 
-            if ($field === 'coords') {
+            if ('coords' === $field) {
                 $coords = explode(',', $value);
                 continue;
             }
-            if ($field === 'max_km') {
+            if ('max_km' === $field) {
                 $max_km = $value;
                 continue;
             }
 
-            if ($field === 'currency') {
+            if ('currency' === $field) {
                 $currency = $value;
                 continue;
             }
 
-            if ($field === 'price') {
+            if ('price' === $field) {
                 $value = (int) ($value * 100);
             }
 
             switch ($operator) {
                 case FilterOperator::EQUAL:
-                    $query[$field][] = is_numeric($value) ? ['$eq' => (int) $value] : ['$regex' => $value, '$options' => 'i'];
+                    $query[$field][] = is_numeric($value) ? [
+                        '$eq' => (int) $value,
+                    ] : [
+                        '$regex' => $value,
+                        '$options' => 'i',
+                    ];
 
-                    if (!in_array($field, $andConditions)) {
+                    if (! in_array($field, $andConditions)) {
                         $andConditions[] = $field;
                     }
                     break;
                 case FilterOperator::NOT_EQUAL:
                     $query[$field][]['$ne'] = $value;
-                    if (!in_array($field, $andConditions)) {
+                    if (! in_array($field, $andConditions)) {
                         $andConditions[] = $field;
                     }
                     break;
                 case FilterOperator::GT:
                     $query[$field][]['$gte'] = (int) $value;
-                    if (!in_array($field, $andConditions)) {
+                    if (! in_array($field, $andConditions)) {
                         $andConditions[] = $field;
                     }
                     break;
                 case FilterOperator::LT:
                     $query[$field][]['$lte'] = (int) $value;
-                    if (!in_array($field, $andConditions)) {
+                    if (! in_array($field, $andConditions)) {
                         $andConditions[] = $field;
                     }
                     break;
                 case FilterOperator::CONTAINS:
-                    $query[$field][] = ['$regex' => $value, '$options' => 'i'];
-                    if (!in_array($field, $andConditions)) {
+                    $query[$field][] = [
+                        '$regex' => $value,
+                        '$options' => 'i',
+                    ];
+                    if (! in_array($field, $andConditions)) {
                         $andConditions[] = $field;
                     }
                     break;
                 case FilterOperator::NOT_CONTAINS:
-                    $query[$field][] = ['$regex' => "^((?!$value).)*$", '$options' => 'i'];
-                    if (!in_array($field, $andConditions)) {
+                    $query[$field][] = [
+                        '$regex' => "^((?!$value).)*$",
+                        '$options' => 'i',
+                    ];
+                    if (! in_array($field, $andConditions)) {
                         $andConditions[] = $field;
                     }
                     break;
@@ -129,7 +141,7 @@ final class MongoDBScooterRepository implements ScooterRepository
 
         foreach ($andConditions as $field) {
             $and = [];
-            if ($field === 'price') {
+            if ('price' === $field) {
                 $newName = 'price.price_conversions.' . strtoupper($currency);
                 $query[$newName] = $query[$field];
                 unset($query[$field]);
@@ -146,7 +158,7 @@ final class MongoDBScooterRepository implements ScooterRepository
             unset($query[$field]);
         }
 
-        if (!isset($query['$and'])) {
+        if (! isset($query['$and'])) {
             unset($query['$and']);
         }
 
@@ -158,22 +170,22 @@ final class MongoDBScooterRepository implements ScooterRepository
                             'type' => 'Point',
                             'coordinates' => [
                                 (float) $coords[1],
-                                (float) $coords[0]
-                            ]
+                                (float) $coords[0],
+                            ],
                         ],
                         '$minDistance' => 0,
                         '$maxDistance' => $max_km ? $max_km * 1000 : 20000,
-                    ]
-                ]
+                    ],
+                ],
             ];
         }
 
-        //dd(json_encode($query));
+        // dd(json_encode($query));
 
         $options = [];
         if ($criteria->hasOrder()) {
             foreach ($criteria->order() as $order) {
-                $options['sort'][$order->orderBy()] = $order->orderType()->value() === 'desc' ? -1 : 1;
+                $options['sort'][$order->orderBy()] = 'desc' === $order->orderType()->value() ? -1 : 1;
             }
         }
 
@@ -208,18 +220,28 @@ final class MongoDBScooterRepository implements ScooterRepository
                 $restArray[] = $filtro;
             }
         }
-        return ['gtLtArray' => $gtLtArray, 'restArray' => $restArray];
+
+        return [
+            'gtLtArray' => $gtLtArray,
+            'restArray' => $restArray,
+        ];
     }
 
     public function findById(AdId $id): ?Scooter
     {
-        $document = $this->collection->findOne(['id' => $id->toNative()]);
+        $document = $this->collection->findOne([
+            'id' => $id->toNative(),
+        ]);
+
         return $document ? $this->createScooterFromDocument($document) : null;
     }
 
     public function findByUrl(AdUrl $url): ?Scooter
     {
-        $document = $this->collection->findOne(['url' => $url->toNative()]);
+        $document = $this->collection->findOne([
+            'url' => $url->toNative(),
+        ]);
+
         return $document ? $this->createScooterFromDocument($document) : null;
     }
 
@@ -232,15 +254,23 @@ final class MongoDBScooterRepository implements ScooterRepository
             $document['location']['coords']['coordinates'] = [$long, $lat];
         }
         $this->collection->updateOne(
-            ['id' => $scooter->getId()->toNative()],
-            ['$set' => $document],
-            ['upsert' => true]
+            [
+                'id' => $scooter->getId()->toNative(),
+            ],
+            [
+                '$set' => $document,
+            ],
+            [
+                'upsert' => true,
+            ]
         );
     }
 
     public function delete(AdId $id): void
     {
-        $this->collection->deleteOne(['id' => $id->toNative()]);
+        $this->collection->deleteOne([
+            'id' => $id->toNative(),
+        ]);
     }
 
     private function createScooterFromDocument(BSONDocument $document): Scooter
@@ -252,6 +282,7 @@ final class MongoDBScooterRepository implements ScooterRepository
             $long = $json['location']['coords']['coordinates'][0];
             $json['location']['coords']['coordinates'] = [$lat, $long];
         }
+
         return Scooter::fromNative($json);
     }
 
@@ -269,9 +300,20 @@ final class MongoDBScooterRepository implements ScooterRepository
 
     private function createIndex(): void
     {
-        $this->collection->createIndex(["brand" => "text", "model" => "text", "description" => "text", "condition" => "text"]);
-        $this->collection->createIndex(["location.coords" => "2dsphere"]);
-        $this->collection->createIndex(["id" => 1]);
-        $this->collection->createIndex(["url" => 1]);
+        $this->collection->createIndex([
+            'brand' => 'text',
+            'model' => 'text',
+            'description' => 'text',
+            'condition' => 'text',
+        ]);
+        $this->collection->createIndex([
+            'location.coords' => '2dsphere',
+        ]);
+        $this->collection->createIndex([
+            'id' => 1,
+        ]);
+        $this->collection->createIndex([
+            'url' => 1,
+        ]);
     }
 }

@@ -21,6 +21,7 @@ class EventDomainScooterUpdatePriceExchangeCommand extends EventDomainReadComman
     {
         return ScooterUpdatePriceExchangeEvent::class;
     }
+
     protected function queue(): string
     {
         return 'Scooter_UpdatePriceExchange';
@@ -28,7 +29,7 @@ class EventDomainScooterUpdatePriceExchangeCommand extends EventDomainReadComman
 
     protected function handleEvent(DomainEvent $event): void
     {
-        if (!$event instanceof ScooterUpdatePriceExchangeEvent) {
+        if (! $event instanceof ScooterUpdatePriceExchangeEvent) {
             throw new \InvalidArgumentException('Event is not a ScooterUpdatePriceExchangeEvent');
         }
 
@@ -41,7 +42,7 @@ class EventDomainScooterUpdatePriceExchangeCommand extends EventDomainReadComman
     private function updatePricesRates(Scooter $scooter): void
     {
         $price = $scooter->getPrice();
-        if (!$price instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterPrice) {
+        if (! $price instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterPrice) {
             return;
         }
         $valuePrice = $price->getPrice();

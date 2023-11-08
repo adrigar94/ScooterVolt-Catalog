@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Catalog\Domain\Events;
 
-use DateTimeImmutable;
 use ScooterVolt\CatalogService\Catalog\Domain\Scooter;
 use ScooterVolt\CatalogService\Shared\Domain\Bus\Event\DomainEvent;
 
 class ScooterUpsertDomainEvent extends DomainEvent
 {
-
-
     public function __construct(
         array $scooterNative,
-        ?string $eventId = null,
-        ?DateTimeImmutable $occurredOn = null
+        string $eventId = null,
+        \DateTimeImmutable $occurredOn = null
     ) {
         $aggregateId = $scooterNative['id'];
         parent::__construct($aggregateId, $scooterNative, $eventId, $occurredOn);
@@ -36,7 +33,7 @@ class ScooterUpsertDomainEvent extends DomainEvent
         ];
     }
 
-    public static function fromPrimitives(string $aggregateId, array $body, ?string $eventId, ?DateTimeImmutable $occurredOn): self
+    public static function fromPrimitives(string $aggregateId, array $body, ?string $eventId, ?\DateTimeImmutable $occurredOn): self
     {
         return new static(
             $body,

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Catalog\Domain\Exceptions;
 
-use DomainException;
-
-class ScooterChangeStatusException extends DomainException
+class ScooterChangeStatusException extends \DomainException
 {
     public function __construct(string $originalState, string $targetState, string $errorMessage)
     {

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Api\Catalog;
 
-use OpenApi\Attributes as OA;
 use Nelmio\ApiDocBundle\Annotation as NOA;
-use Psr\Log\LoggerInterface;
+use OpenApi\Attributes as OA;
 use ScooterVolt\CatalogService\Catalog\Application\Search\ScooterSearchService;
 use ScooterVolt\CatalogService\Catalog\Domain\ScooterDTO;
 use ScooterVolt\CatalogService\Shared\Domain\Criteria\Criteria;
@@ -18,99 +17,99 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/catalog/scooters/search', name: 'scooters_search', methods: ['GET'])]
-#[OA\Tag("Catalog")]
+#[OA\Tag('Catalog')]
 #[OA\Parameter(
-    name: "search",
-    in: "query",
-    description: "Search in any text field of Scooter",
-    schema: new OA\Schema(type: "string")
+    name: 'search',
+    in: 'query',
+    description: 'Search in any text field of Scooter',
+    schema: new OA\Schema(type: 'string')
 )]
 #[OA\Parameter(
-    name: "brand[]",
-    in: "query",
-    description: "Brand of Scooter",
+    name: 'brand[]',
+    in: 'query',
+    description: 'Brand of Scooter',
     schema: new OA\Schema(
-        type: "array",
+        type: 'array',
         items: new OA\Items(
-            type: "string"
+            type: 'string'
         )
     )
 )]
 #[OA\Parameter(
-    name: "model[]",
-    in: "query",
-    description: "Model of Scooter",
+    name: 'model[]',
+    in: 'query',
+    description: 'Model of Scooter',
     schema: new OA\Schema(
-        type: "array",
+        type: 'array',
         items: new OA\Items(
-            type: "string"
+            type: 'string'
         )
     )
 )]
 #[OA\Parameter(
-    name: "condition[]",
-    in: "query",
-    description: "Contition of Scooter",
+    name: 'condition[]',
+    in: 'query',
+    description: 'Contition of Scooter',
     schema: new OA\Schema(
-        type: "array",
+        type: 'array',
         items: new OA\Items(
-            type: "string"
+            type: 'string'
         )
     ),
     example: ['new', 'used', 'broken']
 )]
 #[OA\Parameter(
-    name: "status[]",
-    in: "query",
-    description: "Status of Scooter default=published",
+    name: 'status[]',
+    in: 'query',
+    description: 'Status of Scooter default=published',
     schema: new OA\Schema(
-        type: "array",
+        type: 'array',
         items: new OA\Items(
-            type: "string",
+            type: 'string',
         ),
     ),
     example: ['draft', 'published', 'sold']
 )]
 #[OA\Parameter(
-    name: "year_gt",
-    in: "query",
-    description: "Year greater than",
-    schema: new OA\Schema(type: "integer"),
+    name: 'year_gt',
+    in: 'query',
+    description: 'Year greater than',
+    schema: new OA\Schema(type: 'integer'),
     example: 2000
 )]
 #[OA\Parameter(
-    name: "year_lt",
-    in: "query",
-    description: "Year less than",
-    schema: new OA\Schema(type: "integer"),
+    name: 'year_lt',
+    in: 'query',
+    description: 'Year less than',
+    schema: new OA\Schema(type: 'integer'),
     example: 2023
 )]
 #[OA\Parameter(
-    name: "price_gt",
-    in: "query",
-    description: "Price greater than",
-    schema: new OA\Schema(type: "float"),
+    name: 'price_gt',
+    in: 'query',
+    description: 'Price greater than',
+    schema: new OA\Schema(type: 'float'),
     example: 100
 )]
 #[OA\Parameter(
-    name: "price_lt",
-    in: "query",
-    description: "Price less than",
-    schema: new OA\Schema(type: "float"),
+    name: 'price_lt',
+    in: 'query',
+    description: 'Price less than',
+    schema: new OA\Schema(type: 'float'),
     example: 200
 )]
 #[OA\Parameter(
-    name: "currency",
-    in: "query",
-    description: "Currency code of price",
-    schema: new OA\Schema(type: "string"),
+    name: 'currency',
+    in: 'query',
+    description: 'Currency code of price',
+    schema: new OA\Schema(type: 'string'),
     example: 'EUR'
 )]
 #[OA\Response(
     response: JsonResponse::HTTP_OK,
-    description: "Scooters Found",
+    description: 'Scooters Found',
     content: new OA\JsonContent(
-        type: "array",
+        type: 'array',
         items: new OA\Items(
             ref: new NOA\Model(
                 type: ScooterDTO::class
@@ -138,7 +137,7 @@ class ScooterSearchController
         'max_km',
         'price_gt',
         'price_lt',
-        'currency'
+        'currency',
     ];
 
     private const FILTERS_OPERATOR_MAPPING = [
@@ -208,6 +207,7 @@ class ScooterSearchController
         if (array_key_exists($filter, self::FILTERS_OPERATOR_MAPPING)) {
             return new FilterOperator(self::FILTERS_OPERATOR_MAPPING[$filter]);
         }
+
         return FilterOperator::EQUAL();
     }
 
@@ -216,6 +216,7 @@ class ScooterSearchController
         if (array_key_exists($filter, self::FILTERS_NAME_MAPPING)) {
             return self::FILTERS_NAME_MAPPING[$filter];
         }
+
         return $filter;
     }
 }

@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Catalog\Domain\Events;
 
-use DateTimeImmutable;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
 use ScooterVolt\CatalogService\Shared\Domain\Bus\Event\DomainEvent;
 
 class ScooterUpdatePriceExchangeEvent extends DomainEvent
 {
-
     /**
      * @param array $scooterId ['scooter_id' => string]
      */
     public function __construct(
         array $scooterId,
-        ?string $eventId = null,
-        ?DateTimeImmutable $occurredOn = null
+        string $eventId = null,
+        \DateTimeImmutable $occurredOn = null
     ) {
         $aggregateId = $scooterId['scooter_id'];
         parent::__construct($aggregateId, $scooterId, $eventId, $occurredOn);
@@ -26,7 +24,9 @@ class ScooterUpdatePriceExchangeEvent extends DomainEvent
     public static function create(AdId $scooterId): self
     {
         return new static(
-            ['scooter_id' => $scooterId->value()]
+            [
+                'scooter_id' => $scooterId->value(),
+            ]
         );
     }
 
@@ -45,7 +45,7 @@ class ScooterUpdatePriceExchangeEvent extends DomainEvent
         ];
     }
 
-    public static function fromPrimitives(string $aggregateId, array $scooterId, ?string $eventId, ?DateTimeImmutable $occurredOn): self
+    public static function fromPrimitives(string $aggregateId, array $scooterId, ?string $eventId, ?\DateTimeImmutable $occurredOn): self
     {
         return new static(
             $scooterId,
