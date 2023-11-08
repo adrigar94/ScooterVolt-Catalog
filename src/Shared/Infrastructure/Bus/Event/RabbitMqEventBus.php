@@ -11,19 +11,17 @@ use ScooterVolt\CatalogService\Shared\Domain\Bus\Event\EventBus;
 
 class RabbitMqEventBus implements EventBus
 {
-    private AMQPStreamConnection $connection;
-    private string $exchange;
+    private readonly AMQPStreamConnection $connection;
 
     public function __construct(
         string $host,
         int $port,
         string $user,
         string $password,
-        string $exchange,
-        private ?string $exchangeType = 'topic'
+        private readonly string $exchange,
+        private readonly ?string $exchangeType = 'topic'
     ) {
         $this->connection = new AMQPStreamConnection($host, $port, $user, $password);
-        $this->exchange = $exchange;
     }
 
     public function publish(DomainEvent ...$events): void
@@ -34,7 +32,7 @@ class RabbitMqEventBus implements EventBus
 
         foreach ($events as $event) {
             $message = new AMQPMessage(
-                json_encode($event->toPrimitives()),
+                json_encode($event->toPrimitives(), JSON_THROW_ON_ERROR),
                 [
                     'message_id' => $event->eventId(),
                     'timestamp' => $event->occurredOn()->setTimezone(new \DateTimeZone("UTC"))->getTimestamp(),
@@ -63,7 +61,7 @@ class RabbitMqEventBus implements EventBus
         $channel->basic_consume($queue, '', false, true, false, false, $callbackEvent);
 
         $i = 0;
-        while ($i < $maxEventReads and $channel->is_open()) {
+        while ($i < $maxEventReads && $channel->is_open()) {
             $channel->wait();
             $i++;
         }

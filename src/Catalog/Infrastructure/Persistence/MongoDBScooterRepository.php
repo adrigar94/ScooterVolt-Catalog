@@ -19,10 +19,10 @@ final class MongoDBScooterRepository implements ScooterRepository
 {
     private const COLLECTION_NAME = 'scooters';
 
-    private Database $db;
-    private Collection $collection;
+    private readonly Database $db;
+    private readonly Collection $collection;
 
-    public function __construct(private MongoDBConnection $connection)
+    public function __construct(MongoDBConnection $connection)
     {
         $this->db = $connection->getDatabase();
         $this->collection = $this->db->selectCollection(self::COLLECTION_NAME);
@@ -86,38 +86,41 @@ final class MongoDBScooterRepository implements ScooterRepository
 
             switch ($operator) {
                 case FilterOperator::EQUAL:
-                    if (is_numeric($value))
-                        $query[$field][] = ['$eq' => (int) $value];
-                    else
-                        $query[$field][] = ['$regex' => $value, '$options' => 'i'];
+                    $query[$field][] = is_numeric($value) ? ['$eq' => (int) $value] : ['$regex' => $value, '$options' => 'i'];
 
-                    if (!in_array($field, $andConditions))
+                    if (!in_array($field, $andConditions)) {
                         $andConditions[] = $field;
+                    }
                     break;
                 case FilterOperator::NOT_EQUAL:
                     $query[$field][]['$ne'] = $value;
-                    if (!in_array($field, $andConditions))
+                    if (!in_array($field, $andConditions)) {
                         $andConditions[] = $field;
+                    }
                     break;
                 case FilterOperator::GT:
                     $query[$field][]['$gte'] = (int) $value;
-                    if (!in_array($field, $andConditions))
+                    if (!in_array($field, $andConditions)) {
                         $andConditions[] = $field;
+                    }
                     break;
                 case FilterOperator::LT:
                     $query[$field][]['$lte'] = (int) $value;
-                    if (!in_array($field, $andConditions))
+                    if (!in_array($field, $andConditions)) {
                         $andConditions[] = $field;
+                    }
                     break;
                 case FilterOperator::CONTAINS:
                     $query[$field][] = ['$regex' => $value, '$options' => 'i'];
-                    if (!in_array($field, $andConditions))
+                    if (!in_array($field, $andConditions)) {
                         $andConditions[] = $field;
+                    }
                     break;
                 case FilterOperator::NOT_CONTAINS:
                     $query[$field][] = ['$regex' => "^((?!$value).)*$", '$options' => 'i'];
-                    if (!in_array($field, $andConditions))
+                    if (!in_array($field, $andConditions)) {
                         $andConditions[] = $field;
+                    }
                     break;
                 default:
                     break;
@@ -242,8 +245,8 @@ final class MongoDBScooterRepository implements ScooterRepository
 
     private function createScooterFromDocument(BSONDocument $document): Scooter
     {
-        $json = json_encode($document->jsonSerialize());
-        $json = json_decode($json, true);
+        $json = json_encode($document->jsonSerialize(), JSON_THROW_ON_ERROR);
+        $json = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
         if (isset($json['location']['coords']['coordinates'])) {
             $lat = $json['location']['coords']['coordinates'][1];
             $long = $json['location']['coords']['coordinates'][0];
@@ -255,7 +258,7 @@ final class MongoDBScooterRepository implements ScooterRepository
     public function deleteAndImportDatabase(string $path_json): void
     {
         $this->deleteDatabase();
-        $this->collection->insertMany(json_decode(file_get_contents($path_json), true));
+        $this->collection->insertMany(json_decode(file_get_contents($path_json), true, 512, JSON_THROW_ON_ERROR));
         $this->createIndex();
     }
 

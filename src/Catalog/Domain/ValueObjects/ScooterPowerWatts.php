@@ -15,7 +15,7 @@ class ScooterPowerWatts extends IntValueObject
 
     protected static function getMaxValue(): int
     {
-        return 1000000;
+        return 1_000_000;
     }
 
     public function __toString(): string

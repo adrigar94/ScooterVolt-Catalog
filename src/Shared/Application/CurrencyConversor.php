@@ -10,7 +10,7 @@ class CurrencyConversor
 {
     private const endpoint = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/';
 
-    private string $fromCurrency;
+    private readonly string $fromCurrency;
 
     private array $rates;
 
@@ -40,13 +40,13 @@ class CurrencyConversor
         $url = self::endpoint . $this->fromCurrency . '.json';
         try {
             $jsonData = file_get_contents($url);
-            $rates = json_decode($jsonData ?: "", true);
+            $rates = json_decode($jsonData ?: "", true, 512, JSON_THROW_ON_ERROR);
 
             if (is_null($rates)) {
                 throw new Exception('"' . print_r($jsonData, true) . '" can\'t be decoded');
             }
         } catch (Exception $e) {
-            throw new Exception("Can't get currency rates\n" . $e->getMessage());
+            throw new Exception("Can't get currency rates\n" . $e->getMessage(), $e->getCode(), $e);
         }
         return $rates;
     }

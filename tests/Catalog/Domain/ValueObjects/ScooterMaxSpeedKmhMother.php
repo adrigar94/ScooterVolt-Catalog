@@ -17,7 +17,7 @@ class ScooterMaxSpeedKmhMother
 
     public static function random(int $min = 10, int $max = 100): ScooterMaxSpeedKmh
     {
-        $value = rand($min, $max);
+        $value = random_int($min, $max);
         return new ScooterMaxSpeedKmh($value);
     }
 }

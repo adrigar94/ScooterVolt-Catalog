@@ -12,7 +12,7 @@ class ScooterDeleteControllerTest extends WebTestCase
 {
     private MongoDBScooterRepository $repository;
 
-    private $client;
+    private \Symfony\Bundle\FrameworkBundle\KernelBrowser $client;
 
     protected function setUp(): void
     {

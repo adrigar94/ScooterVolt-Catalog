@@ -32,7 +32,7 @@ class AdUrl extends StringValueObject
         $url = strtolower($url);
         $url = trim($url, '-');
         $url = urlencode($url);
-        $url = $url . '-';
+        $url .= '-';
         return new static(uniqid($url));
     }
 }

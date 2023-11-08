@@ -26,7 +26,7 @@ use Nelmio\ApiDocBundle\Annotation as NOA;
 )]
 class ScooterDeleteController
 {
-    public function __construct(private ScooterDeleteService $DeleteService)
+    public function __construct(private readonly ScooterDeleteService $DeleteService)
     {
     }
 

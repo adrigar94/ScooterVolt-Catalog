@@ -10,7 +10,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ScooterRepository;
 class ScooterFindAllService
 {
     public function __construct(
-        private ScooterRepository $repository
+        private readonly ScooterRepository $repository
     ) {
     }
 

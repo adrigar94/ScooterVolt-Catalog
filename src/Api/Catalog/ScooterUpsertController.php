@@ -28,13 +28,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 )]
 class ScooterUpsertController
 {
-    public function __construct(private ScooterUpsertService $upsertService)
+    public function __construct(private readonly ScooterUpsertService $upsertService)
     {
     }
 
     public function __invoke(Request $request, string $id): Response
     {
-        $data = json_decode($request->getContent(), true);
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
         $scooterDTO = new ScooterDTO(
             $id,
             $data['url'],
@@ -43,17 +43,17 @@ class ScooterUpsertController
             $data['status'],
             $data['user_id'],
             $data['user_contact_info'],
-            array_key_exists('brand', $data) ? $data['brand'] : null,
-            array_key_exists('model', $data) ? $data['model'] : null,
-            array_key_exists('price', $data) ? $data['price'] : null,
-            array_key_exists('location', $data) ? $data['location'] : null,
-            array_key_exists('gallery', $data) ? $data['gallery'] : null,
-            array_key_exists('year', $data) ? $data['year'] : null,
-            array_key_exists('condition', $data) ? $data['condition'] : null,
-            array_key_exists('travel_range', $data) ? $data['travel_range'] : null,
-            array_key_exists('max_speed', $data) ? $data['max_speed'] : null,
-            array_key_exists('power', $data) ? $data['power'] : null,
-            array_key_exists('description', $data) ? $data['description'] : null
+            $data['brand'] ?? null,
+            $data['model'] ?? null,
+            $data['price'] ?? null,
+            $data['location'] ?? null,
+            $data['gallery'] ?? null,
+            $data['year'] ?? null,
+            $data['condition'] ?? null,
+            $data['travel_range'] ?? null,
+            $data['max_speed'] ?? null,
+            $data['power'] ?? null,
+            $data['description'] ?? null
         );
 
 

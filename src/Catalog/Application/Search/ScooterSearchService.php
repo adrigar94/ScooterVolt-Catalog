@@ -13,7 +13,7 @@ use ScooterVolt\CatalogService\Shared\Domain\Criteria\FilterOperator;
 class ScooterSearchService
 {
     public function __construct(
-        private ScooterRepository $repository
+        private readonly ScooterRepository $repository
     ) {
     }
 

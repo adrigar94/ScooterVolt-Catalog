@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Shared\Domain\Criteria;
 
-final class Criteria
+final readonly class Criteria
 {
     /**
      * @param array<Filter> $filters
@@ -13,21 +13,21 @@ final class Criteria
      * @param int|null $limit
      */
     public function __construct(
-        private readonly array $filters,
-        private readonly array $order = [],
-        private readonly ?int $offset = null,
-        private readonly ?int $limit = null
+        private array $filters,
+        private array $order = [],
+        private ?int $offset = null,
+        private ?int $limit = null
     ) {
     }
 
     public function hasFilters(): bool
     {
-        return count($this->filters) > 0;
+        return $this->filters !== [];
     }
 
     public function hasOrder(): bool
     {
-        return count($this->order) > 0;
+        return $this->order !== [];
     }
 
     /**

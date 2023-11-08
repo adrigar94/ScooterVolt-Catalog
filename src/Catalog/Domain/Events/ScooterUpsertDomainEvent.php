@@ -47,7 +47,7 @@ class ScooterUpsertDomainEvent extends DomainEvent
 
     public static function fromString(string $event): self
     {
-        $eventObject = json_decode($event, true);
+        $eventObject = json_decode($event, true, 512, JSON_THROW_ON_ERROR);
 
         return self::fromPrimitives(
             $eventObject['aggregateId'],

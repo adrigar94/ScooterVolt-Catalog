@@ -8,9 +8,9 @@ use Adrigar94\ValueObjectCraft\Primitive\Enum\EnumValueObject;
 
 class AdStatus extends EnumValueObject
 {
-    public const DRAFT = 'draft';
-    public const PUBLISHED = 'published';
-    public const SOLD = 'sold';
+    final public const DRAFT = 'draft';
+    final public const PUBLISHED = 'published';
+    final public const SOLD = 'sold';
 
 
     protected function valueMapping(): array

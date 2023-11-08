@@ -15,9 +15,9 @@ class ScooterPowerWattsMother
     }
 
 
-    public static function random(int $min = 1000, int $max = 1000000): ScooterPowerWatts
+    public static function random(int $min = 1000, int $max = 1_000_000): ScooterPowerWatts
     {
-        $value = rand($min, $max);
+        $value = random_int($min, $max);
         return new ScooterPowerWatts($value);
     }
 }

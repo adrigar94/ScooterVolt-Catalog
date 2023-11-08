@@ -8,14 +8,12 @@ use MongoDB\Client;
 
 class MongoDBConnection
 {
-    private Client $client;
-    private string $databaseName;
+    private readonly Client $client;
 
 
-    public function __construct(string $uri, string $databaseName)
+    public function __construct(string $uri, private readonly string $databaseName)
     {
         $this->client = new Client($uri);
-        $this->databaseName = $databaseName;
     }
 
     public function getClient(): Client

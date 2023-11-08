@@ -168,7 +168,7 @@ class ScooterSearchController
     ];
 
     public function __construct(
-        private ScooterSearchService $searcher
+        private readonly ScooterSearchService $searcher
     ) {
     }
 

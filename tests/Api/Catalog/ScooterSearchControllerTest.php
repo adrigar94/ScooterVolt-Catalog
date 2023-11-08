@@ -11,7 +11,7 @@ class ScooterSearchControllerTest extends WebTestCase
 {
     private MongoDBScooterRepository $repository;
 
-    private $client;
+    private \Symfony\Bundle\FrameworkBundle\KernelBrowser $client;
 
     protected function setUp(): void
     {
@@ -33,7 +33,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(10, $scooters);
     }
@@ -47,7 +47,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(3, $scooters);
     }
@@ -61,7 +61,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(2, $scooters);
 
@@ -80,7 +80,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(2, $scooters);
 
@@ -99,7 +99,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(4, $scooters);
 
@@ -118,7 +118,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(2, $scooters);
 
@@ -137,7 +137,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(3, $scooters);
 
@@ -156,7 +156,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(2, $scooters);
 
@@ -178,7 +178,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(6, $scooters);
 
@@ -198,7 +198,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(5, $scooters);
 
@@ -219,7 +219,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(3, $scooters);
 
@@ -239,7 +239,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(5, $scooters);
 
@@ -259,7 +259,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(5, $scooters);
 
@@ -280,7 +280,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(4, $scooters);
 
@@ -300,7 +300,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(7, $scooters);
 
@@ -320,7 +320,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(3, $scooters);
 
@@ -341,7 +341,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(2, $scooters);
 
@@ -361,7 +361,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(6, $scooters);
 
@@ -381,7 +381,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(4, $scooters);
 
@@ -402,7 +402,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(5, $scooters);
 
@@ -423,7 +423,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(4, $scooters);
     }
@@ -438,7 +438,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(1, $scooters);
 
@@ -455,7 +455,7 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(0, $scooters);
     }

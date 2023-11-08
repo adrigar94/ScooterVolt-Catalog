@@ -14,12 +14,12 @@ abstract class Ad implements \JsonSerializable
 {
 
     public function __construct(
-        private AdId $id,
+        private readonly AdId $id,
         private AdUrl $url,
-        private \DateTimeImmutable $createdAt,
+        private readonly \DateTimeImmutable $createdAt,
         private \DateTimeImmutable $updatedAt,
         private AdStatus $status,
-        private UserId $user_id,
+        private readonly UserId $user_id,
         private UserContactInfo $contactInfo
     ) {
     }

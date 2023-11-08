@@ -16,8 +16,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 abstract class EventDomainReadCommand extends Command
 {
-    private SymfonyStyle $io;
-
     protected int $maxEventReads = 10;
 
     /**
@@ -39,8 +37,6 @@ abstract class EventDomainReadCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->io = new SymfonyStyle($input, $output);
-
         $callbackEvent = function ($message) {
             $event = $this->domainEventClass()::fromString($message->body);
             $this->handleEvent($event);

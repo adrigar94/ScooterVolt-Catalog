@@ -18,11 +18,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class GenerateEventsDomainUpdatePriceExchangesCommand extends Command
 {
-    private SymfonyStyle $io;
-
     public function __construct(
-        private ScooterRepository $repository,
-        private EventBus $eventBus
+        private readonly ScooterRepository $repository,
+        private readonly EventBus $eventBus
     ) {
         parent::__construct();
     }

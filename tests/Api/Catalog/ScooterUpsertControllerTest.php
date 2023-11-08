@@ -13,7 +13,7 @@ class ScooterUpsertControllerTest extends WebTestCase
 {
     private MongoDBScooterRepository $repository;
 
-    private $client;
+    private \Symfony\Bundle\FrameworkBundle\KernelBrowser $client;
 
     protected function setUp(): void
     {
@@ -31,7 +31,7 @@ class ScooterUpsertControllerTest extends WebTestCase
         $scooter = ScooterMother::random();
         $id = $scooter->getId()->value();
 
-        $this->client->request('PUT', "/api/catalog/scooter/$id", [], [], [], json_encode($scooter->toNative()));
+        $this->client->request('PUT', "/api/catalog/scooter/$id", [], [], [], json_encode($scooter->toNative(), JSON_THROW_ON_ERROR));
         $this->client->getResponse()->getContent();
         $this->assertResponseIsSuccessful();
 

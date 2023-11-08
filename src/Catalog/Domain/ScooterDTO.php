@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ScooterVolt\CatalogService\Catalog\Domain;
 
-final class ScooterDTO
+final readonly class ScooterDTO
 {
 
     /**
@@ -18,24 +18,24 @@ final class ScooterDTO
      * [id: ?string, url: string, alt: string]
      */
     public function __construct(
-        public readonly ?string $id,
-        public readonly string  $url,
-        public readonly string  $created_at,
-        public readonly string  $updated_at,
-        public readonly string  $status,
-        public readonly string  $user_id,
-        public readonly array   $user_contact_info,
-        public readonly ?string $brand = null,
-        public readonly ?string $model = null,
-        public readonly ?array  $price = null,
-        public readonly ?array  $location = null,
-        public readonly ?array  $gallery = null,
-        public readonly ?int    $year = null,
-        public readonly ?string $condition = null,
-        public readonly ?int    $travel_range = null,
-        public readonly ?int    $max_speed = null,
-        public readonly ?int    $power = null,
-        public readonly ?string $description = null
+        public ?string $id,
+        public string  $url,
+        public string  $created_at,
+        public string  $updated_at,
+        public string  $status,
+        public string  $user_id,
+        public array   $user_contact_info,
+        public ?string $brand = null,
+        public ?string $model = null,
+        public ?array  $price = null,
+        public ?array  $location = null,
+        public ?array  $gallery = null,
+        public ?int    $year = null,
+        public ?string $condition = null,
+        public ?int    $travel_range = null,
+        public ?int    $max_speed = null,
+        public ?int    $power = null,
+        public ?string $description = null
     ) {
     }
 }

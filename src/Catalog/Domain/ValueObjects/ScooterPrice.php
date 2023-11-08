@@ -9,7 +9,7 @@ use Adrigar94\ValueObjectCraft\Domain\Price\PriceValueObject;
 
 class ScooterPrice extends PriceValueObject
 {
-    private $priceConversions = [];
+    private array $priceConversions = [];
 
     public static function createPrice(float $price, CurrencyValueObject $currency, array $priceConversions = []): self
     {

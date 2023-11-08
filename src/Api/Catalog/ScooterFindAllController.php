@@ -29,7 +29,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 )]
 class ScooterFindAllController
 {
-    public function __construct(private ScooterFindAllService $finder)
+    public function __construct(private readonly ScooterFindAllService $finder)
     {
     }
 

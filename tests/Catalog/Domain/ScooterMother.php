@@ -31,10 +31,10 @@ class ScooterMother
 
     public static function newBlankScooter(UserId $userId = null, UserContactInfo $contactInfo = null): Scooter
     {
-        if (!$userId) {
+        if (!$userId instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId) {
             $userId = UserIdMother::random();
         }
-        if (!$contactInfo) {
+        if (!$contactInfo instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserContactInfo) {
             $contactInfo = UserContactInfoMother::random();
         }
 
@@ -51,7 +51,7 @@ class ScooterMother
 
     public static function random(AdStatus $status = null): Scooter
     {
-        if (!$status) {
+        if (!$status instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus) {
             $status = AdStatusMother::random();
         }
 
@@ -119,17 +119,17 @@ class ScooterMother
             $scooter->getStatus()->toNative(),
             $scooter->getUserId()->toNative(),
             $scooter->getContactInfo()->toNative(),
-            $scooter->getBrand()       ? $scooter->getBrand()->toNative()       : null,
-            $scooter->getModel()       ? $scooter->getModel()->toNative()       : null,
-            $scooter->getPrice()       ? $scooter->getPrice()->toNative()       : null,
-            $scooter->getLocation()    ? $scooter->getLocation()->toNative()    : null,
-            $scooter->getGallery()     ? $scooter->getGallery()->toNative()     : null,
-            $scooter->getYear()        ? $scooter->getYear()->toNative()        : null,
-            $scooter->getCondition()   ? $scooter->getCondition()->toNative()   : null,
-            $scooter->getTravelRange() ? $scooter->getTravelRange()->toNative() : null,
-            $scooter->getMaxSpeed()    ? $scooter->getMaxSpeed()->toNative()    : null,
-            $scooter->getPower()       ? $scooter->getPower()->toNative()       : null,
-            $scooter->getDescription() ? $scooter->getDescription()->toNative() : null
+            $scooter->getBrand() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterBrand       ? $scooter->getBrand()->toNative()       : null,
+            $scooter->getModel() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterModel       ? $scooter->getModel()->toNative()       : null,
+            $scooter->getPrice() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterPrice       ? $scooter->getPrice()->toNative()       : null,
+            $scooter->getLocation() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterLocation    ? $scooter->getLocation()->toNative()    : null,
+            $scooter->getGallery() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterGallery     ? $scooter->getGallery()->toNative()     : null,
+            $scooter->getYear() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterYear        ? $scooter->getYear()->toNative()        : null,
+            $scooter->getCondition() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterCondition   ? $scooter->getCondition()->toNative()   : null,
+            $scooter->getTravelRange() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterTravelRangeKm ? $scooter->getTravelRange()->toNative() : null,
+            $scooter->getMaxSpeed() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterMaxSpeedKmh    ? $scooter->getMaxSpeed()->toNative()    : null,
+            $scooter->getPower() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterPowerWatts       ? $scooter->getPower()->toNative()       : null,
+            $scooter->getDescription() instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterDescription ? $scooter->getDescription()->toNative() : null
         );
     }
 }

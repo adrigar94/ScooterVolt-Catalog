@@ -11,7 +11,7 @@ class ScooterFindAllControllerTest extends WebTestCase
 {
     private MongoDBScooterRepository $repository;
 
-    private $client;
+    private \Symfony\Bundle\FrameworkBundle\KernelBrowser $client;
 
     protected function setUp(): void
     {
@@ -32,7 +32,7 @@ class ScooterFindAllControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
-        $scooters = json_decode($data, true);
+        $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(10, $scooters);
     }

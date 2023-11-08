@@ -11,7 +11,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdUrl;
 class ScooterFindByUrlService
 {
     public function __construct(
-        private ScooterRepository $repository
+        private readonly ScooterRepository $repository
     ) {
     }
 

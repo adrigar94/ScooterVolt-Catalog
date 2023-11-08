@@ -15,7 +15,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 )]
 class EventDomainScooterUpdatePriceExchangeCommand extends EventDomainReadCommand
 {
-    private $currenciesToConvert = ['EUR', 'GBP', 'USD', 'JPY'];
+    private array $currenciesToConvert = ['EUR', 'GBP', 'USD', 'JPY'];
 
     protected function domainEventClass(): string
     {
@@ -41,7 +41,7 @@ class EventDomainScooterUpdatePriceExchangeCommand extends EventDomainReadComman
     private function updatePricesRates(Scooter $scooter): void
     {
         $price = $scooter->getPrice();
-        if (!$price) {
+        if (!$price instanceof \ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterPrice) {
             return;
         }
         $valuePrice = $price->getPrice();

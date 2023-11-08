@@ -10,7 +10,7 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
 class ScooterDeleteService
 {
     public function __construct(
-        private ScooterRepository $repository
+        private readonly ScooterRepository $repository
     ) {
     }
 

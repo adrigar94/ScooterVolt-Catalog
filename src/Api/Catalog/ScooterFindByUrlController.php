@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
 )]
 class ScooterFindByUrlController
 {
-    public function __construct(private ScooterFindByUrlService $findByUrlService)
+    public function __construct(private readonly ScooterFindByUrlService $findByUrlService)
     {
     }
 
@@ -35,7 +35,7 @@ class ScooterFindByUrlController
         $adUrl = new AdUrl($url);
         $scooter = ($this->findByUrlService)($adUrl);
 
-        if ($scooter) {
+        if ($scooter instanceof \ScooterVolt\CatalogService\Catalog\Domain\Scooter) {
             return new JsonResponse($scooter, JsonResponse::HTTP_OK);
         }
 

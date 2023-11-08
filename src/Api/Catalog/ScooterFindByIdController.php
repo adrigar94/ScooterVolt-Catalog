@@ -26,7 +26,7 @@ use Nelmio\ApiDocBundle\Annotation as NOA;
 )]
 class ScooterFindByIdController
 {
-    public function __construct(private ScooterFindByIdService $findByIdService)
+    public function __construct(private readonly ScooterFindByIdService $findByIdService)
     {
     }
 
@@ -35,7 +35,7 @@ class ScooterFindByIdController
         $adId = new AdId($id);
         $scooter = ($this->findByIdService)($adId);
 
-        if ($scooter) {
+        if ($scooter instanceof \ScooterVolt\CatalogService\Catalog\Domain\Scooter) {
             return new JsonResponse($scooter, JsonResponse::HTTP_OK);
         }
 

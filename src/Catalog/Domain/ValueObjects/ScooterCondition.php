@@ -9,9 +9,9 @@ use Adrigar94\ValueObjectCraft\Primitive\Enum\EnumValueObject;
 class ScooterCondition extends EnumValueObject
 {
 
-    public const NEW = 'new';
-    public const USED = 'used';
-    public const BROKEN = 'broken';
+    final public const NEW = 'new';
+    final public const USED = 'used';
+    final public const BROKEN = 'broken';
 
 
     protected function valueMapping(): array

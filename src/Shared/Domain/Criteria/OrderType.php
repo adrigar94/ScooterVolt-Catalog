@@ -9,9 +9,9 @@ use ReflectionClass;
 
 class OrderType
 {
-    public const ASC  = 'asc';
-    public const DESC = 'desc';
-    public const NONE = 'none';
+    final public const ASC  = 'asc';
+    final public const DESC = 'desc';
+    final public const NONE = 'none';
 
 
     public function __construct(protected string $value)

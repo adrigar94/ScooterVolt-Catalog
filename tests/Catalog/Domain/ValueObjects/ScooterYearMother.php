@@ -20,7 +20,7 @@ class ScooterYearMother
         if ($max === null) {
             $max = (int) date('Y');
         }
-        $value = rand($min, $max);
+        $value = random_int($min, $max);
         return new ScooterYear($value);
     }
 }

@@ -213,7 +213,8 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
         $scooters = $this->repository->search($criteria);
 
         $this->assertCount(10, $scooters);
-        for ($i = 1; $i < count($scooters); $i++) {
+        $counter = count($scooters);
+        for ($i = 1; $i < $counter; $i++) {
             $prevPrice = $scooters[$i - 1]->getPrice()->getPrice();
             $currentPrice = $scooters[$i]->getPrice()->getPrice();
             $this->assertGreaterThanOrEqual($prevPrice, $currentPrice);
@@ -230,7 +231,8 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
         $scooters = $this->repository->search($criteria);
 
         $this->assertCount(10, $scooters);
-        for ($i = 1; $i < count($scooters); $i++) {
+        $counter = count($scooters);
+        for ($i = 1; $i < $counter; $i++) {
             $prevPrice = $scooters[$i - 1]->getPrice()->getPrice();
             $currentPrice = $scooters[$i]->getPrice()->getPrice();
             $this->assertLessThanOrEqual($prevPrice, $currentPrice);
