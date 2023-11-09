@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ScooterUpsertControllerTest extends WebTestCase
 {
+    use AuthenticatedJwt;
     private MongoDBScooterRepository $repository;
 
     private \Symfony\Bundle\FrameworkBundle\KernelBrowser $client;
@@ -28,6 +29,8 @@ class ScooterUpsertControllerTest extends WebTestCase
 
     public function testUpsert(): void
     {
+        $this->setAuthToken($this->client, "john@email.com", ['ROLE_USER']);
+
         $scooter = ScooterMother::random();
         $id = $scooter->getId()->value();
 
@@ -50,6 +53,15 @@ class ScooterUpsertControllerTest extends WebTestCase
         );
     }
 
+    public function testUpsertUnauthorized(): void
+    {
+        $scooter = ScooterMother::random();
+        $id = $scooter->getId()->value();
+
+        $this->client->request('PUT', "/api/catalog/scooter/$id", [], [], [], json_encode($scooter->toNative(), JSON_THROW_ON_ERROR));
+        $this->client->getResponse()->getContent();
+        $this->assertResponseStatusCodeSame(401);
+    }
     private function setUpDatabase()
     {
         $path_json = __DIR__ . '/scooters.json';

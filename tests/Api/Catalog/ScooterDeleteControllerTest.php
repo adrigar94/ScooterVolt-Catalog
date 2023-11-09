@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ScooterDeleteControllerTest extends WebTestCase
 {
+    use AuthenticatedJwt;
     private MongoDBScooterRepository $repository;
 
     private \Symfony\Bundle\FrameworkBundle\KernelBrowser $client;
@@ -27,6 +28,7 @@ class ScooterDeleteControllerTest extends WebTestCase
 
     public function testDelete(): void
     {
+        $this->setAuthToken($this->client, "john@email.com", ['ROLE_USER']);
         $id = '60c08215-d243-46d7-b9ff-14d4a4d00d46';
 
 
@@ -42,6 +44,20 @@ class ScooterDeleteControllerTest extends WebTestCase
 
         $adId = new AdId($id);
         $this->assertNull($this->repository->findById($adId));
+    }
+
+    public function testDeleteUnauthorized(): void
+    {
+        $id = '60c08215-d243-46d7-b9ff-14d4a4d00d46';
+
+        $adId = new AdId($id);
+        $this->assertNotNull($this->repository->findById($adId));
+
+
+        $this->client->request('DELETE', "/api/catalog/scooter/$id");
+        $this->client->getResponse()->getContent();
+
+        $this->assertResponseStatusCodeSame(401);
     }
 
     private function setUpDatabase()

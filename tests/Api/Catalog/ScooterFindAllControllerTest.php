@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ScooterFindAllControllerTest extends WebTestCase
 {
+    use AuthenticatedJwt;
     private MongoDBScooterRepository $repository;
 
     private \Symfony\Bundle\FrameworkBundle\KernelBrowser $client;
@@ -26,6 +27,8 @@ class ScooterFindAllControllerTest extends WebTestCase
 
     public function testFindAll(): void
     {
+        $this->setAuthToken($this->client, "john@email.com", ['ROLE_USER']);
+
         $this->client->request('GET', "/api/catalog/scooters");
         $data = $this->client->getResponse()->getContent();
 
@@ -35,6 +38,14 @@ class ScooterFindAllControllerTest extends WebTestCase
         $scooters = json_decode((string) $data, true, 512, JSON_THROW_ON_ERROR);
         $this->assertIsArray($scooters);
         $this->assertCount(10, $scooters);
+    }
+
+    public function testFindAllUnauthorized(): void
+    {
+        $this->client->request('GET', "/api/catalog/scooters");
+        $data = $this->client->getResponse()->getContent();
+
+        $this->assertResponseStatusCodeSame(401);
     }
 
     private function setUpDatabase()
