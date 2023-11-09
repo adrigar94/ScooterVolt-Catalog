@@ -19,8 +19,7 @@ Is avaible in ```https://localhost:8000/api/doc```
 ## Testing
 
 ## Working
-- [TODO] controller tests publish events and maybe rabbitmq is off. If rabbitmq is off, when an event is published an exception is thrown, error should be handled, save events to publish later. Now it happens with upsert
-- [TODO] Implement auth and roles permissions
+- [INPROGRESS] Implement auth and roles permissions
 - [TODO] scooter, change url to no required. Created date idem? (quiza el creator service que no sea obligatorio pero en la clase scooter si)
 
 
