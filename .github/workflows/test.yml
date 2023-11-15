@@ -47,5 +47,7 @@ jobs:
               let COUNTER+=2
               echo "Waiting for MongoDB to initialize... ($COUNTER seconds so far)"
           done
+      - name: Generate JWT keys
+        run: bin/console lexik:jwt:generate-keypair
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: composer test

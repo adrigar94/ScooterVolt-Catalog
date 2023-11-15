@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/catalog/scooters', name: 'scooters_find_all', methods: ['GET'])]
 #[OA\Tag('Catalog')]
+#[OA\Get(description: 'Returns all scooters (only admins)')]
 #[OA\Response(
     response: JsonResponse::HTTP_OK,
     description: 'Scooters Found',

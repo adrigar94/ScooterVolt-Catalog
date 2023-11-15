@@ -27,18 +27,23 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterTravelRangeKm;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterYear;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserContactInfo;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId;
+use ScooterVolt\CatalogService\Shared\Domain\Auth\JwtDecoder;
 use ScooterVolt\CatalogService\Shared\Domain\Bus\Event\EventBus;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class ScooterUpsertService
 {
     public function __construct(
         private readonly ScooterRepository $repository,
-        private readonly EventBus $eventBus
+        private readonly EventBus $eventBus,
+        private readonly JwtDecoder $jwtDecoder
     ) {
     }
 
     public function __invoke(ScooterDTO $scooterDTO): void
     {
+        $this->checkPermissions($scooterDTO);
+
         $id = new AdId($scooterDTO->id);
         $url = new AdUrl($scooterDTO->url);
         $createdAt = new \DateTimeImmutable($scooterDTO->created_at);
@@ -95,5 +100,30 @@ class ScooterUpsertService
 
         $eventUpsert = new ScooterUpsertDomainEvent($scooter->toNative());
         $this->eventBus->publish($eventUpsert);
+    }
+
+    private function checkPermissions(ScooterDTO $scooterDTO): void
+    {
+        $roles = $this->jwtDecoder->roles();
+        if (in_array('ROLE_ADMIN', $roles)) {
+            return;
+        }
+
+        $id = new AdId($scooterDTO->id);
+        $userIdLogged = $this->jwtDecoder->id();
+
+        if ($scooterDTO->user_id !== $userIdLogged) {
+            throw new UnauthorizedHttpException('You do not have permission to upsert this Scooter');
+        }
+
+        $scooter = $this->repository->findById($id);
+
+        if (is_null($scooter)) {
+            return;
+        }
+
+        if ($scooter->getUserId()->value() !== $userIdLogged) {
+            throw new UnauthorizedHttpException('You do not have permission to update this Scooter');
+        }
     }
 }
