@@ -27,7 +27,7 @@ class ScooterFindAllControllerTest extends WebTestCase
 
     public function testFindAll(): void
     {
-        $this->setAuthToken($this->client, "john@email.com", ['ROLE_USER']);
+        $this->setAuthToken($this->client, "john@email.com", ['ROLE_ADMIN']);
 
         $this->client->request('GET', "/api/catalog/scooters");
         $data = $this->client->getResponse()->getContent();
@@ -40,10 +40,10 @@ class ScooterFindAllControllerTest extends WebTestCase
         $this->assertCount(10, $scooters);
     }
 
-    public function testFindAllUnauthorized(): void
+    public function testFindAllUnauthenticated(): void
     {
         $this->client->request('GET', "/api/catalog/scooters");
-        $data = $this->client->getResponse()->getContent();
+        $this->client->getResponse()->getContent();
 
         $this->assertResponseStatusCodeSame(401);
     }

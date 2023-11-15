@@ -26,9 +26,9 @@ class ScooterDeleteControllerTest extends WebTestCase
     }
 
 
-    public function testDelete(): void
+    public function testDeleteController(): void
     {
-        $this->setAuthToken($this->client, "john@email.com", ['ROLE_USER']);
+        $this->setAuthToken($this->client, "dale.lubowitz@gmail.com", ['ROLE_USER'], "323ce288-6d7d-4c26-af28-304b8ad7a789");
         $id = '60c08215-d243-46d7-b9ff-14d4a4d00d46';
 
 
@@ -46,7 +46,7 @@ class ScooterDeleteControllerTest extends WebTestCase
         $this->assertNull($this->repository->findById($adId));
     }
 
-    public function testDeleteUnauthorized(): void
+    public function testDeleteUnauthenticated(): void
     {
         $id = '60c08215-d243-46d7-b9ff-14d4a4d00d46';
 

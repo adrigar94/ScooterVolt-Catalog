@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ScooterFindByIdControllerTest extends WebTestCase
 {
-    use AuthenticatedJwt;
     private MongoDBScooterRepository $repository;
 
     private \Symfony\Bundle\FrameworkBundle\KernelBrowser $client;
@@ -27,7 +26,6 @@ class ScooterFindByIdControllerTest extends WebTestCase
 
     public function testFindById(): void
     {
-        $this->setAuthToken($this->client, "john@email.com", ['ROLE_USER']);
         $id = '60c08215-d243-46d7-b9ff-14d4a4d00d46';
         $this->client->request('GET', "/api/catalog/scooter/$id");
         $data = $this->client->getResponse()->getContent();
@@ -42,20 +40,10 @@ class ScooterFindByIdControllerTest extends WebTestCase
 
     public function testFindByIdNotFound(): void
     {
-        $this->setAuthToken($this->client, "john@email.com", ['ROLE_USER']);
         $id = '77261de2-b236-4b71-8974-d4601908120b';
         $this->client->request('GET', "/api/catalog/scooter/$id");
 
         $this->assertResponseStatusCodeSame(404);
-    }
-
-
-    public function testFindByIdNotFoundUnauthorized(): void
-    {
-        $id = '77261de2-b236-4b71-8974-d4601908120b';
-        $this->client->request('GET', "/api/catalog/scooter/$id");
-
-        $this->assertResponseStatusCodeSame(401);
     }
 
     private function setUpDatabase()

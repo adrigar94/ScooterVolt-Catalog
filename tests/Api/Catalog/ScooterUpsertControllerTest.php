@@ -7,6 +7,7 @@ namespace ScooterVolt\CatalogService\Tests\Api\Catalog;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdId;
 use ScooterVolt\CatalogService\Catalog\Infrastructure\Persistence\MongoDBScooterRepository;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ScooterMother;
+use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterBrandMother;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ScooterUpsertControllerTest extends WebTestCase
@@ -29,9 +30,10 @@ class ScooterUpsertControllerTest extends WebTestCase
 
     public function testUpsert(): void
     {
-        $this->setAuthToken($this->client, "john@email.com", ['ROLE_USER']);
-
         $scooter = ScooterMother::random();
+
+        $this->setAuthToken($this->client, $scooter->getUserContactInfo()->getEmail(), ['ROLE_USER'], $scooter->getUserId()->value());
+
         $id = $scooter->getId()->value();
 
         $this->client->request('PUT', "/api/catalog/scooter/$id", [], [], [], json_encode($scooter->toNative(), JSON_THROW_ON_ERROR));
@@ -53,7 +55,58 @@ class ScooterUpsertControllerTest extends WebTestCase
         );
     }
 
-    public function testUpsertUnauthorized(): void
+
+    public function testUpsertModify(): void
+    {
+        $scooter = ScooterMother::random();
+
+        $this->setAuthToken($this->client, $scooter->getUserContactInfo()->getEmail(), ['ROLE_USER'], $scooter->getUserId()->value());
+
+        $id = $scooter->getId()->value();
+
+        $this->client->request('PUT', "/api/catalog/scooter/$id", [], [], [], json_encode($scooter->toNative(), JSON_THROW_ON_ERROR));
+        $this->client->getResponse()->getContent();
+        $this->assertResponseIsSuccessful();
+
+        $adId = new AdId($id);
+        $newScooter = $this->repository->findById($adId);
+        $this->assertNotNull($newScooter);
+
+        $this->assertEquals(
+            $scooter->getId()->value(),
+            $newScooter->getId()->value()
+        );
+
+        $this->assertEquals(
+            $scooter->getTitle(),
+            $newScooter->getTitle()
+        );
+
+        // Modify Scooter
+
+        $scooter->setBrand(ScooterBrandMother::random());
+        $id = $scooter->getId()->value();
+
+        $this->client->request('PUT', "/api/catalog/scooter/$id", [], [], [], json_encode($scooter->toNative(), JSON_THROW_ON_ERROR));
+        $this->client->getResponse()->getContent();
+        $this->assertResponseIsSuccessful();
+
+        $adId = new AdId($id);
+        $newScooter = $this->repository->findById($adId);
+        $this->assertNotNull($newScooter);
+
+        $this->assertEquals(
+            $scooter->getBrand()->value(),
+            $newScooter->getBrand()->value()
+        );
+
+        $this->assertEquals(
+            $scooter->getTitle(),
+            $newScooter->getTitle()
+        );
+    }
+
+    public function testUpsertUnauthenticated(): void
     {
         $scooter = ScooterMother::random();
         $id = $scooter->getId()->value();
@@ -62,6 +115,7 @@ class ScooterUpsertControllerTest extends WebTestCase
         $this->client->getResponse()->getContent();
         $this->assertResponseStatusCodeSame(401);
     }
+
     private function setUpDatabase()
     {
         $path_json = __DIR__ . '/scooters.json';
