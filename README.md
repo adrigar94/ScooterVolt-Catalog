@@ -19,7 +19,9 @@ Is avaible in ```https://localhost:8000/api/doc```
 ## Testing
 
 ## Working
-- [INPROGRESS] Implement auth and roles permissions
 - [TODO] scooter, change url to no required. Created date idem? (quiza el creator service que no sea obligatorio pero en la clase scooter si)
 
 
+## Code quality
+- vendor/bin/rector process --ansi --dry-run
+- vendor/bin/ecs check
