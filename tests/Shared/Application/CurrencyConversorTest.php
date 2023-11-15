@@ -9,7 +9,6 @@ use ScooterVolt\CatalogService\Shared\Application\CurrencyConversor;
 
 class CurrencyConversorTest extends TestCase
 {
-
     public function testCurrencyConversorApiWorks(): void
     {
         $conversor = new CurrencyConversor('EUR');
@@ -18,5 +17,4 @@ class CurrencyConversorTest extends TestCase
 
         $this->assertIsFloat($usd_value);
     }
-
 }

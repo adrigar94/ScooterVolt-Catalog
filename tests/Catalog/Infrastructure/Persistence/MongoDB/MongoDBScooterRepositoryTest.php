@@ -36,47 +36,46 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
         $this->assertCount(5, $scooters);
         $this->assertInstanceOf(Scooter::class, $scooters[0]);
         foreach ($scooters as $scooter) {
-            $this->assertEquals("published", $scooter->getStatus()->value());
+            $this->assertEquals('published', $scooter->getStatus()->value());
         }
     }
 
     public function testSearchByOneField(): void
     {
         $criteria = new Criteria(
-            [new Filter("brand", FilterOperator::EQUAL(), "Leuschke-Blanda")],
+            [new Filter('brand', FilterOperator::EQUAL(), 'Leuschke-Blanda')],
             []
         );
 
         $scooters = $this->repository->search($criteria);
 
         $this->assertCount(1, $scooters);
-        $this->assertEquals("Leuschke-Blanda", $scooters[0]->getBrand());
+        $this->assertEquals('Leuschke-Blanda', $scooters[0]->getBrand());
     }
 
     public function testSearchByTwoFields(): void
     {
         $criteria = new Criteria(
             [
-                new Filter("status", FilterOperator::EQUAL(), "published"),
-                new Filter("condition", FilterOperator::EQUAL(), "used"),
+                new Filter('status', FilterOperator::EQUAL(), 'published'),
+                new Filter('condition', FilterOperator::EQUAL(), 'used'),
             ],
-            [new Order("price.price", OrderType::DESC())]
+            [new Order('price.price', OrderType::DESC())]
         );
 
         $scooters = $this->repository->search($criteria);
 
         $this->assertGreaterThanOrEqual(1, count($scooters));
         foreach ($scooters as $scooter) {
-            $this->assertEquals("published", $scooter->getStatus()->value());
-            $this->assertEquals("used", $scooter->getCondition()->value());
+            $this->assertEquals('published', $scooter->getStatus()->value());
+            $this->assertEquals('used', $scooter->getCondition()->value());
         }
     }
-
 
     public function testSearchByText(): void
     {
         $criteria = new Criteria(
-            [new Filter("search", FilterOperator::EQUAL(), "xiaomi")],
+            [new Filter('search', FilterOperator::EQUAL(), 'xiaomi')],
             []
         );
 
@@ -89,7 +88,7 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
     {
         $criteria = new Criteria(
             [
-                new Filter("status", FilterOperator::NOT_EQUAL(), "published"),
+                new Filter('status', FilterOperator::NOT_EQUAL(), 'published'),
             ],
             []
         );
@@ -98,7 +97,7 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
 
         $this->assertGreaterThanOrEqual(1, count($scooters));
         foreach ($scooters as $scooter) {
-            $this->assertNotEquals("published", $scooter->getStatus()->value());
+            $this->assertNotEquals('published', $scooter->getStatus()->value());
         }
     }
 
@@ -106,7 +105,7 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
     {
         $criteria = new Criteria(
             [
-                new Filter("model", FilterOperator::CONTAINS(), "scooter"),
+                new Filter('model', FilterOperator::CONTAINS(), 'scooter'),
             ]
         );
 
@@ -114,7 +113,7 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
 
         $this->assertGreaterThanOrEqual(2, count($scooters));
         foreach ($scooters as $scooter) {
-            $this->assertStringContainsStringIgnoringCase("scooter", $scooter->getModel()->value());
+            $this->assertStringContainsStringIgnoringCase('scooter', $scooter->getModel()->value());
         }
     }
 
@@ -122,7 +121,7 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
     {
         $criteria = new Criteria(
             [
-                new Filter("model", FilterOperator::NOT_CONTAINS(), "scooter"),
+                new Filter('model', FilterOperator::NOT_CONTAINS(), 'scooter'),
             ]
         );
 
@@ -130,17 +129,16 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
 
         $this->assertGreaterThanOrEqual(2, count($scooters));
         foreach ($scooters as $scooter) {
-            $this->assertStringNotContainsStringIgnoringCase("scooter", $scooter->getModel()->value());
+            $this->assertStringNotContainsStringIgnoringCase('scooter', $scooter->getModel()->value());
         }
     }
 
     public function testSearchByPriceRange(): void
     {
-
         $criteria = new Criteria(
             [
-                new Filter("price.price", FilterOperator::GT(), 50000),
-                new Filter("price.price", FilterOperator::LT(), 70000),
+                new Filter('price.price', FilterOperator::GT(), 50000),
+                new Filter('price.price', FilterOperator::LT(), 70000),
             ]
         );
 
@@ -156,11 +154,10 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
 
     public function testSearchWithoutResults(): void
     {
-
         $criteria = new Criteria(
             [
-                new Filter("price.price", FilterOperator::GT(), 200),
-                new Filter("price.price", FilterOperator::LT(), 100),
+                new Filter('price.price', FilterOperator::GT(), 200),
+                new Filter('price.price', FilterOperator::LT(), 100),
             ]
         );
 
@@ -207,14 +204,14 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
     {
         $criteria = new Criteria(
             [],
-            [new Order("price.price", OrderType::ASC())]
+            [new Order('price.price', OrderType::ASC())]
         );
 
         $scooters = $this->repository->search($criteria);
 
         $this->assertCount(10, $scooters);
         $counter = count($scooters);
-        for ($i = 1; $i < $counter; $i++) {
+        for ($i = 1; $i < $counter; ++$i) {
             $prevPrice = $scooters[$i - 1]->getPrice()->getPrice();
             $currentPrice = $scooters[$i]->getPrice()->getPrice();
             $this->assertGreaterThanOrEqual($prevPrice, $currentPrice);
@@ -225,14 +222,14 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
     {
         $criteria = new Criteria(
             [],
-            [new Order("price.price", OrderType::DESC())]
+            [new Order('price.price', OrderType::DESC())]
         );
 
         $scooters = $this->repository->search($criteria);
 
         $this->assertCount(10, $scooters);
         $counter = count($scooters);
-        for ($i = 1; $i < $counter; $i++) {
+        for ($i = 1; $i < $counter; ++$i) {
             $prevPrice = $scooters[$i - 1]->getPrice()->getPrice();
             $currentPrice = $scooters[$i]->getPrice()->getPrice();
             $this->assertLessThanOrEqual($prevPrice, $currentPrice);
@@ -244,7 +241,6 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
         $adId = AdId::random();
         $foundScooter = $this->repository->findById($adId);
         $this->assertNull($foundScooter);
-
 
         $adId = new AdId('60c08215-d243-46d7-b9ff-14d4a4d00d46');
         $foundScooter = $this->repository->findById($adId);
@@ -290,7 +286,6 @@ class MongoDBScooterRepositoryTest extends KernelTestCase
         $this->assertEquals($scooter->getId()->value(), $foundScooter->getId()->value());
         $this->assertEquals($scooter->getCondition()->value(), $foundScooter->getCondition()->value());
     }
-
 
     public function testDelete(): void
     {

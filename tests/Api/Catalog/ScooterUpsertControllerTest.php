@@ -27,7 +27,6 @@ class ScooterUpsertControllerTest extends WebTestCase
         $this->setUpDatabase();
     }
 
-
     public function testUpsert(): void
     {
         $scooter = ScooterMother::random();
@@ -54,7 +53,6 @@ class ScooterUpsertControllerTest extends WebTestCase
             $newScooter->getTitle()
         );
     }
-
 
     public function testUpsertModify(): void
     {

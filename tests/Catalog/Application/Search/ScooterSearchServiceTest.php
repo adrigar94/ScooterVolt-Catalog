@@ -28,10 +28,10 @@ class ScooterSearchServiceTest extends TestCase
     {
         $criteria = new Criteria(
             [
-                new Filter("brand", FilterOperator::EQUAL(), "Leuschke-Blanda"),
-                new Filter("status", FilterOperator::EQUAL(), "published"),
+                new Filter('brand', FilterOperator::EQUAL(), 'Leuschke-Blanda'),
+                new Filter('status', FilterOperator::EQUAL(), 'published'),
             ],
-            [new Order("price", OrderType::ASC())],
+            [new Order('price', OrderType::ASC())],
             0,
             10
         );

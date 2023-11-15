@@ -18,7 +18,6 @@ class ScooterFindAllServiceTest extends TestCase
 
     private JwtDecoder|MockObject $jwtDecoder;
 
-
     protected function setUp(): void
     {
         $this->repositoryMock = $this->createMock(ScooterRepository::class);
@@ -34,7 +33,6 @@ class ScooterFindAllServiceTest extends TestCase
         $this->repositoryMock->expects($this->once())
             ->method('findAll')
             ->willReturn($scooters);
-
 
         $this->jwtDecoder->expects($this->once())
             ->method('roles')

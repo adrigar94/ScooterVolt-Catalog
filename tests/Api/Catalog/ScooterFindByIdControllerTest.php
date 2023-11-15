@@ -23,13 +23,11 @@ class ScooterFindByIdControllerTest extends WebTestCase
         $this->setUpDatabase();
     }
 
-
     public function testFindById(): void
     {
         $id = '60c08215-d243-46d7-b9ff-14d4a4d00d46';
         $this->client->request('GET', "/api/catalog/scooter/$id");
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);

@@ -23,12 +23,10 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->setUpDatabase();
     }
 
-
     public function testSearchWithoutParams(): void
     {
         $this->client->request('GET', '/api/catalog/scooters/search');
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -43,7 +41,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', '/api/catalog/scooters/search?search=xiaomi');
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -56,7 +53,6 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $this->client->request('GET', '/api/catalog/scooters/search?brand[]=xiaomi');
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -76,7 +72,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', '/api/catalog/scooters/search?model[]=scooter');
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -94,7 +89,6 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $this->client->request('GET', '/api/catalog/scooters/search?condition[]=new');
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -114,7 +108,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', '/api/catalog/scooters/search?status[]=draft');
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -133,7 +126,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', '/api/catalog/scooters/search?status[]=draft&status[]=sold');
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -151,7 +143,6 @@ class ScooterSearchControllerTest extends WebTestCase
     {
         $this->client->request('GET', '/api/catalog/scooters/search?status[]=draft&status[]=sold&condition[]=used');
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -174,7 +165,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', "/api/catalog/scooters/search?year_gt=$year_gt");
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -193,7 +183,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $year_lt = 2010;
         $this->client->request('GET', "/api/catalog/scooters/search?year_lt=$year_lt");
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -215,7 +204,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', "/api/catalog/scooters/search?year_gt=$year_gt&year_lt=$year_lt");
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -229,12 +217,12 @@ class ScooterSearchControllerTest extends WebTestCase
             $this->assertGreaterThanOrEqual($year_gt, $scooter['year']);
         }
     }
+
     public function testSearchByMaxSpeedGt(): void
     {
         $max_speed_gt = 50;
         $this->client->request('GET', "/api/catalog/scooters/search?max_speed_gt=$max_speed_gt");
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -254,7 +242,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $max_speed_lt = 50;
         $this->client->request('GET', "/api/catalog/scooters/search?max_speed_lt=$max_speed_lt");
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -276,7 +263,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', "/api/catalog/scooters/search?max_speed_gt=$max_speed_gt&max_speed_lt=$max_speed_lt");
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -290,12 +276,12 @@ class ScooterSearchControllerTest extends WebTestCase
             $this->assertGreaterThanOrEqual($max_speed_gt, $scooter['max_speed']);
         }
     }
+
     public function testSearchByPowerGt(): void
     {
         $power_gt = 250000;
         $this->client->request('GET', "/api/catalog/scooters/search?power_gt=$power_gt");
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -315,7 +301,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $power_lt = 250000;
         $this->client->request('GET', "/api/catalog/scooters/search?power_lt=$power_lt");
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -337,7 +322,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', "/api/catalog/scooters/search?power_gt=$power_gt&power_lt=$power_lt");
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -351,12 +335,12 @@ class ScooterSearchControllerTest extends WebTestCase
             $this->assertGreaterThanOrEqual($power_gt, $scooter['power']);
         }
     }
+
     public function testSearchByTravelRangeGt(): void
     {
         $travel_range_gt = 50;
         $this->client->request('GET', "/api/catalog/scooters/search?travel_range_gt=$travel_range_gt");
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -376,7 +360,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $travel_range_lt = 50;
         $this->client->request('GET', "/api/catalog/scooters/search?travel_range_lt=$travel_range_lt");
         $data = $this->client->getResponse()->getContent();
-
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
@@ -398,7 +381,6 @@ class ScooterSearchControllerTest extends WebTestCase
         $this->client->request('GET', "/api/catalog/scooters/search?travel_range_gt=$travel_range_gt&travel_range_lt=$travel_range_lt");
         $data = $this->client->getResponse()->getContent();
 
-
         $this->assertResponseIsSuccessful();
         $this->assertJson($data);
 
@@ -415,8 +397,8 @@ class ScooterSearchControllerTest extends WebTestCase
 
     public function testSearchByCoords(): void
     {
-        $coords = "-6.10,175.15";
-        $max_km = "5000";
+        $coords = '-6.10,175.15';
+        $max_km = '5000';
         $this->client->request('GET', "/api/catalog/scooters/search?coords=$coords&max_km=$max_km");
         $data = $this->client->getResponse()->getContent();
 
@@ -431,7 +413,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByPriceGtConversion(): void
     {
         $price = 400;
-        $currency = "USD";
+        $currency = 'USD';
         $this->client->request('GET', "/api/catalog/scooters/search?price_gt=$price&currency=$currency");
         $data = $this->client->getResponse()->getContent();
 
@@ -448,7 +430,7 @@ class ScooterSearchControllerTest extends WebTestCase
     public function testSearchByPriceGtConversionWithoutResults(): void
     {
         $price = 500;
-        $currency = "USD";
+        $currency = 'USD';
         $this->client->request('GET', "/api/catalog/scooters/search?price_gt=$price&currency=$currency");
         $data = $this->client->getResponse()->getContent();
 

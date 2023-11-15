@@ -18,7 +18,6 @@ class ScooterDeleteServiceTest extends TestCase
 
     private JwtDecoder|MockObject $jwtDecoder;
 
-
     protected function setUp(): void
     {
         $this->repositoryMock = $this->createMock(ScooterRepository::class);
@@ -49,7 +48,6 @@ class ScooterDeleteServiceTest extends TestCase
         $service->__invoke($scooter->getId());
     }
 
-
     public function testDeleteUnauthorized(): void
     {
         $scooter = ScooterMother::randomPublished();
@@ -64,7 +62,7 @@ class ScooterDeleteServiceTest extends TestCase
 
         $this->jwtDecoder->expects($this->once())
             ->method('id')
-            ->willReturn("other-user");
+            ->willReturn('other-user');
 
         $service = new ScooterDeleteService($this->repositoryMock, $this->jwtDecoder);
 

@@ -10,19 +10,18 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterGallery;
 
 class ScooterGalleryMother
 {
-
     public static function create(ImageValueObject ...$images): ScooterGallery
     {
         return new ScooterGallery(...$images);
     }
 
-
     public static function random($minImages = 1, $maxImages = 5): ScooterGallery
     {
         $images = [];
-        for ($i = 0; $i < random_int($minImages, $maxImages); $i++) {
+        for ($i = 0; $i < random_int($minImages, $maxImages); ++$i) {
             $images[] = self::randomImage();
         }
+
         return new ScooterGallery(...$images);
     }
 

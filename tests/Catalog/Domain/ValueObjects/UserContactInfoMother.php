@@ -9,12 +9,10 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserContactInfo;
 
 class UserContactInfoMother
 {
-
     public static function create(string $name, string $phone, string $email): UserContactInfo
     {
         return new UserContactInfo($name, $phone, $email);
     }
-
 
     public static function random(): UserContactInfo
     {

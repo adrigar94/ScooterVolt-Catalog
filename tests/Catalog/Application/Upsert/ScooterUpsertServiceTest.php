@@ -52,7 +52,6 @@ class ScooterUpsertServiceTest extends TestCase
         $service->__invoke($scooterDTO);
     }
 
-
     public function testUpsertUnauthorized(): void
     {
         $scooterDTO = ScooterMother::randomScooterDTO();
@@ -61,15 +60,13 @@ class ScooterUpsertServiceTest extends TestCase
             ->method('roles')
             ->willReturn(['ROLE_USER']);
 
-
         $this->jwtDecoder->expects($this->once())
             ->method('id')
-            ->willReturn("other-user");
+            ->willReturn('other-user');
 
         $service = new ScooterUpsertService($this->repositoryMock, $this->eventBus, $this->jwtDecoder);
 
         $this->expectException(UnauthorizedHttpException::class);
         $service->__invoke($scooterDTO);
-
     }
 }

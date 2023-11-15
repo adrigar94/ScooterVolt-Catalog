@@ -8,12 +8,10 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\UserId;
 
 class UserIdMother
 {
-
     public static function create(string $value): UserId
     {
         return new UserId($value);
     }
-
 
     public static function random(): UserId
     {

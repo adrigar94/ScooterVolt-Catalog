@@ -23,7 +23,6 @@ class ScooterFindByUrlControllerTest extends WebTestCase
         $this->setUpDatabase();
     }
 
-
     public function testFindByUrl(): void
     {
         $url = 'xiaomi-scooter-323ce288';

@@ -11,7 +11,6 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterLocation;
 
 class ScooterLocationMother
 {
-
     public static function create(CoordsValueObject $coords, PlaceLocationValueObject $address): ScooterLocation
     {
         return new ScooterLocation($coords, $address);
@@ -28,12 +27,14 @@ class ScooterLocationMother
     public static function randomCoords(): CoordsValueObject
     {
         $faker = Factory::create();
+
         return new CoordsValueObject($faker->latitude(), $faker->longitude());
     }
 
     public static function randomAddress(): PlaceLocationValueObject
     {
         $faker = Factory::create();
+
         return new PlaceLocationValueObject($faker->streetAddress(), $faker->country(), $faker->state(), $faker->city(), $faker->postcode());
     }
 }

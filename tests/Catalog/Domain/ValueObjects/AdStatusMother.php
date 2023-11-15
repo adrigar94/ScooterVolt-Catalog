@@ -33,7 +33,7 @@ class AdStatusMother
         $conditions = [
             AdStatus::DRAFT,
             AdStatus::PUBLISHED,
-            AdStatus::SOLD
+            AdStatus::SOLD,
         ];
 
         return new AdStatus($conditions[array_rand($conditions)]);

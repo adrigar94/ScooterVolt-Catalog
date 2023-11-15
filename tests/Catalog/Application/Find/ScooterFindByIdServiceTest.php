@@ -14,7 +14,6 @@ class ScooterFindByIdServiceTest extends TestCase
 {
     private ScooterRepository|MockObject $repositoryMock;
 
-
     protected function setUp(): void
     {
         $this->repositoryMock = $this->createMock(ScooterRepository::class);

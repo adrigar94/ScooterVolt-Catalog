@@ -10,7 +10,6 @@ use ScooterVolt\CatalogService\Catalog\Domain\Exceptions\ScooterChangeStatusExce
 use ScooterVolt\CatalogService\Catalog\Domain\Exceptions\ScooterSoldChangeStatusException;
 use ScooterVolt\CatalogService\Catalog\Domain\Scooter;
 use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\AdStatus;
-use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterDescription;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterBrandMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterConditionMother;
 use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\ScooterDescriptionMother;
@@ -28,7 +27,6 @@ use ScooterVolt\CatalogService\Tests\Catalog\Domain\ValueObjects\UserIdMother;
 #[CoversClass(Scooter::class)]
 class ScooterTest extends TestCase
 {
-
     public function testCreateScooterInstance()
     {
         $scooter = ScooterMother::random();
@@ -42,17 +40,16 @@ class ScooterTest extends TestCase
 
         $scooter = Scooter::newBlankScooter($userId, $contactInfo);
 
-
-        $brand       = ScooterBrandMother::random();
-        $model       = ScooterModelMother::random();
-        $price       = ScooterPriceMother::random();
-        $location    = ScooterLocationMother::random();
-        $gallery     = ScooterGalleryMother::random();
-        $year        = ScooterYearMother::random();
-        $condition   = ScooterConditionMother::random();
+        $brand = ScooterBrandMother::random();
+        $model = ScooterModelMother::random();
+        $price = ScooterPriceMother::random();
+        $location = ScooterLocationMother::random();
+        $gallery = ScooterGalleryMother::random();
+        $year = ScooterYearMother::random();
+        $condition = ScooterConditionMother::random();
         $travelRange = ScooterTravelRangeKmMother::random();
-        $maxSpeed    = ScooterMaxSpeedKmhMother::random();
-        $power       = ScooterPowerWattsMother::random();
+        $maxSpeed = ScooterMaxSpeedKmhMother::random();
+        $power = ScooterPowerWattsMother::random();
         $description = ScooterDescriptionMother::random();
 
         $scooter->setBrand($brand);
@@ -66,7 +63,6 @@ class ScooterTest extends TestCase
         $scooter->setMaxSpeed($maxSpeed);
         $scooter->setPower($power);
         $scooter->setDescription($description);
-
 
         $this->assertInstanceOf(Scooter::class, $scooter);
 
@@ -82,7 +78,6 @@ class ScooterTest extends TestCase
         $this->assertSame($power, $scooter->getPower());
         $this->assertSame($description, $scooter->getDescription());
     }
-
 
     public function testDraftToPublish(): void
     {
@@ -141,14 +136,12 @@ class ScooterTest extends TestCase
     {
         $scooter = ScooterMother::randomSold();
 
-
         $this->expectException(ScooterSoldChangeStatusException::class);
         $scooter->toDraft();
 
         $this->assertInstanceOf(Scooter::class, $scooter);
         $this->assertSame(AdStatus::SOLD, $scooter->getStatus());
     }
-
 
     public function testSoldToPublishFailed(): void
     {

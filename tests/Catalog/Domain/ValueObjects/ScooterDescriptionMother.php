@@ -9,17 +9,16 @@ use ScooterVolt\CatalogService\Catalog\Domain\ValueObjects\ScooterDescription;
 
 class ScooterDescriptionMother
 {
-
     public static function create(string $value): ScooterDescription
     {
         return new ScooterDescription($value);
     }
 
-
     public static function random(): ScooterDescription
     {
         $faker = Factory::create();
         $value = $faker->paragraphs(2, true);
+
         return new ScooterDescription($value);
     }
 }

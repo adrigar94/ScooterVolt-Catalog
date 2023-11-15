@@ -18,6 +18,7 @@ trait AuthenticatedJwt
             'ROLES' => $roles,
             'id' => $userId ?? UuidValueObject::random(),
         ];
+
         return $encoder->encode($payload);
     }
 
